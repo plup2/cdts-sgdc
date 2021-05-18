@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file original="SoyMsgBundle" datatype="x-soy-msg-bundle" xml:space="preserve" source-language="en" target-language="en">
+    <body>
+      <trans-unit id="244656909173769275" datatype="html">
+        <source>https://esdc.prv/includes/edsc-esdc_prv/wet4/en/mega_menu/esdcmenu-eng.html</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="358053430827677223" datatype="html">
+        <source>ESDC/SC IntraWeb</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="759687838251957893" datatype="html">
+        <source>Contact Us</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="768969489271517054" datatype="html">
+        <source>Top of Page</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="776891271353895484" datatype="html">
+        <source>Contact and Feedback</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="841934696444961534" datatype="html">
+        <source>News</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="890287758618706341" datatype="html">
+        <source>About ECCC</source>
+        <target/>
+        <note priority="1" from="description">This menu item should be reviewed</note>
+      </trans-unit>
+      <trans-unit id="959849159427754029" datatype="html">
+        <source>https://gccollab.ca/splash/</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="1140327701924892323" datatype="html">
+        <source>Quick Links</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="1151465031088567452" datatype="html">
+        <source>Topics menu</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="1226362557294152176" datatype="html">
+        <source>Work Tools</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="1411850867528020798" datatype="html">
+        <source>Canada.ca</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="1584203177754879085" datatype="html">
+        <source>http://esdc.prv/en/news/index.shtml</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="1670477018139303820" datatype="html">
+        <source>iService</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="1732438383704467060" datatype="html">
+        <source>Section menu</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="1914592173926880968" datatype="html">
+        <source>Skip to main content</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="2009067054360414826" datatype="html">
+        <source>sitemenu-eng.html</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="2078785402028999261" datatype="html">
+        <source>Forms</source>
+        <target/>
+        <note priority="1" from="description">This menu item should be reviewed</note>
+      </trans-unit>
+      <trans-unit id="2102825898069375693" datatype="html">
+        <source>Menu</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="2446117790692479672" datatype="html">
+        <source>Resources</source>
+        <target/>
+        <note priority="1" from="description">This menu item should be reviewed</note>
+      </trans-unit>
+      <trans-unit id="2637040957358356533" datatype="html">
+        <source>Terms and conditions</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="2821179408673282599" datatype="html">
+        <source>Home</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="2949848596707725099" datatype="html">
+        <source>Sign out</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="3140191555427475665" datatype="html">
+        <source>Symbol of the Government of Canada</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="3173908136039025834" datatype="html">
+        <source>Skip to section menu</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="3222433420570239270" datatype="html">
+        <source>Version:&amp;#32;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="3359915250661736368" datatype="html">
+        <source>https://intranet.canada.ca/hr-rh/index-eng.asp</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="3388125616194449534" datatype="html">
+        <source>http://iservice.prv/eng/index.shtml</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="3689763405829954142" datatype="html">
+        <source>http://www.gcpedia.gc.ca/wiki/?setlang=en</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="3739344372877541689" datatype="html">
+        <source><x id="START_SPAN"/>GC<x id="END_SPAN"/>connex</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="3767399230002705293" datatype="html">
+        <source>DMs' Corner</source>
+        <target/>
+        <note priority="1" from="description">This menu item should be reviewed</note>
+      </trans-unit>
+      <trans-unit id="3781117443004698514" datatype="html">
+        <source>About GCTools</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="3820541964374031717" datatype="html">
+        <source>GC</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="3865115635607753363" datatype="html">
+        <source>Branches</source>
+        <target/>
+        <note priority="1" from="description">This menu item should be reviewed</note>
+      </trans-unit>
+      <trans-unit id="4003226257864604928" datatype="html">
+        <source>http://esdc.prv/en/stay_connected/index.shtml</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="4070180273320549257" datatype="html">
+        <source>Tools and References</source>
+        <target/>
+        <note priority="1" from="description">This menu item should be reviewed</note>
+      </trans-unit>
+      <trans-unit id="4086935906212511862" datatype="html">
+        <source>Date modified:&amp;#32;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="4118179766183604668" datatype="html">
+        <source>You are here:</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="4344894400462492853" datatype="html">
+        <source>GCTools</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="4349565107404973022" datatype="html">
+        <source>https://intranet.canada.ca/search-recherche/query-recherche-eng.aspx</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="4354075634636401409" datatype="html">
+        <source>http://gcdirectory-gcannuaire.gc.ca/en/GCD/?pgid=002</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="4546817635953004453" datatype="html">
+        <source>Career development and learning</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="4551958835356002273" datatype="html">
+        <source>intranet</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="4565637070850597086" datatype="html">
+        <source>Government of Canada</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="4580988005648117665" datatype="html">
+        <source>Search</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="4753691638710705790" datatype="html">
+        <source><x id="START_SPAN"/>GC<x id="END_SPAN"/>directory</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="4818561681813323185" datatype="html">
+        <source>http://esdc.prv/en/quick-links/index.shtml</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="4831759211558801125" datatype="html">
+        <source>Screen Identifier:&amp;#32;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="5101233524905342940" datatype="html">
+        <source>http://esdc.prv/en/branches_regions/index.shtml</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="5102794958617396872" datatype="html">
+        <source>GCTBannerOnclick-eng</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="5207635742003539443" datatype="html">
+        <source>Sign in</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="5248853935841385838" datatype="html">
+        <source>Search and menu</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="5250520160604033994" datatype="html">
+        <source>https://ssl-templates.services.gc.ca/app/cls/WET/gcintranet/v4_0_40/cdts/ajax/activities-footer-eng.html</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="5361295173130333929" datatype="html">
+        <source>About government</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="5392516731750343529" datatype="html">
+        <source>EnviroTel</source>
+        <target/>
+        <note priority="1" from="description">This menu item should be reviewed</note>
+      </trans-unit>
+      <trans-unit id="5577930970368011972" datatype="html">
+        <source>https://www.canada.ca/en.html</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="5665779767671260044" datatype="html">
+        <source>Help and Important Notices</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="5737725816885710804" datatype="html">
+        <source>esdcfooter-eng.html</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="5765398604380641821" datatype="html">
+        <source>Organizational Chart</source>
+        <target/>
+        <note priority="1" from="description">This menu item should be reviewed</note>
+      </trans-unit>
+      <trans-unit id="5963597107814778773" datatype="html">
+        <source><x id="START_SPAN"/>GC<x id="END_SPAN"/> intranet</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="6023525133094588636" datatype="html">
+        <source>https://intranet.canada.ca/wg-tg/index-eng.asp</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="6096744075844136517" datatype="html">
+        <source>This link will open in a new window</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="6287626904689720317" datatype="html">
+        <source>GEDS</source>
+        <target/>
+        <note priority="1" from="description">This menu item should be reviewed</note>
+      </trans-unit>
+      <trans-unit id="6292663472472461751" datatype="html">
+        <source>Stay Connected</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="6334036141597294996" datatype="html">
+        <source>Our Department</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="6390538431822662166" datatype="html">
+        <source>Main navigation menu</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="6534644701948824683" datatype="html">
+        <source>https://intranet.canada.ca/index-eng.asp</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="6600172217964496730" datatype="html">
+        <source>https://intranet.canada.ca/ict-oci/index-eng.asp</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="6609726351856034013" datatype="html">
+        <source>http://intranet.ec.gc.ca/default.asp?lang=En</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="6892051595939132690" datatype="html">
+        <source>Language selection</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="6899049135429679503" datatype="html">
+        <source>Branches and Regions</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="7082754662930243497" datatype="html">
+        <source>https://ssl-templates.services.gc.ca/app/cls/WET/gcintranet/v4_0_40/cdts/ajax/sitemenu-eng.html</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="7095219917448392767" datatype="html">
+        <source>http://esdc.prv/en/department/index.shtml</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="7095463799843438829" datatype="html">
+        <source>http://esdc.prv/en/contact/index.shtml</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="7132926843895823889" datatype="html">
+        <source>https://intranet.canada.ca/contact/contactgc-eng.aspx</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="7143579180750436311" datatype="html">
+        <source>Services</source>
+        <target/>
+        <note priority="1" from="description">This menu item should be reviewed</note>
+      </trans-unit>
+      <trans-unit id="7246029690898440260" datatype="html">
+        <source>https://gcconnex.gc.ca/splash/</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="7330709189335570558" datatype="html">
+        <source>https://intranet.canada.ca/terms-avis-eng.asp</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="7457846465441104666" datatype="html">
+        <source><x id="START_SPAN"/>GC<x id="END_SPAN"/>collab</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="7671779170983366852" datatype="html">
+        <source>Services Catalogue</source>
+        <target/>
+        <note priority="1" from="description">This menu item should be reviewed</note>
+      </trans-unit>
+      <trans-unit id="7674431486033880803" datatype="html">
+        <source>https://ssl-templates.services.gc.ca/app/cls/WET/gcintranet/v4_0_40/cdts/ajax/appmenu-eng.html</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="7683885037445541085" datatype="html">
+        <source><x id="START_SPAN"/>GC<x id="END_SPAN"/>intranet</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="7765775160941730913" datatype="html">
+        <source>https://intranet.canada.ca/cdl-dca/index-eng.asp</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="7796982952036904045" datatype="html">
+        <source>Corporate</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="7816283988924901169" datatype="html">
+        <source><x id="START_SPAN"/>GC<x id="END_SPAN"/>Tools</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="7866756498167046216" datatype="html">
+        <source><x id="START_SPAN"/>GC<x id="END_SPAN"/>pedia</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="7934989458558350381" datatype="html">
+        <source>GCTools links</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="7971754234359878345" datatype="html">
+        <source>Related links</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="8142888891135676226" datatype="html">
+        <source>Human resources</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="8270194100032602353" datatype="html">
+        <source>https://intranet.canada.ca/psc-fsc/index-eng.asp</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="8341433089081132690" datatype="html">
+        <source>http://edsc.prv/en/help.shtml</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="8429316238784832901" datatype="html">
+        <source>Feedback</source>
+        <target/>
+        <note priority="1" from="description">This menu item should be reviewed</note>
+      </trans-unit>
+      <trans-unit id="8525213662266893834" datatype="html">
+        <source>Contact us</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="8767036090047460712" datatype="html">
+        <source>Services and tools</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="8782502970486931656" datatype="html">
+        <source>Service Desk</source>
+        <target/>
+        <note priority="1" from="description">This menu item should be reviewed</note>
+      </trans-unit>
+      <trans-unit id="9056429158450155420" datatype="html">
+        <source>http://esdc.prv/en/work_tools/index.shtml</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="9142923040730535208" datatype="html">
+        <source>Search GCintranet</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="9188574099211669990" datatype="html">
+        <source>Skip to "About this site"</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="9213140062956013498" datatype="html">
+        <source>sig-blk-en.svg</source>
+        <target/>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

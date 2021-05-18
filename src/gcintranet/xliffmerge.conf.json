@@ -1,0 +1,23 @@
+{
+  "xliffmergeOptions": {
+    "srcDir": "src/gcintranet",
+    "genDir": "src/gcintranet",
+    "i18nFile": "wet-messages.en.xlf",
+    "i18nBaseFile": "wet-messages",
+    "i18nFormat": "xlf",
+    "encoding": "UTF-8",
+    "defaultLanguage": "en",
+    "languages": ["fr"],
+    "removeUnusedIds": false,
+    "supportNgxTranslate": false,
+    "useSourceAsTarget": true,
+    "targetPraefix": "%%",
+    "targetSuffix": "%%",
+    "beautifyOutput": true,
+    "preserveOrder": true,
+    "allowIdChange": false,
+    "autotranslate": false,
+    "verbose": true,
+    "quiet": false
+  }
+}

@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file original="SoyMsgBundle" datatype="x-soy-msg-bundle" xml:space="preserve" source-language="en" target-language="fr">
+    <body>
+      <trans-unit id="351179156262224461" datatype="html">
+        <source>https://www.canada.ca/en/mobile.html</source>
+        <target state="final">https://www.canada.ca/fr/mobile.html</target>
+      </trans-unit>
+      <trans-unit id="387497258832903930" datatype="html">
+        <source>https://www.canada.ca/en/services/transport.html</source>
+        <target state="final">https://www.canada.ca/fr/services/transport.html</target>
+      </trans-unit>
+      <trans-unit id="723493131827428262" datatype="html">
+        <source>Skip to "About government"</source>
+        <target state="final">Passer à «&amp;#160;Au sujet du gouvernement&amp;#160;»</target>
+      </trans-unit>
+      <trans-unit id="768969489271517054" datatype="html">
+        <source>Top of Page</source>
+        <target state="final">Haut de la page</target>
+      </trans-unit>
+      <trans-unit id="800476125111152838" datatype="html">
+        <source>https://www.canada.ca/en/services/benefits.html</source>
+        <target state="final">https://www.canada.ca/fr/services/prestations.html</target>
+      </trans-unit>
+      <trans-unit id="841934696444961534" datatype="html">
+        <source>News</source>
+        <target state="final">Nouvelles</target>
+      </trans-unit>
+      <trans-unit id="884202478331508389" datatype="html">
+        <source>"Related links"</source>
+        <target state="final">«&amp;#160;Liens connexes&amp;#160;»</target>
+      </trans-unit>
+      <trans-unit id="992697974060633191" datatype="html">
+        <source>fr</source>
+        <target state="final">en</target>
+        <note from="description" priority="1">This text must be in the opposite language.</note>
+      </trans-unit>
+      <trans-unit id="1340298141300120234" datatype="html">
+        <source>Social media</source>
+        <target state="final">Médias sociaux</target>
+      </trans-unit>
+      <trans-unit id="1362254976378873307" datatype="html">
+        <source>http://pm.gc.ca/eng</source>
+        <target state="final">http://pm.gc.ca/fra</target>
+      </trans-unit>
+      <trans-unit id="1371114385541040894" datatype="html">
+        <source>About this site</source>
+        <target state="final">À propos du site</target>
+      </trans-unit>
+      <trans-unit id="1479936807227558736" datatype="html">
+        <source>https://www.canada.ca/en/services/finance.html</source>
+        <target state="final">https://www.canada.ca/fr/services/finance.html</target>
+      </trans-unit>
+      <trans-unit id="1653565243768861817" datatype="html">
+        <source>https://www.canada.ca/en/services/defence.html</source>
+        <target state="final">https://www.canada.ca/fr/services/defense.html</target>
+      </trans-unit>
+      <trans-unit id="1700837396113534127" datatype="html">
+        <source>https://www.canada.ca/en/social.html</source>
+        <target state="final">https://www.canada.ca/fr/sociaux.html</target>
+      </trans-unit>
+      <trans-unit id="1712695075901117578" datatype="html">
+        <source>Departments and agencies</source>
+        <target state="final">Ministères et organismes</target>
+      </trans-unit>
+      <trans-unit id="1732438383704467060" datatype="html">
+        <source>Section menu</source>
+        <target state="final">Menu de la section</target>
+      </trans-unit>
+      <trans-unit id="1890066554891666343" datatype="html">
+        <source>//www.canada.ca/content/dam/canada/sitemenu/sitemenu-v2-en.html</source>
+        <target state="final">//www.canada.ca/content/dam/canada/sitemenu/sitemenu-v2-fr.html</target>
+      </trans-unit>
+      <trans-unit id="1914592173926880968" datatype="html">
+        <source>Skip to main content</source>
+        <target state="final">Passer au contenu principal</target>
+      </trans-unit>
+      <trans-unit id="1929449738515157349" datatype="html">
+        <source>http://open.canada.ca/en/</source>
+        <target state="final">http://ouvert.canada.ca/</target>
+      </trans-unit>
+      <trans-unit id="2041675390931385838" datatype="html">
+        <source>Health</source>
+        <target state="final">Santé</target>
+      </trans-unit>
+      <trans-unit id="2102825898069375693" datatype="html">
+        <source>Menu</source>
+        <target state="final">Menu</target>
+      </trans-unit>
+      <trans-unit id="2287781434677161247" datatype="html">
+        <source>https://travel.gc.ca/</source>
+        <target state="final">https://voyage.gc.ca/</target>
+      </trans-unit>
+      <trans-unit id="2393915591488743037" datatype="html">
+        <source>Mobile applications</source>
+        <target state="final">Applications mobiles</target>
+      </trans-unit>
+      <trans-unit id="2435062596770033591" datatype="html">
+        <source>Travel and tourism</source>
+        <target state="final">Voyage et tourisme</target>
+      </trans-unit>
+      <trans-unit id="2437490787071332721" datatype="html">
+        <source>Skip Links</source>
+        <target state="final">Ignorer les liens</target>
+      </trans-unit>
+      <trans-unit id="2552623755615945099" datatype="html">
+        <source>https://www.canada.ca/en/government/dept.html</source>
+        <target state="final">https://www.canada.ca/fr/gouvernement/min.html</target>
+      </trans-unit>
+      <trans-unit id="2637040957358356533" datatype="html">
+        <source>Terms and conditions</source>
+        <target state="final">Avis</target>
+      </trans-unit>
+      <trans-unit id="2701319741633000405" datatype="html">
+        <source>https://www.canada.ca/en/services/jobs.html</source>
+        <target state="final">https://www.canada.ca/fr/services/emplois.html</target>
+      </trans-unit>
+      <trans-unit id="2817259064486538032" datatype="html">
+        <source>https://www.canada.ca/en/government/system/laws.html</source>
+        <target state="final">https://www.canada.ca/fr/gouvernement/systeme/lois.html</target>
+      </trans-unit>
+      <trans-unit id="2949848596707725099" datatype="html">
+        <source>Sign out</source>
+        <target state="final">Fermer la session</target>
+      </trans-unit>
+      <trans-unit id="3009522146416518612" datatype="html">
+        <source>Transport and infrastructure</source>
+        <target state="final">Transport et infrastructure</target>
+      </trans-unit>
+      <trans-unit id="3014683931695470852" datatype="html">
+        <source>Treaties, laws and regulations</source>
+        <target state="final">Traités, lois et règlements</target>
+      </trans-unit>
+      <trans-unit id="3100887235610959010" datatype="html">
+        <source><x id="START_SPAN"/>Main <x id="END_SPAN"/>Menu</source>
+        <target state="final">Menu<x id="START_SPAN"/> principal<x id="END_SPAN"/></target>
+      </trans-unit>
+      <trans-unit id="3140191555427475665" datatype="html">
+        <source>Symbol of the Government of Canada</source>
+        <target state="final">Symbole du gouvernement du Canada</target>
+      </trans-unit>
+      <trans-unit id="3173908136039025834" datatype="html">
+        <source>Skip to section menu</source>
+        <target state="final">Passer au menu de la section</target>
+      </trans-unit>
+      <trans-unit id="3266991637289114104" datatype="html">
+        <source>National security and defence</source>
+        <target state="final">Sécurité nationale et défense</target>
+      </trans-unit>
+      <trans-unit id="3284877161231001048" datatype="html">
+        <source>Date modified:</source>
+        <target state="final">Date de modification&amp;#160;:</target>
+      </trans-unit>
+      <trans-unit id="3403233895843849809" datatype="html">
+        <source>https://www.canada.ca/en/transparency/privacy.html</source>
+        <target state="final">https://www.canada.ca/fr/transparence/confidentialite.html</target>
+      </trans-unit>
+      <trans-unit id="3549206782946970054" datatype="html">
+        <source>https://www.canada.ca/en/services/business.html</source>
+        <target state="final">https://www.canada.ca/fr/services/entreprises.html</target>
+      </trans-unit>
+      <trans-unit id="3570813340615553696" datatype="html">
+        <source>https://www.canada.ca/en/services/environment.html</source>
+        <target state="final">https://www.canada.ca/fr/services/environnement.html</target>
+      </trans-unit>
+      <trans-unit id="3600291996324168788" datatype="html">
+        <source>Prime Minister</source>
+        <target state="final">Premier ministre</target>
+      </trans-unit>
+      <trans-unit id="3737731485930741495" datatype="html">
+        <source>https://www.canada.ca/en/services/health.html</source>
+        <target state="final">https://www.canada.ca/fr/services/sante.html</target>
+      </trans-unit>
+      <trans-unit id="3827128929387873301" datatype="html">
+        <source>Open government</source>
+        <target state="final">Gouvernement ouvert</target>
+      </trans-unit>
+      <trans-unit id="3837056407655779384" datatype="html">
+        <source>https://www.canada.ca/en/government/about.html</source>
+        <target state="final">https://www.canada.ca/fr/gouvernement/a-propos.html</target>
+      </trans-unit>
+      <trans-unit id="3906723620601824252" datatype="html">
+        <source>Screen Identifier:</source>
+        <target state="final">Identificateur d'écran&amp;#160;:</target>
+      </trans-unit>
+      <trans-unit id="4118179766183604668" datatype="html">
+        <source>You are here:</source>
+        <target state="final">Vous êtes ici :</target>
+      </trans-unit>
+      <trans-unit id="4129416629128865900" datatype="html">
+        <source>Business and industry</source>
+        <target state="final">Entreprises et industrie</target>
+      </trans-unit>
+      <trans-unit id="4229885068950451928" datatype="html">
+        <source>Skip to </source>
+        <target state="final">Passer à </target>
+      </trans-unit>
+      <trans-unit id="4247400351982331798" datatype="html">
+        <source>Account settings</source>
+        <target state="final">Paramètres du compte</target>
+      </trans-unit>
+      <trans-unit id="4247748459703909637" datatype="html">
+        <source>Contact information</source>
+        <target state="final">Coordonnées</target>
+      </trans-unit>
+      <trans-unit id="4316660928010561747" datatype="html">
+        <source>Canada and the world</source>
+        <target state="final">Canada et le monde</target>
+      </trans-unit>
+      <trans-unit id="4565637070850597086" datatype="html">
+        <source>Government of Canada</source>
+        <target state="final">Gouvernement du Canada</target>
+      </trans-unit>
+      <trans-unit id="4580988005648117665" datatype="html">
+        <source>Search</source>
+        <target state="final">Recherche</target>
+      </trans-unit>
+      <trans-unit id="4587789100069904752" datatype="html">
+        <source>About this Web application</source>
+        <target state="final">À propos de cette application Web</target>
+      </trans-unit>
+      <trans-unit id="4803350210965720499" datatype="html">
+        <source>https://www.canada.ca/en/services/policing.html</source>
+        <target state="final">https://www.canada.ca/fr/services/police.html</target>
+      </trans-unit>
+      <trans-unit id="4822923381832425396" datatype="html">
+        <source>Culture, history and sport</source>
+        <target state="final">Culture, histoire et sport</target>
+      </trans-unit>
+      <trans-unit id="5207635742003539443" datatype="html">
+        <source>Sign in</source>
+        <target state="final">Ouvrir une session</target>
+      </trans-unit>
+      <trans-unit id="5322925918588206639" datatype="html">
+        <source>Government-wide reporting</source>
+        <target state="final">Rapports à l'échelle du gouvernement</target>
+      </trans-unit>
+      <trans-unit id="5361295173130333929" datatype="html">
+        <source>About government</source>
+        <target state="final">À propos du gouvernement</target>
+      </trans-unit>
+      <trans-unit id="5380194981081253391" datatype="html">
+        <source>Policing, justice and emergencies</source>
+        <target state="final">Services de police, justice et urgences</target>
+      </trans-unit>
+      <trans-unit id="5500962958222101959" datatype="html">
+        <source>Science and innovation</source>
+        <target state="final">Science et innovation</target>
+      </trans-unit>
+      <trans-unit id="5557445106109830312" datatype="html">
+        <source>Benefits</source>
+        <target state="final">Prestations</target>
+      </trans-unit>
+      <trans-unit id="5577930970368011972" datatype="html">
+        <source>https://www.canada.ca/en.html</source>
+        <target state="final">https://www.canada.ca/fr.html</target>
+      </trans-unit>
+      <trans-unit id="5661854716672136760" datatype="html">
+        <source>Public service and military</source>
+        <target state="final">Fonction publique et force militaire</target>
+      </trans-unit>
+      <trans-unit id="5729395938595388062" datatype="html">
+        <source>Account menu</source>
+        <target state="final">Menu des paramètres du compte</target>
+      </trans-unit>
+      <trans-unit id="5831257949584871057" datatype="html">
+        <source>Environment and natural resources</source>
+        <target state="final">Environnement et ressources naturelles</target>
+      </trans-unit>
+      <trans-unit id="5853497389841808406" datatype="html">
+        <source>Name of Web application</source>
+        <target state="final">Nom de l'application Web</target>
+      </trans-unit>
+      <trans-unit id="6034100431801865086" datatype="html">
+        <source>https://www.canada.ca/en/contact.html</source>
+        <target state="final">https://www.canada.ca/fr/contact.html</target>
+      </trans-unit>
+      <trans-unit id="6096744075844136517" datatype="html">
+        <source>This link will open in a new window</source>
+        <target state="final">Ce lien ouvrira dans une nouvelle fenêtre</target>
+      </trans-unit>
+      <trans-unit id="6278128897413989885" datatype="html">
+        <source>"About this Web application"</source>
+        <target state="final">«&amp;#160;À propos de cette application Web&amp;#160;»</target>
+      </trans-unit>
+      <trans-unit id="6368883420515878383" datatype="html">
+        <source>https://www.canada.ca/en/news.html</source>
+        <target state="final">https://www.canada.ca/fr/nouvelles.html</target>
+      </trans-unit>
+      <trans-unit id="6380550568507111573" datatype="html">
+        <source>Jobs and the workplace</source>
+        <target state="final">Emplois et milieu de travail</target>
+      </trans-unit>
+      <trans-unit id="6390538431822662166" datatype="html">
+        <source>Main navigation menu</source>
+        <target state="final">Menu de navigation principal</target>
+      </trans-unit>
+      <trans-unit id="6480546078861527486" datatype="html">
+        <source>https://www.canada.ca/en/government/publicservice.html</source>
+        <target state="final">https://www.canada.ca/fr/gouvernement/fonctionpublique.html</target>
+      </trans-unit>
+      <trans-unit id="6504678754974183663" datatype="html">
+        <source>https://www.canada.ca/en/sr.html</source>
+        <target state="final">https://www.canada.ca/fr/sr.html</target>
+      </trans-unit>
+      <trans-unit id="6788186790067013033" datatype="html">
+        <source>https://www.canada.ca/en/services/science.html</source>
+        <target state="final">https://www.canada.ca/fr/services/science.html</target>
+      </trans-unit>
+      <trans-unit id="6791662619770759914" datatype="html">
+        <source>Version:</source>
+        <target state="final">Version&amp;#160;:</target>
+      </trans-unit>
+      <trans-unit id="6812954231632755677" datatype="html">
+        <source>https://www.canada.ca/en/services/taxes.html</source>
+        <target state="final">https://www.canada.ca/fr/services/impots.html</target>
+      </trans-unit>
+      <trans-unit id="6892051595939132690" datatype="html">
+        <source>Language selection</source>
+        <target state="final">Sélection de la langue</target>
+      </trans-unit>
+      <trans-unit id="6922104744081094197" datatype="html">
+        <source>Immigration and citizenship</source>
+        <target state="final">Immigration et citoyenneté</target>
+      </trans-unit>
+      <trans-unit id="7215287318709547551" datatype="html">
+        <source>https://www.canada.ca/en/services/immigration-citizenship.html</source>
+        <target state="final">https://www.canada.ca/fr/services/immigration-citoyennete.html</target>
+      </trans-unit>
+      <trans-unit id="7491821489151826164" datatype="html">
+        <source>https://www.canada.ca/en/government/system.html</source>
+        <target state="final">https://www.canada.ca/fr/gouvernement/systeme.html</target>
+      </trans-unit>
+      <trans-unit id="7618870723010461457" datatype="html">
+        <source>en</source>
+        <target state="final">fr</target>
+      </trans-unit>
+      <trans-unit id="7659737604859354720" datatype="html">
+        <source>http://international.gc.ca/world-monde/index.aspx?lang=eng</source>
+        <target state="final">http://international.gc.ca/world-monde/index.aspx?lang=fra</target>
+      </trans-unit>
+      <trans-unit id="7715692613925861880" datatype="html">
+        <source>https://www.canada.ca/en/transparency/reporting.html</source>
+        <target state="final">https://www.canada.ca/fr/transparence/rapports.html</target>
+      </trans-unit>
+      <trans-unit id="7732178050463253389" datatype="html">
+        <source>Money and finances</source>
+        <target state="final">Argent et finances</target>
+      </trans-unit>
+      <trans-unit id="7737399290608054366" datatype="html">
+        <source>About Canada.ca</source>
+        <target state="final">À propos de Canada.ca</target>
+      </trans-unit>
+      <trans-unit id="7765849256250284431" datatype="html">
+        <source>Report a problem on this page</source>
+        <target state="final">Signaler un problème sur cette page</target>
+      </trans-unit>
+      <trans-unit id="7971754234359878345" datatype="html">
+        <source>Related links</source>
+        <target state="final">Liens connexes</target>
+      </trans-unit>
+      <trans-unit id="8107672983395309678" datatype="html">
+        <source>https://www.canada.ca/en/report-problem.html</source>
+        <target state="final">https://www.canada.ca/fr/signaler-probleme.html</target>
+      </trans-unit>
+      <trans-unit id="8440128775129354214" datatype="html">
+        <source>Privacy</source>
+        <target state="final">Confidentialité</target>
+      </trans-unit>
+      <trans-unit id="8509908301259994333" datatype="html">
+        <source>and search</source>
+        <target state="final">et recherche</target>
+      </trans-unit>
+      <trans-unit id="8525213662266893834" datatype="html">
+        <source>Contact us</source>
+        <target state="final">Contactez-nous</target>
+      </trans-unit>
+      <trans-unit id="8648108717412707289" datatype="html">
+        <source>Gouvernement du Canada</source>
+        <target state="final">Government of Canada</target>
+        <note from="description" priority="1">This text must be in the opposite language.</note>
+      </trans-unit>
+      <trans-unit id="8652819546726512862" datatype="html">
+        <source>Search Canada.ca</source>
+        <target state="final">Rechercher dans Canada.ca</target>
+      </trans-unit>
+      <trans-unit id="8668365943824428982" datatype="html">
+        <source>Taxes</source>
+        <target state="final">Impôts</target>
+      </trans-unit>
+      <trans-unit id="8702113774491397220" datatype="html">
+        <source>https://www.canada.ca/en/transparency/terms.html</source>
+        <target state="final">https://www.canada.ca/fr/transparence/avis.html</target>
+      </trans-unit>
+      <trans-unit id="9199785109424556739" datatype="html">
+        <source>https://www.canada.ca/en/services/culture.html</source>
+        <target state="final">https://www.canada.ca/fr/services/culture.html</target>
+      </trans-unit>
+      <trans-unit id="9213140062956013498" datatype="html">
+        <source>sig-blk-en.svg</source>
+        <target state="final">sig-blk-fr.svg</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

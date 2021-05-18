@@ -1,0 +1,1163 @@
+{namespace wet.builder}
+
+/**
+ * Server message page - Top references
+ */
+{template .serverRefTop}
+{call serverPage.serverRefTop data="all" /}
+{/template}
+
+/**
+ * Server message page - Top section
+ */
+{template .serverTop}
+{call serverPage.serverTop data="all" /}
+{/template}
+
+/**
+ * Server message page - Bottom references
+ */
+{template .serverRefBottom}
+/*{call serverPage.serverRefBottom data="all" /}*/
+{/template}
+
+/**
+ * Server message page - Bottom section
+ */
+{template .serverBottom}
+{call serverPage.serverBottom data="all" /}
+{/template}
+
+/**
+ * @param cdnEnv Used to switch between qat, nonprod, and prod CDN implementations.
+ */
+{template .environment}
+/**{@param cdnEnv}*/
+{if $cdnEnv=='qat'}https://cdn-canada.services.gc.qat/app/cls/WET{elseif $cdnEnv=='nonprod'}https://s2tst-cdn-canada.sade-edap.prv/app/cls/WET{elseif $cdnEnv=='esdcprod'}https://templates.service.gc.ca/app/cls/WET{elseif $cdnEnv=='localhost'}../../../..{else}https://ssl-templates.services.gc.ca/app/cls/WET{/if}/gcintranet/v4_0_39/
+{/template}
+
+/**
+ * This is all of the references to be made before existing page content.
+ * @param? subTheme Used to identify the custom subTheme.
+ * @param? cdnEnv Used to switch between qat, nonprod, and prod CDN implementations.
+*/
+{template .refTop}
+	<!--[if gte IE 9 | !IE ]><!-->
+	<link href="{call .environment data="all" /}assets/favicon.ico" rel="icon" type="image/x-icon">
+	<link rel="stylesheet" href="{call .environment data="all" /}css/theme.min.css">
+	<!--<![endif]-->
+	<!--[if lt IE 9]>
+	<link href="{call .environment data="all" /}assets/favicon.ico" rel="shortcut icon">
+	<link rel="stylesheet" href="{call .environment data="all" /}css/ie8-theme.min.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="{call .environment data="all" /}js/ie8-wet-boew.min.js"></script>
+	<![endif]-->
+	<!--[if lte IE 9]><![endif]-->
+	<link rel="stylesheet" href="{call .environment data="all" /}cdts/gctheme.css">
+	{if ($subTheme == 'esdc') or ($subTheme == 'labour')}
+	<link rel="stylesheet" href="{call .environment data="all" /}cdts/esdc.css">
+	{elseif $subTheme == 'eccc'}
+	<link rel="stylesheet" href="{call .environment data="all" /}cdts/eccc.css">
+	{/if}
+	<link rel="stylesheet" href="{call .environment data="all" /}cdts/cdtsfixes.css">
+{/template}
+
+/**
+ * This is all of the html to be included before existing page content.
+ * @param? search Used to display search.
+ * @param? siteMenu Used to display site menu.
+ * @param? menuPath path for site menu.
+ * @param? lngLinks Links to pages in other languages.
+ * @param? showPreContent Used to determine if the precontent space will be displayed.
+ * @param? breadcrumbs Used to set custom breadcrumbs.
+ * @param? topSecMenu Set to true if you want to use the secondary navigation.
+ * @param? subTheme Used to identify the custom subTheme.
+ * @param? intranetTitle Used to identify the title of the intranet site.
+ * @param? cdnEnv Used to switch between qat, nonprod, and prod CDN implementations.
+ * @param? GCToolsModal Used to turn the GCTools links into a modal.
+ * @param? customSearch Used to control the custom searches.
+*/
+{template .top}
+	<ul id="wb-tphp">
+		<li class="wb-slc"><a class="wb-sl" href="#wb-cont">{msg desc=""}Skip to main content{/msg}</a></li>
+		<li class="wb-slc visible-xs visible-sm visible-md visible-lg"><a class="wb-sl" href="#wb-info">{msg desc=""}Skip to "About this site"{/msg}</a></li>
+		{if $topSecMenu == true}
+		<li class="wb-slc visible-md visible-lg"><a class="wb-sl" href="#wb-sec">{msg desc=""}Skip to section menu{/msg}</a></li>
+		{/if}
+	</ul>
+	<header role="banner">
+		<div id="wb-bnr">
+			<div id="app-brand">
+				<div class="container">
+					<div class="row">
+						<section class="{if (isNonnull($intranetTitle)) or (isNonnull($subTheme))}col-lg-6 col-md-6{else}col-lg-2 col-md-3{/if} col-sm-9 col-xs-8">
+							<div class="app-name{if isNonnull($intranetTitle)} app-name-lg{/if}">
+								{if isNonnull($intranetTitle)}
+									{foreach $item in $intranetTitle}
+										{if isFirst($item)}
+											<a href="
+											{if isNonnull($item.href)}
+												{$item.href}
+											{else}
+												{msg desc=""}http://intranet.ec.gc.ca/default.asp?lang=En{/msg}
+											{/if}
+											">
+											<span>
+											{if isNonnull($item.acronym)}
+												<abbr title="{$item.acronym}">
+											{/if}
+											<span class="bold-gc">
+											{if isNonnull($item.boldText)}
+												{$item.boldText}
+											{else}
+												{msg desc=""}GC{/msg}
+											{/if}
+											</span>
+											{if isNonnull($item.text)}
+												{$item.text} 
+											{else}
+												{msg desc=""}intranet{/msg}
+											{/if}
+											{if isNonnull($item.acronym)}
+												</abbr>
+											{/if}
+											</span>
+											</a>
+										{/if}
+									{/foreach}
+								{else}
+								<a href="{msg desc=""}https://intranet.canada.ca/index-eng.asp{/msg}"><span>{msg desc=""}<span class="bold-gc">GC</span> intranet{/msg}</span></a>
+								{/if}
+							</div>
+						</section>
+						{if $GCToolsModal == true}
+						<section id="gctoolsSection" class="{if isNonnull($intranetTitle)}col-lg-2 col-md-1{else}col-lg-6 col-md-1{/if}{if $search == false} col-md-offset-3{/if} hidden-sm hidden-xs text-right">
+							<h2 class="wb-inv">{msg desc=""}GCTools links{/msg}</h2>
+							<div class="row">
+								<div class="col-md-12">
+									<ul class="list-inline margin-bottom-none gcbarlng">
+										<li><a class="wb-lbx" href="#gctools">{msg desc=""}<span class="bold-gc">GC</span>Tools{/msg}</a></li>
+									</ul>
+								</div>
+							</div>
+							<section id="gctools" class="mfp-hide modal-dialog modal-content overlay-def">
+								<header class="modal-header">
+									<h2 class="modal-title">{msg desc=""}<span class="bold-gc">GC</span>Tools{/msg}</h2>
+								</header>
+								<div class="modal-body">
+									<ul class="list-unstyled lst-spcd">
+										<li><a href="{msg desc=""}https://gcconnex.gc.ca/splash/{/msg}" class="{msg desc=""}GCTBannerOnclick-eng{/msg}">{msg desc=""}<span class="bold-gc">GC</span>connex{/msg}</a></li>
+										<li><a href="{msg desc=""}http://www.gcpedia.gc.ca/wiki/?setlang=en{/msg}" class="{msg desc=""}GCTBannerOnclick-eng{/msg}">{msg desc=""}<span class="bold-gc">GC</span>pedia{/msg}</a></li>
+										<li><a href="{msg desc=""}http://gcdirectory-gcannuaire.gc.ca/en/GCD/?pgid=002{/msg}" class="{msg desc=""}GCTBannerOnclick-eng{/msg}">{msg desc=""}<span class="bold-gc">GC</span>directory{/msg}</a></li>
+										<li><a href="{msg desc=""}https://gccollab.ca/splash/{/msg}" class="{msg desc=""}GCTBannerOnclick-eng{/msg}">{msg desc=""}<span class="bold-gc">GC</span>collab{/msg}</a></li>
+										<li><a href="{msg desc=""}https://intranet.canada.ca/index-eng.asp{/msg}" class="{msg desc=""}GCTBannerOnclick-eng{/msg}">{msg desc=""}<span class="bold-gc">GC</span>intranet{/msg}</a></li>
+									</ul>
+								</div>
+							</section>
+						</section>
+						{elseif isNonnull($intranetTitle)}
+						{else}
+						<section id="wb-gctools" class="col-lg-6 visible-lg">
+							<div class="pull-left tool-link">
+								<a href="{msg desc=""}https://gcconnex.gc.ca/splash/{/msg}" class="{msg desc=""}GCTBannerOnclick-eng{/msg}">
+								{msg desc=""}<span class="bold-gc">GC</span>connex{/msg}</a>
+							</div>
+							<div class="pull-left tool-link">
+								<a href="{msg desc=""}http://www.gcpedia.gc.ca/wiki/?setlang=en{/msg}" class="{msg desc=""}GCTBannerOnclick-eng{/msg}">
+								{msg desc=""}<span class="bold-gc">GC</span>pedia{/msg}</a>
+							</div>
+							<div class="pull-left tool-link">
+								<a href="{msg desc=""}http://gcdirectory-gcannuaire.gc.ca/en/GCD/?pgid=002{/msg}" class="{msg desc=""}GCTBannerOnclick-eng{/msg}">
+								{msg desc=""}<span class="bold-gc">GC</span>directory{/msg}</a>
+							</div>
+							<div class="pull-left tool-link">
+								<a href="{msg desc=""}https://gccollab.ca/splash/{/msg}" class="{msg desc=""}GCTBannerOnclick-eng{/msg}">
+								{msg desc=""}<span class="bold-gc">GC</span>collab{/msg}</a>
+							</div>
+						</section>
+						{/if}
+						{if isNonnull($lngLinks)}
+						<section id="wb-lng" class="{if (isNonnull($intranetTitle) and ($GCToolsModal != true))}mrgn-bttm-md col-md-offset-1 col-lg-offset-2 {/if}col-md-1 hidden-sm hidden-xs text-right {if $search == false}lang-no-search{else}lang-with-search{/if}">
+							<h2 class="wb-inv">{msg desc=""}Language selection{/msg}</h2>
+							<div class="row">
+								<div class="col-md-12">
+									<ul class="list-inline margin-bottom-none gcbarlng">
+										{foreach $link in $lngLinks}
+											<li><a hreflang="{$link.lang}" lang="{$link.lang}" href="{$link.href}">{$link.text}</a></li>
+										{/foreach}
+									</ul>
+								</div>
+							</div>
+						</section>
+						{/if}
+						{if $search != false}
+							<section id="wb-srch" class="col-lg-3 col-md-4 hidden-sm hidden-xs search-md">
+								<h2>{msg desc=""}Search{/msg}</h2>
+								{if isNonnull($customSearch)}
+								{foreach $item in $customSearch}
+									{if isFirst($item)}
+									<form action="
+									{if isNonnull($item.action)}
+										{$item.action}
+									{else}
+										{msg desc=""}https://intranet.canada.ca/search-recherche/query-recherche-eng.aspx{/msg}
+									{/if}
+									" method="
+									{if isNonnull($item.method)}
+										{$item.method}
+									{else}
+										get
+									{/if}
+									" name="
+									{if isNonnull($item.name)}
+										{$item.name}
+									{else}
+										cse-search-box
+									{/if}
+									" role="search" class="form-inline">
+										<div class="form-group">
+											<label for="
+											{if isNonnull($item.id)}
+												{$item.id}
+											{else}
+												wb-srch-q
+											{/if}
+											" class="wb-inv">
+											{if isNonnull($item.placeholder)}
+												{$item.placeholder}
+											{else}
+												{msg desc=""}Search GCintranet{/msg}
+											{/if}
+											</label>
+											<input type="text" class="wb-srch-q form-control pull-right" id="
+											{if isNonnull($item.id)}
+												{$item.id}
+											{else}
+												wb-srch-q
+											{/if}
+											" name="
+											{if isNonnull($item.name)}
+												{$item.name}
+											{else}
+												q
+											{/if}
+											"  value="" size="21" maxlength="150" placeholder="
+											{if isNonnull($item.placeholder)}
+												{$item.placeholder}
+											{else}
+												{msg desc=""}Search GCintranet{/msg}
+											{/if}
+											">
+											{if isNonnull($item.hiddenInput)}
+											{foreach $input in $item.hiddenInput}
+												<input type="hidden" name="{$input.name}" value="{$input.value}">
+											{/foreach}
+											{else}
+												<input type="hidden" name="a" value="s">
+												<input type="hidden" name="s" value="1">
+												<input type="hidden" name="chk2" value="True">
+											{/if}
+										</div>
+										<div class="form-group submit">&nbsp;
+											<button type="submit" id="wb-srch-sub" class="btn btn-primary btn-small" name="wb-srch-sub"><span class="glyphicon-search glyphicon"></span><span class="wb-inv">{msg desc=""}Search{/msg}</span></button>
+										</div>
+									</form>
+									{/if}
+								{/foreach}
+								{else}
+									<form action="{msg desc=""}https://intranet.canada.ca/search-recherche/query-recherche-eng.aspx{/msg}" method="get" name="cse-search-box" role="search" class="form-inline">
+										<div class="form-group">
+											<label for="wb-srch-q" class="wb-inv">{msg desc=""}Search GCintranet{/msg}</label>
+											<input type="text" class="wb-srch-q form-control pull-right" id="wb-srch-q" name="q"  value="" size="21" maxlength="150" placeholder="{msg desc=""}Search GCintranet{/msg}">
+											<input type="hidden" name="a" value="s">
+											<input type="hidden" name="s" value="1">
+											<input type="hidden" name="chk2" value="True">
+										</div>
+										<div class="form-group submit">&nbsp;
+											<button type="submit" id="wb-srch-sub" class="btn btn-primary btn-small" name="wb-srch-sub"><span class="glyphicon-search glyphicon"></span><span class="wb-inv">{msg desc=""}Search{/msg}</span></button>
+										</div>
+									</form>
+								{/if}
+							</section>
+						{/if}
+						<section id="wb-glb-mn" class="wb-mb-links col-xs-4 col-sm-3 visible-sm visible-xs">
+							<h2>
+							{if $search == false}
+								{msg desc=""}Menu{/msg}{if isNonnull($topSecMenu)}s{/if}
+							{else}
+								{msg desc=""}Search and menu{/msg}{if isNonnull($topSecMenu)}s{/if}
+							{/if}
+							</h2>
+							<ul class="list-inline text-right chvrn">
+								<li><a href="#mb-pnl" title="
+								{if $search == false}
+									{msg desc=""}Menu{/msg}{if isNonnull($topSecMenu)}s{/if}
+								{else}
+									{msg desc=""}Search and menu{/msg}{if isNonnull($topSecMenu)}s{/if}
+								{/if}
+								" aria-controls="mb-pnl" class="overlay-lnk" role="button">
+									{if $search != false}<span class="glyphicon glyphicon-search">{/if}
+									<span class="glyphicon glyphicon-th-list">
+									<span class="wb-inv">
+									{if $search == false}
+										{msg desc=""}Menu{/msg}{if isNonnull($topSecMenu)}s{/if}
+									{else}
+										{msg desc=""}Search and menu{/msg}{if isNonnull($topSecMenu)}s{/if}
+									{/if}
+									</span>
+									</span>
+									{if ($search != false)}</span>{/if}
+								</a></li>
+							</ul>
+							<div id="mb-pnl"></div>
+						</section>
+					</div>
+					{if $GCToolsModal != true}
+					<div id="tools-sm" class="row{if isNonnull($intranetTitle)}{else} visible-md{/if}">
+						<section id="tool-container-sm" class="col-md-12 col-sm-12">
+							<div class="pull-left tool-link"><a href="{msg desc=""}https://gcconnex.gc.ca/splash/{/msg}" class="{msg desc=""}GCTBannerOnclick-eng{/msg}">{msg desc=""}<span class="bold-gc">GC</span>connex{/msg}</a></div>
+							<div class="pull-left tool-link"><a href="{msg desc=""}http://www.gcpedia.gc.ca/wiki/?setlang=en{/msg}" class="{msg desc=""}GCTBannerOnclick-eng{/msg}">{msg desc=""}<span class="bold-gc">GC</span>pedia{/msg}</a></div>
+							<div class="pull-left tool-link"><a href="{msg desc=""}http://gcdirectory-gcannuaire.gc.ca/en/GCD/?pgid=002{/msg}" class="{msg desc=""}GCTBannerOnclick-eng{/msg}">{msg desc=""}<span class="bold-gc">GC</span>directory{/msg}</a></div>
+							<div class="pull-left tool-link"><a href="{msg desc=""}https://gccollab.ca/splash/{/msg}" class="{msg desc=""}GCTBannerOnclick-eng{/msg}">{msg desc=""}<span class="bold-gc">GC</span>collab{/msg}</a></div>
+						</section>
+					</div>
+					{/if}
+				</div>
+			</div>
+		</div>
+		{if $siteMenu != false}
+		{if ($subTheme == 'esdc') or ($subTheme == 'labour')}
+		<nav role="navigation" id="wb-sm" data-wb-ajax='{lb}"url": "{if isNonnull($menuPath)}{$menuPath}{else}{msg desc=""}https://esdc.prv/includes/edsc-esdc_prv/wet4/en/mega_menu/esdcmenu-eng.html{/msg}{/if}", "type": "replace", "nocache": true {rb}' data-trgt="mb-pnl" class="wb-menu visible-md visible-lg" typeof="SiteNavigationElement">
+			<div class="container nvbar">
+				<h2>{msg desc=""}Topics menu{/msg}</h2>
+				<div class="row">
+					<ul class="list-inline menu">
+						<li><a href="{msg desc=""}http://esdc.prv/en/department/index.shtml{/msg}">{msg desc=""}Our Department{/msg}</a></li>
+						<li><a href="{msg desc=""}http://esdc.prv/en/branches_regions/index.shtml{/msg}">{msg desc=""}Branches and Regions{/msg}</a></li>
+						<li><a href="{msg desc=""}http://iservice.prv/eng/index.shtml{/msg}">{msg desc=""}iService{/msg}</a></li>
+						<li><a href="{msg desc=""}http://esdc.prv/en/work_tools/index.shtml{/msg}">{msg desc=""}Work Tools{/msg}</a></li>
+						<li><a href="{msg desc=""}http://esdc.prv/en/quick-links/index.shtml{/msg}">{msg desc=""}Quick Links{/msg}</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		{elseif $subTheme == 'eccc'}
+		//Todo: Change with eccc Menu
+		<nav role="navigation" id="wb-sm" data-wb-ajax='{lb}"url": "{if isNonnull($menuPath)}{$menuPath}{else}{if $cdnEnv=='qat'}https://cdn-canada.services.gc.qat{elseif $cdnEnv=='nonprod'}https://s2tst-cdn-canada.sade-edap.prv{elseif $cdnEnv=='esdcprod'}https://templates.service.gc.ca{else}https://ssl-templates.services.gc.ca{/if}/app/cls/WET/gcintranet/v4_0_40/cdts/ajax/{msg desc=""}sitemenu-eng.html{/msg}{/if}", "type": "replace", "nocache": true {rb}' data-trgt="mb-pnl" class="wb-menu visible-md visible-lg" typeof="SiteNavigationElement">
+			<div class="container nvbar">
+				<h2>{msg desc=""}Topics menu{/msg}</h2>
+				<div class="row">
+					<ul class="list-inline menu">
+						<li><a href="#">{msg desc="This menu item should be reviewed"}About ECCC{/msg}</a></li>
+						<li><a href="#">{msg desc="This menu item should be reviewed"}Branches{/msg}</a></li>
+						<li><a href="#">{msg desc="This menu item should be reviewed"}Services{/msg}</a></li>
+						<li><a href="#">{msg desc="This menu item should be reviewed"}Tools and References{/msg}</a></li>
+						<li><a href="#">{msg desc="This menu item should be reviewed"}Resources{/msg}</a></li>
+						<li><a href="#">{msg desc="This menu item should be reviewed"}Forms{/msg}</a></li>
+						<li><a href="#">{msg desc="This menu item should be reviewed"}DMs' Corner{/msg}</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		{else}
+		<nav role="navigation" id="wb-sm" data-ajax-replace="{msg desc=""}https://ssl-templates.services.gc.ca/app/cls/WET/gcintranet/v4_0_40/cdts/ajax/sitemenu-eng.html{/msg}" data-trgt="mb-pnl" class="wb-menu visible-md visible-lg" typeof="SiteNavigationElement">
+			<div class="container nvbar">
+				<h2>{msg desc=""}Topics menu{/msg}</h2>
+				<div class="row">
+					<ul class="list-inline menu">
+						<li><a href="{msg desc=""}https://intranet.canada.ca/psc-fsc/index-eng.asp{/msg}">{msg desc=""}News{/msg}</a></li>
+						<li><a href="{msg desc=""}https://intranet.canada.ca/hr-rh/index-eng.asp{/msg}">{msg desc=""}Human resources{/msg}</a></li>
+						<li><a href="{msg desc=""}https://intranet.canada.ca/cdl-dca/index-eng.asp{/msg}">{msg desc=""}Career development and learning{/msg}</a></li>
+						<li><a href="{msg desc=""}https://intranet.canada.ca/wg-tg/index-eng.asp{/msg}">{msg desc=""}Services and tools{/msg}</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		{/if}
+		{/if}
+		{if $breadcrumbs != false}
+		<nav role="navigation" id="wb-bc" property="breadcrumb">
+			<h2>{msg desc=""}You are here:{/msg}</h2>
+			<div class="container">
+				<div class="row">
+					<ol class="breadcrumb">
+						{if isNonnull($breadcrumbs)}
+						{foreach $item in $breadcrumbs}
+						<li>{if isNonnull($item.acronym)}<abbr title="{$item.acronym}">{/if}{if isNonnull($item.href)}<a href="{$item.href}">{/if}{$item.title}{if isNonnull($item.href)}</a>{/if}{if isNonnull($item.acronym)}</abbr>{/if}</li>
+						{/foreach}
+						{else}
+						<li><a href="{msg desc=""}https://intranet.canada.ca/index-eng.asp{/msg}">{msg desc=""}Home{/msg}</a></li>
+						{/if}
+					</ol>
+				</div>
+			</div>
+		</nav>
+		{/if}
+	</header>
+	{if $showPreContent != false}
+	{/if}
+{/template}
+
+/**
+ * This is all of the html to be included before existing page content.
+ * @param? subTheme Used to identify the custom subTheme.
+ * @param? intranetTitle Used to identify the title of the intranet site.
+ * @param? appName Used to determine the name of the app.
+ * @param? lngLinks Links to pages in other languages.
+ * @param? secure Used to determine if the site is secured or not.
+ * @param? search Used to display search.
+ * @param? breadcrumbs Used to set custom breadcrumbs.
+ * @param? signOut Used to customize the link to sign out.
+ * @param? signIn Used to customize the link to sign in.
+ * @param? customSearch Used to control the custom searches.
+ * @param? menuPath Used to define the path to the menu that will be ajaxed in.
+ * @param? menuLinks Loops of the menu sections.
+ * @param? showPreContent Used to determine if the precontent space will be displayed.
+ * @param? topSecMenu Set to true if you want to use the secondary navigation.
+ * @param? GCToolsModal Used to turn the GCTools links into a modal.
+*/
+{template .appTop}
+	<ul id="wb-tphp">
+		<li class="wb-slc"><a class="wb-sl" href="#wb-cont">{msg desc=""}Skip to main content{/msg}</a></li>
+		<li class="wb-slc visible-sm visible-md visible-lg"><a class="wb-sl" href="#wb-info">{msg desc=""}Skip to "About this site"{/msg}</a></li>
+		{if $topSecMenu == true}
+		<li class="wb-slc visible-md visible-lg"><a class="wb-sl" href="#wb-sec">{msg desc=""}Skip to section menu{/msg}</a></li>
+		{/if}
+	</ul>
+	<header role="banner">
+		<div id="wb-bnr">
+			<div id="app-brand">
+				<div class="container">
+					<div class="row">
+						<section class="{if (isNonnull($intranetTitle)) or (isNonnull($subTheme))}col-lg-6 col-md-6{else}col-lg-2 col-md-3{/if} col-sm-9 col-xs-8">
+							<div class="app-name{if isNonnull($intranetTitle)} app-name-lg{/if}">
+								{if isNonnull($intranetTitle)}
+									{foreach $item in $intranetTitle}
+										{if isFirst($item)}
+											<a href="
+											{if isNonnull($item.href)}
+												{$item.href}
+											{else}
+												{msg desc=""}http://intranet.ec.gc.ca/default.asp?lang=En{/msg}
+											{/if}
+											">
+											<span>
+											{if isNonnull($item.acronym)}
+												<abbr title="{$item.acronym}">
+											{/if}
+											<span class="bold-gc">
+											{if isNonnull($item.boldText)}
+												{$item.boldText}
+											{else}
+												{msg desc=""}GC{/msg}
+											{/if}
+											</span> 
+											{if isNonnull($item.text)}
+												{$item.text} 
+											{else}
+												{msg desc=""}intranet{/msg}
+											{/if}
+											{if isNonnull($item.acronym)}
+												</abbr>
+											{/if}
+											</span>
+											</a>
+										{/if}
+									{/foreach}
+								{else}
+								<a href="{msg desc=""}https://intranet.canada.ca/index-eng.asp{/msg}"><span>{msg desc=""}<span class="bold-gc">GC</span> intranet{/msg}</span></a>
+								{/if}
+							</div>
+						</section>
+						{if $GCToolsModal == true}
+						<section id="gctoolsSection" class="{if isNonnull($intranetTitle)}col-lg-2{else}col-lg-6{/if}{if $search == false} col-md-offset-3{/if} col-md-1 hidden-sm hidden-xs text-right">
+							<h2 class="wb-inv">{msg desc=""}GCTools links{/msg}</h2>
+							<div class="row">
+								<div class="col-md-12">
+									<ul class="list-inline margin-bottom-none gcbarlng">
+										<li><a class="wb-lbx" href="#gctools">{msg desc=""}<span class="bold-gc">GC</span>Tools{/msg}</a></li>
+									</ul>
+								</div>
+							</div>
+							<section id="gctools" class="mfp-hide modal-dialog modal-content overlay-def">
+								<header class="modal-header">
+									<h2 class="modal-title">{msg desc=""}<span class="bold-gc">GC</span>Tools{/msg}</h2>
+								</header>
+								<div class="modal-body">
+									<ul class="list-unstyled lst-spcd">
+										<li><a href="{msg desc=""}https://gcconnex.gc.ca/splash/{/msg}" class="{msg desc=""}GCTBannerOnclick-eng{/msg}">{msg desc=""}<span class="bold-gc">GC</span>connex{/msg}</a></li>
+										<li><a href="{msg desc=""}http://www.gcpedia.gc.ca/wiki/?setlang=en{/msg}" class="{msg desc=""}GCTBannerOnclick-eng{/msg}">{msg desc=""}<span class="bold-gc">GC</span>pedia{/msg}</a></li>
+										<li><a href="{msg desc=""}http://gcdirectory-gcannuaire.gc.ca/en/GCD/?pgid=002{/msg}" class="{msg desc=""}GCTBannerOnclick-eng{/msg}">{msg desc=""}<span class="bold-gc">GC</span>directory{/msg}</a></li>
+										<li><a href="{msg desc=""}https://gccollab.ca/splash/{/msg}" class="{msg desc=""}GCTBannerOnclick-eng{/msg}">{msg desc=""}<span class="bold-gc">GC</span>collab{/msg}</a></li>
+										<li><a href="{msg desc=""}https://intranet.canada.ca/index-eng.asp{/msg}" class="{msg desc=""}GCTBannerOnclick-eng{/msg}">{msg desc=""}<span class="bold-gc">GC</span>intranet{/msg}</a></li>
+									</ul>
+								</div>
+							</section>
+						</section>
+						{elseif isNonnull($intranetTitle)}
+						{else}
+						<section id="wb-gctools" class="{if (isNonnull($intranetTitle) and ($GCToolsModal != true))}pull-right col-md-4{else}col-lg-6{/if} visible-lg">
+							<div class="pull-left tool-link">
+								<a href="{msg desc=""}https://gcconnex.gc.ca/splash/{/msg}" class="{msg desc=""}GCTBannerOnclick-eng{/msg}">
+								{msg desc=""}<span class="bold-gc">GC</span>connex{/msg}</a>
+							</div>
+							<div class="pull-left tool-link">
+								<a href="{msg desc=""}http://www.gcpedia.gc.ca/wiki/?setlang=en{/msg}" class="{msg desc=""}GCTBannerOnclick-eng{/msg}">
+								{msg desc=""}<span class="bold-gc">GC</span>pedia{/msg}</a>
+							</div>
+							<div class="pull-left tool-link">
+								<a href="{msg desc=""}http://gcdirectory-gcannuaire.gc.ca/en/GCD/?pgid=002{/msg}" class="{msg desc=""}GCTBannerOnclick-eng{/msg}">
+								{msg desc=""}<span class="bold-gc">GC</span>directory{/msg}</a>
+							</div>
+							<div class="pull-left tool-link">
+								<a href="{msg desc=""}https://gccollab.ca/splash/{/msg}" class="{msg desc=""}GCTBannerOnclick-eng{/msg}">
+								{msg desc=""}<span class="bold-gc">GC</span>collab{/msg}</a>
+							</div>
+						</section>
+						{/if}
+						{if isNonnull($lngLinks)}
+						<section id="wb-lng" class="{if (isNonnull($intranetTitle) and ($GCToolsModal != true))}mrgn-bttm-md col-md-offset-1 col-lg-offset-2 {/if}col-md-1 hidden-sm hidden-xs text-right {if $search == false}lang-no-search{else}lang-with-search{/if}">
+							<h2 class="wb-inv">{msg desc=""}Language selection{/msg}</h2>
+							<div class="row">
+								<div class="col-md-12">
+									<ul class="list-inline margin-bottom-none gcbarlng">
+										{foreach $link in $lngLinks}
+											<li><a lang="{$link.lang}" href="{$link.href}">{$link.text}</a></li>
+										{/foreach}
+									</ul>
+								</div>
+							</div>
+						</section>
+						{/if}
+						{if $search != false}
+						<section id="wb-srch" class="col-lg-3 col-md-4 hidden-sm hidden-xs search-md">
+							<h2>{msg desc=""}Search{/msg}</h2>
+							{if isNonnull($customSearch)}
+							{foreach $item in $customSearch}
+								{if isFirst($item)}
+								<form action="
+									{if isNonnull($item.action)}
+										{$item.action}
+									{else}
+										{msg desc=""}https://intranet.canada.ca/search-recherche/query-recherche-eng.aspx{/msg}
+									{/if}
+								" method="
+									{if isNonnull($item.method)}
+										{$item.method}
+									{else}
+										get
+									{/if}
+								" name="
+									{if isNonnull($item.name)}
+										{$item.name}
+									{else}
+										cse-search-box
+									{/if}
+								" role="search" class="form-inline">
+									<div class="form-group">
+										<label for="
+										{if isNonnull($item.id)}
+											{$item.id}
+										{else}
+											wb-srch-q
+										{/if}
+										" class="wb-inv">
+										{if isNonnull($item.placeholder)}
+											{$item.placeholder}
+										{else}
+											{msg desc=""}Search GCintranet{/msg}
+										{/if}
+										</label>
+										<input class="wb-srch-q form-control pull-right" id="
+										{if isNonnull($item.id)}
+											{$item.id}
+										{else}
+											wb-srch-q
+										{/if}
+										" name="
+										{if isNonnull($item.name)}
+											{$item.name}
+										{else}
+											q
+										{/if}
+										"  value="
+										{if isNonnull($item.value)}
+											{$item.value}
+										{else}
+										{/if}
+										" size="21" maxlength="150" placeholder="
+										{if isNonnull($item.placeholder)}
+											{$item.placeholder}
+										{else}
+											{msg desc=""}Search GCintranet{/msg}
+										{/if}
+										">
+										{if isNonnull($item.hiddenInput)}
+										{foreach $input in $item.hiddenInput}
+											<input type="hidden" name="{$input.name}" value="{$input.value}">
+										{/foreach}
+										{/if}
+									</div>
+									<div class="form-group submit">&nbsp;
+										<button type="submit" id="wb-srch-sub" class="btn btn-primary btn-small" name="wb-srch-sub"><span class="glyphicon-search glyphicon"></span><span class="wb-inv">{msg desc=""}Search{/msg}</span></button>
+									</div>
+								</form>
+								{/if}
+							{/foreach}
+							{else}
+								<form action="{msg desc=""}https://intranet.canada.ca/search-recherche/query-recherche-eng.aspx{/msg}" method="get" name="cse-search-box" role="search" class="form-inline">
+									<div class="form-group">
+										<label for="wb-srch-q" class="wb-inv">{msg desc=""}Search GCintranet{/msg}</label>
+										<input type="text" class="wb-srch-q form-control pull-right" id="wb-srch-q" name="q"  value="" size="21" maxlength="150" placeholder="{msg desc=""}Search GCintranet{/msg}">
+										<input type="hidden" name="a" value="s">
+										<input type="hidden" name="s" value="1">
+										<input type="hidden" name="chk2" value="True">
+									</div>
+									<div class="form-group submit">&nbsp;
+										<button type="submit" id="wb-srch-sub" class="btn btn-primary btn-small" name="wb-srch-sub"><span class="glyphicon-search glyphicon"></span><span class="wb-inv">{msg desc=""}Search{/msg}</span></button>
+									</div>
+								</form>
+							{/if}
+						</section>
+						{/if}
+						<section id="wb-glb-mn" class="wb-mb-links col-xs-4 col-sm-3 visible-sm visible-xs">
+							<h2>
+							{if $search == false}
+								{msg desc=""}Menu{/msg}{if isNonnull($topSecMenu)}s{/if}
+							{else}
+								{msg desc=""}Search and menu{/msg}{if isNonnull($topSecMenu)}s{/if}
+							{/if}
+							</h2>
+							<ul class="list-inline text-right chvrn">
+								<li><a href="#mb-pnl" title="
+								{if $search == false}
+									{msg desc=""}Menu{/msg}{if isNonnull($topSecMenu)}s{/if}
+								{else}
+									{msg desc=""}Search and menu{/msg}{if isNonnull($topSecMenu)}s{/if}
+								{/if}
+								" aria-controls="mb-pnl" class="overlay-lnk" role="button">
+									{if $search != false}<span class="glyphicon glyphicon-search">{/if}
+									<span class="glyphicon glyphicon-th-list">
+									<span class="wb-inv">
+									{if $search == false}
+										{msg desc=""}Menu{/msg}{if isNonnull($topSecMenu)}s{/if}
+									{else}
+										{msg desc=""}Search and menu{/msg}{if isNonnull($topSecMenu)}s{/if}
+									{/if}
+									</span>
+									</span>
+									{if ($search != false)}</span>{/if}
+								</a></li>
+							</ul>
+							<div id="mb-pnl"></div>
+						</section>
+					</div>
+					{if $GCToolsModal != true}
+					<div id="tools-sm" class="row{if isNonnull($intranetTitle)}{else} visible-md{/if}">
+						<section id="tool-container-sm" class="col-md-12 col-sm-12">
+							<div class="pull-left tool-link"><a href="{msg desc=""}https://gcconnex.gc.ca/splash/{/msg}" class="{msg desc=""}GCTBannerOnclick-eng{/msg}">{msg desc=""}<span class="bold-gc">GC</span>connex{/msg}</a></div>
+							<div class="pull-left tool-link"><a href="{msg desc=""}http://www.gcpedia.gc.ca/wiki/?setlang=en{/msg}" class="{msg desc=""}GCTBannerOnclick-eng{/msg}">{msg desc=""}<span class="bold-gc">GC</span>pedia{/msg}</a></div>
+							<div class="pull-left tool-link"><a href="{msg desc=""}http://gcdirectory-gcannuaire.gc.ca/en/GCD/?pgid=002{/msg}" class="{msg desc=""}GCTBannerOnclick-eng{/msg}">{msg desc=""}<span class="bold-gc">GC</span>directory{/msg}</a></div>
+							<div class="pull-left tool-link"><a href="{msg desc=""}https://gccollab.ca/splash/{/msg}" class="{msg desc=""}GCTBannerOnclick-eng{/msg}">{msg desc=""}<span class="bold-gc">GC</span>collab{/msg}</a></div>
+						</section>
+					</div>
+					{/if}
+				</div>
+			</div>
+		</div>
+		<div id="gcappbanner">
+			<div class="container">
+				<div class="row gc-{if ($subTheme)}app{else}intra{/if}-br">
+					{foreach $item in $appName}
+						<div id="wb-sttl" class="col-md-1{if ($signOut) or ($signIn)}0{else}2{/if}">{if isNonnull($item.acronym)}<abbr title="{$item.acronym}">{/if}{if ($item.href)}<a href="{$item.href}">{/if}<span>{if $secure == true}<i class="glyphicon glyphicon-lock mrgn-rght-md"></i>{/if}{$item.text}</span>{if ($item.href)}</a>{/if}{if isNonnull($item.acronym)}</abbr>{/if}</div>
+					{/foreach}
+					{if isNonnull($signOut)}
+					<div class="text-right col-md-2">
+						<div class="row">
+							{foreach $button in $signOut}
+							{if isFirst($button)}
+							<p><a href="{$button.href}" class="btn btn-default btn-signoff"><i class="glyphicon glyphicon-off mrgn-rght-md"></i>{msg desc=""}Sign out{/msg}</a></p>
+							{/if}
+							{/foreach}
+						</div>
+					</div>
+					{elseif isNonnull($signIn)}
+					<div class="text-right col-md-2">
+						<div class="row">
+							{foreach $button in $signIn}
+							{if isFirst($button)}
+							<p><a href="{$button.href}" class="btn btn-default btn-signoff"><i class="glyphicon glyphicon-off mrgn-rght-md"></i>{msg desc=""}Sign in{/msg}</a></p>
+							{/if}
+							{/foreach}
+						</div>
+					</div>
+					{else}
+					{/if}
+				</div>
+			</div>
+		</div>
+		{if isNonnull($menuLinks)}
+		<nav role="navigation" id="wb-smapp" data-trgt="mb-pnl" class="wb-menu visible-md visible-lg" typeof="SiteNavigationElement">
+			<div class="pnl-strt container nvbar">
+				<h2 class="wb-inv">{msg desc=""}Main navigation menu{/msg}</h2>
+				<div class="row">
+					<ul class="list-inline menu" role="menubar">
+						{foreach $link in $menuLinks}
+						{if isNonnull($link.subLinks)}
+						<li>
+							<a href="#{$link.id}" class="item"{if $link.newWindow==true} target="_blank"  rel="noopener"{/if}>{$link.text}{if $link.newWindow==true}<span class="wb-inv"> {msg desc=""}This link will open in a new window{/msg}</span>{/if}</a>
+							<ul class="sm list-unstyled" id="{$link.id}" role="menu">
+								{foreach $sublink in $link.subLinks}
+									{if isLast($sublink)}
+								<li class="slflnk"><a href="{$sublink.subhref}"{if $sublink.newWindow==true} target="_blank"  rel="noopener"{/if}>{$sublink.subtext}{if $sublink.newWindow==true}<span class="wb-inv"> {msg desc=""}This link will open in a new window{/msg}</span>{/if}</a></li>
+									{else}
+								<li><a href="{$sublink.subhref}"{if $sublink.newWindow==true} target="_blank"  rel="noopener"{/if}>{$sublink.subtext}{if $sublink.newWindow==true}<span class="wb-inv"> {msg desc=""}This link will open in a new window{/msg}</span>{/if}</a></li>
+									{/if}
+								{/foreach}
+							</ul>
+						</li>
+						{else}
+						<li><a href="{$link.href}" class="item"{if $link.newWindow==true} target="_blank"  rel="noopener"{/if}>{$link.text}{if $link.newWindow==true}<span class="wb-inv"> {msg desc=""}This link will open in a new window{/msg}</span>{/if}</a></li>
+						{/if}
+						{/foreach}
+						<li class="hidden-md hidden-lg"><a href="#mnuTools" class="item">{msg desc=""}GCTools{/msg}</a>
+							<ul class="sm list-unstyled" id="mnuTools" role="menu">
+								<li><a href="{msg desc=""}https://gcconnex.gc.ca/splash/{/msg}">{msg desc=""}<span class="bold-gc">GC</span>connex{/msg}</a></li>
+								<li><a href="{msg desc=""}http://www.gcpedia.gc.ca/wiki/?setlang=en{/msg}">{msg desc=""}<span class="bold-gc">GC</span>pedia{/msg}</a></li>
+								<li><a href="{msg desc=""}http://gcdirectory-gcannuaire.gc.ca/en/GCD/?pgid=002{/msg}">{msg desc=""}<span class="bold-gc">GC</span>directory{/msg}</a></li>
+								<li><a href="{msg desc=""}https://gccollab.ca/splash/{/msg}">{msg desc=""}<span class="bold-gc">GC</span>collab{/msg}</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		{elseif isNonnull($menuPath)}
+		<nav role="navigation" id="wb-smapp" data-ajax-replace="{$menuPath}" data-trgt="mb-pnl" class="wb-menu visible-md visible-lg" typeof="SiteNavigationElement"></nav>
+		{else}
+		<div id="wb-sm" data-ajax-replace="{msg desc=""}https://ssl-templates.services.gc.ca/app/cls/WET/gcintranet/v4_0_40/cdts/ajax/appmenu-eng.html{/msg}" data-trgt="mb-pnl" class="wb-menu hidden-sm hidden-xs"></div>
+		{/if}
+		{if isNonnull($breadcrumbs)}
+		<nav role="navigation" id="wb-bc" property="breadcrumb">
+			<h2>{msg desc=""}You are here:{/msg}</h2>
+			<div class="container">
+				<div class="row">
+					<ol class="breadcrumb">
+						{foreach $item in $breadcrumbs}
+						<li>{if isNonnull($item.acronym)}<abbr title="{$item.acronym}">{/if}{if isNonnull($item.href)}<a href="{$item.href}">{/if}{$item.title}{if isNonnull($item.href)}</a>{/if}{if isNonnull($item.acronym)}</abbr>{/if}</li>
+						{/foreach}
+					</ol>
+				</div>
+			</div>
+		</nav>
+		{/if}
+	</header>
+	{if $showPreContent != false}
+	{/if}
+{/template}
+
+/**
+ * This is all of the html to be included after existing page content.
+ * @param? dateModified The date the content was last modified.
+ * @param? showPostContent Used to determine if the postcontent space will be displayed, off by default.
+ * @param? versionIdentifier Used instead of dateModified
+ * @param? screenIdentifier Used to identify screens for users that need help
+ * @param? pagedetails Used to determine if the pagedetails div will be displayed
+*/
+{template .preFooter}
+		{if $showPostContent != false}
+		{/if}
+		{if $pagedetails != false}
+		<div class="row pagedetails">
+			<div class="col-sm-5 col-xs-12 datemod">
+				<dl id="wb-dtmd">
+					{if isNonnull($screenIdentifier)}
+					<dt>{msg desc=""}Screen Identifier:&#32;{/msg}</dt>
+					<dd>{$screenIdentifier}</dd>
+					{/if}
+					{if isNonnull($dateModified)}
+					<dt>{msg desc=""}Date modified:&#32;{/msg}</dt>
+					<dd><time property="dateModified">{$dateModified}</time></dd>
+					{/if}
+					{if isNonnull($versionIdentifier)}
+					<dt>{msg desc=""}Version:&#32;{/msg}</dt>
+					<dd>{$versionIdentifier}</dd>
+					{/if}
+				</dl>
+			</div>
+		</div>
+		{/if}
+{/template}
+
+/**
+ * This is all of the html for the secondary menu.
+ * @param sections Loops of the sections
+ */
+{template .secmenu}
+<h2 id="wb-sec-h" class="wb-inv">{msg desc=""}Section menu{/msg}</h2>
+{foreach $section in $sections}
+<section class="list-group menu list-unstyled">
+	<h3>{if isNonnull($section.sectionLink)}<a href="{$section.sectionLink}"{if $section.newWindow==true} target="_blank"  rel="noopener"{/if}>{/if}{$section.sectionName}{if $section.newWindow==true}<span class="wb-inv"> {msg desc=""}This link will open in a new window{/msg}</span>{/if}{if isNonnull($section.sectionLink)}</a>{/if}</h3>
+	<ul class="list-group menu list-unstyled">
+		{foreach $link in $section.menuLinks}
+		{if isNonnull($link.subLinks)}
+		<li>
+			<a href="{$link.href}" class="list-group-item"{if $link.newWindow==true} target="_blank"  rel="noopener"{/if}>{$link.text}{if $link.newWindow==true}<span class="wb-inv"> {msg desc=""}This link will open in a new window{/msg}</span>{/if}</a>
+			<ul class="list-group menu list-unstyled">
+				{foreach $sublink in $link.subLinks}
+				<li><a href="{$sublink.subhref}" class="list-group-item"{if $sublink.newWindow==true} target="_blank"  rel="noopener"{/if}>{$sublink.subtext}{if $sublink.newWindow==true}<span class="wb-inv"> {msg desc=""}This link will open in a new window{/msg}</span>{/if}</a></li>
+				{/foreach}
+			</ul>
+		</li>
+		{else}
+		<li><a href="{$link.href}" class="list-group-item"{if $link.newWindow==true} target="_blank"  rel="noopener"{/if}>{$link.text}{if $link.newWindow==true}<span class="wb-inv"> {msg desc=""}This link will open in a new window{/msg}</span>{/if}</a></li>
+		{/if}
+		{/foreach}
+	</ul>
+</section>
+{/foreach}
+{/template}
+
+/**
+ * This is all of the html to be included after existing page content.
+ * @param? showFeatures Used to determine if the "GoC activities and initiatives" section will be displayed.
+ * @param? contactLinks Used to override the Contact link in the footer.
+ */
+{template .footer}
+		{if $showFeatures == true}
+			<section class="ajaxed-in" data-ajax-replace="{msg desc=""}https://ssl-templates.services.gc.ca/app/cls/WET/gcintranet/v4_0_40/cdts/ajax/activities-footer-eng.html{/msg}"></section>
+		{/if}
+		<footer role="contentinfo" id="wb-info">
+			<nav role="navigation" class="container wb-navcurr">
+				<h2 class="wb-inv">{msg desc=""}About government{/msg}</h2>
+				<ul class="list-unstyled colcount-sm-2 colcount-md-4">
+					{if isNonnull($contactLinks)}
+						{foreach $link in $contactLinks}
+					<li><a href="{$link.href}">{$link.text}</a></li>
+						{/foreach}
+					{else}
+					<li><a href="{msg desc=""}https://intranet.canada.ca/contact/contactgc-eng.aspx{/msg}">{msg desc=""}Contact us{/msg}</a></li>
+					{/if}
+					<li><a href="{msg desc=""}https://intranet.canada.ca/ict-oci/index-eng.asp{/msg}">{msg desc=""}About GCTools{/msg}</a></li>
+					<li><a href="{msg desc=""}https://www.canada.ca/en.html{/msg}">{msg desc=""}Canada.ca{/msg}</a></li>
+					<li><a href="{msg desc=""}https://intranet.canada.ca/terms-avis-eng.asp{/msg}">{msg desc=""}Terms and conditions{/msg}</a></li>
+				</ul>
+			</nav>
+			<div class="brand">
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-12 col-md-8">
+							<a href="{msg desc=""}https://www.canada.ca/en.html{/msg}"><img src="{call .environment data="all" /}assets/{msg desc=""}sig-blk-en.svg{/msg}" alt=""><span class="wb-inv">{msg desc=""}Government of Canada{/msg}</span></a>
+						</div>
+						<div class="col-xs-6 visible-sm visible-xs tofpg">
+							<a href="#wb-cont">{msg desc=""}Top of Page{/msg}<span class="glyphicon glyphicon-chevron-up"></span></a>
+						</div>
+						<div class="col-xs-6 col-md-4 text-right">
+							<img src="{call .environment data="all" /}assets/wmms-blk.svg" alt="{msg desc=""}Symbol of the Government of Canada{/msg}">
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+{/template}
+
+/**
+ * This is all of the html to be included after existing page content.
+ * @param? showFeatures Used to determine if the "GoC activities and initiatives" section will be displayed.
+ * @param? subTheme Used to identify the custom subTheme.
+ * @param? footerSections Loops of the sections in the footer.
+ * @param? globalNav Loops of the sections in the footer.
+ * @param? cdnEnv Used to switch between qat, nonprod, and prod CDN implementations.
+*/
+{template .appFooter}
+		{if $showFeatures == true}
+			<section class="ajaxed-in" data-ajax-replace="{msg desc=""}https://ssl-templates.services.gc.ca/app/cls/WET/gcintranet/v4_0_40/cdts/ajax/activities-footer-eng.html{/msg}"></section>
+		{/if}
+		<footer role="contentinfo" id="wb-info">
+			{if isNonnull($footerSections)}
+				{if ($subTheme == 'esdc') or ($subTheme == 'labour')}
+					<nav role="navigation" class="container wb-navcurr">
+						<h2 class="wb-inv">{msg desc=""}Related links{/msg}</h2>
+						<div class="row">
+							{foreach $footerSection in $footerSections}
+								{if isNonnull($footerSection.customFooterLinks)}
+									{if index($footerSection) < 3}
+										<section class="col-md-3 col-sm-6 col-lg-3">
+											{if isNonnull($footerSection.sectionName)}
+												<h3>{$footerSection.sectionName}</h3>
+											{/if}
+											<ul class="list-unstyled">
+												{foreach $link in $footerSection.customFooterLinks}
+													<li><a href="{$link.href}"{if $link.newWindow==true} target="_blank"  rel="noopener"{/if}>{$link.text}{if $link.newWindow==true}<span class="wb-inv"> {msg desc=""}This link will open in a new window{/msg}</span>{/if}</a></li>
+												{/foreach}
+											</ul>
+										</section>
+									{/if}
+								{elseif (index($footerSection)==0)} //For backward compatibility
+									<section class="col-md-3 col-sm-6 col-lg-3">
+										{if isNonnull($footerSection.sectionName)}
+												<h3>{$footerSection.sectionName}</h3>
+										{/if}
+										<ul class="list-unstyled">
+											{foreach $link in $footerSections}
+												<li><a href="{$link.href}"{if $link.newWindow==true} target="_blank"  rel="noopener"{/if}>{$link.text}{if $link.newWindow==true}<span class="wb-inv"> {msg desc=""}This link will open in a new window{/msg}</span>{/if}</a></li>
+											{/foreach}
+										</ul>
+									</section>
+								{/if}
+							{/foreach}
+							<section class="col-md-3 col-sm-6 col-lg-3">
+								<h3>{msg desc=""}Corporate{/msg}</h3>
+								<ul class="list-unstyled">
+									<li><a href="{msg desc=""}http://esdc.prv/en/branches_regions/index.shtml{/msg}">{msg desc=""}ESDC/SC IntraWeb{/msg}</a></li>
+									<li><a href="{msg desc=""}http://esdc.prv/en/news/index.shtml{/msg}">{msg desc=""}News{/msg}</a></li>
+									<li><a href="{msg desc=""}http://esdc.prv/en/contact/index.shtml{/msg}">{msg desc=""}Contact and Feedback{/msg}</a></li>
+									<li><a href="{msg desc=""}http://esdc.prv/en/stay_connected/index.shtml{/msg}">{msg desc=""}Stay Connected{/msg}</a></li>
+									<li><a href="{msg desc=""}http://edsc.prv/en/help.shtml{/msg}">{msg desc=""}Help and Important Notices{/msg}</a></li>
+								</ul>
+							</section>
+						</div>
+					</nav>
+				{elseif $subTheme == 'eccc'}
+					<nav role="navigation" class="container wb-navcurr">
+						<h2 class="wb-inv">{msg desc=""}Related links{/msg}</h2>
+						<div class="row">
+							{foreach $footerSection in $footerSections}
+								{if isNonnull($footerSection.customFooterLinks)}
+									{if index($footerSection) < 3}
+										<section class="col-md-3 col-sm-6 col-lg-3">
+											{if isNonnull($footerSection.sectionName)}
+												<h3>{$footerSection.sectionName}</h3>
+											{/if}
+											<ul class="list-unstyled">
+												{foreach $link in $footerSection.customFooterLinks}
+													<li><a href="{$link.href}"{if $link.newWindow==true} target="_blank"  rel="noopener"{/if}>{$link.text}{if $link.newWindow==true}<span class="wb-inv"> {msg desc=""}This link will open in a new window{/msg}</span>{/if}</a></li>
+												{/foreach}
+											</ul>
+										</section>
+									{/if}
+								{elseif (index($footerSection)==0)} //For backward compatibility
+									<section class="col-md-3 col-sm-6 col-lg-3">
+										{if isNonnull($footerSection.sectionName)}
+												<h3>{$footerSection.sectionName}</h3>
+										{/if}
+										<ul class="list-unstyled">
+											{foreach $link in $footerSections}
+												<li><a href="{$link.href}"{if $link.newWindow==true} target="_blank"  rel="noopener"{/if}>{$link.text}{if $link.newWindow==true}<span class="wb-inv"> {msg desc=""}This link will open in a new window{/msg}</span>{/if}</a></li>
+											{/foreach}
+										</ul>
+									</section>
+								{/if}
+							{/foreach}
+							<section class="col-md-3 col-sm-6 col-lg-3">
+								<h3>{msg desc=""}Contact Us{/msg}</h3>
+								<ul class="list-unstyled">
+									<li><a href="#">{msg desc="This menu item should be reviewed"}EnviroTel{/msg}</a></li>
+									<li><a href="#">{msg desc="This menu item should be reviewed"}GEDS{/msg}</a></li>
+									<li><a href="#">{msg desc="This menu item should be reviewed"}Organizational Chart{/msg}</a></li>
+									<li><a href="#">{msg desc="This menu item should be reviewed"}Service Desk{/msg}</a></li>
+									<li><a href="#">{msg desc="This menu item should be reviewed"}Feedback{/msg}</a></li>
+									<li><a href="#">{msg desc="This menu item should be reviewed"}Services Catalogue{/msg}</a></li>
+								</ul>
+							</section>
+						</div>
+					</nav>
+				{else}
+					<nav role="navigation" class="container wb-navcurr">
+						<h2 class="wb-inv">{msg desc=""}Related links{/msg}</h2>
+						<div class="row">
+							{foreach $footerSection in $footerSections}
+								{if isNonnull($footerSection.customFooterLinks)}
+									{if index($footerSection) < 3}
+										<section class="col-md-3 col-sm-6 col-lg-3">
+											{if isNonnull($footerSection.sectionName)}
+												<h3>{$footerSection.sectionName}</h3>
+											{/if}
+											<ul class="list-unstyled">
+													{foreach $link in $footerSection.customFooterLinks}
+														<li><a href="{$link.href}"{if $link.newWindow==true} target="_blank"  rel="noopener"{/if}>{$link.text}{if $link.newWindow==true}<span class="wb-inv"> {msg desc=""}This link will open in a new window{/msg}</span>{/if}</a></li>
+													{/foreach}
+											</ul>
+										</section>
+									{/if}
+								{elseif (index($footerSection)==0)} //For backward compatibility
+									<section class="container-fluid">
+										{if isNonnull($footerSection.sectionName)}
+												<h3>{$footerSection.sectionName}</h3>
+										{/if}
+										<ul class="list-unstyled colcount-sm-2 colcount-md-4">
+											{foreach $link in $footerSections}
+												<li><a href="{$link.href}"{if $link.newWindow==true} target="_blank"  rel="noopener"{/if}>{$link.text}{if $link.newWindow==true}<span class="wb-inv"> {msg desc=""}This link will open in a new window{/msg}</span>{/if}</a></li>
+											{/foreach}
+										</ul>
+									</section>
+								{/if}
+							{/foreach}
+						</div>
+					</nav>
+				{/if}
+			{elseif $globalNav == true}
+				<nav role="navigation" class="container wb-navcurr">
+					<h2 class="wb-inv">{msg desc=""}About government{/msg}</h2>
+					<ul class="list-unstyled colcount-sm-2 colcount-md-4 container-fluid">
+						<li><a href="{msg desc=""}https://intranet.canada.ca/psc-fsc/index-eng.asp{/msg}">{msg desc=""}News{/msg}</a></li>
+						<li><a href="{msg desc=""}https://intranet.canada.ca/hr-rh/index-eng.asp{/msg}">{msg desc=""}Human resources{/msg}</a></li>
+						<li><a href="{msg desc=""}https://intranet.canada.ca/cdl-dca/index-eng.asp{/msg}">{msg desc=""}Career development and learning{/msg}</a></li>
+						<li><a href="{msg desc=""}https://intranet.canada.ca/wg-tg/index-eng.asp{/msg}">{msg desc=""}Services and tools{/msg}</a></li>
+					</ul>
+				</nav>
+
+			{elseif ($subTheme == 'esdc') or ($subTheme == 'labour')}
+				<nav role="navigation" class="container visible-sm visible-md visible-lg wb-navcurr" data-wb-ajax='{lb}"url": "{if $cdnEnv=='qat'}https://cdn-canada.services.gc.qat{elseif $cdnEnv=='nonprod'}https://s2tst-cdn-canada.sade-edap.prv{elseif $cdnEnv=='esdcprod'}https://templates.service.gc.ca{else}https://ssl-templates.services.gc.ca{/if}/app/cls/WET/global/{msg desc=""}esdcfooter-eng.html{/msg}", "type": "replace", "nocache": true {rb}'></nav>
+			{else}
+			{/if}
+			<div class="brand">
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-12 col-md-8">
+							<a href="{msg desc=""}https://www.canada.ca/en.html{/msg}"><img src="{call .environment data="all" /}assets/{msg desc=""}sig-blk-en.svg{/msg}" alt=""><span class="wb-inv">{msg desc=""}Government of Canada{/msg}</span></a>
+						</div>
+						<div class="col-xs-6 visible-sm visible-xs tofpg">
+							<a href="#wb-cont">{msg desc=""}Top of Page{/msg}<span class="glyphicon glyphicon-chevron-up"></span></a>
+						</div>
+						<div class="col-xs-6 col-md-4 text-right">
+							<img src="{call .environment data="all" /}assets/wmms-blk.svg" alt="{msg desc=""}Symbol of the Government of Canada{/msg}">
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+{/template}
+
+/**
+ * This is all of the references to be made before existing page content.
+ * @param? exitScript If set to true, loads a script that alerts users they are leaving a secure site.
+ * @param? displayModal If set to true will display modal otherwise skip to exitURL.
+ * @param? exitURL The URL where the users are redirected if they continue.
+ * @param? msgBoxHeader The message box title.
+ * @param? exitMsg The message to display to the user.
+ * @param? cancelMsg Text for Cancel Button
+ * @param? yesMsg Text for yes Button
+ * @param? exitDomains Domains to not check for secure exit.
+ * @param? targetWarning A warning to display to the user that the link will open in a new window
+ * @param? displayModalForNewWindow If set to true, will not display modal for links that open in new window
+ * @param? jqueryEnv Used to determine location of jQuery files (local / external).
+ * @param? cdnEnv Used to switch between qat, nonprod, and prod CDN implementations.
+*/
+{template .refFooter}
+		<!--[if gte IE 9 | !IE ]><!-->
+		<script src="{if $jqueryEnv=='external'}https://ajax.googleapis.com/ajax/libs/{else}{call .environment data="all" /}js/{/if}jquery/2.2.4/jquery.min.js"></script>
+		<script src="{call .environment data="all" /}js/wet-boew.min.js"></script>
+		<!--<![endif]-->
+		<!--[if lt IE 9]>
+		<script src="{call .environment data="all" /}js/ie8-wet-boew2.min.js"></script>
+		<![endif]-->
+		<script src="{call .environment data="all" /}js/theme.min.js"></script>
+		{if $exitScript == true}
+			/*This is a placeholder link to trigger the WET exitscript intialization in the event the no external link is present on the page*/
+			<a href="#" id="cdts-exitscript-placeholder-link" style="display: none" aria-hidden="true" class="wb-exitscript">Exit Link</a>
+			<script data-id="exitScript">cdtsApplyExitScriptToLinks("{$displayModal}", "{$exitURL}", "{$exitDomains}", "{$exitMsg}", "{$yesMsg}", "{$cancelMsg}", "{$msgBoxHeader}", "{$targetWarning}", "{$displayModalForNewWindow}");</script>
+		{/if}
+{/template}
+
+/**
+ * This is all of the references to be made before existing page content.
+ * @param? cdnEnv Used to switch between qat, nonprod, and prod CDN implementations.
+ */
+{template .splashTop}
+		<!--[if gte IE 9 | !IE ]><!-->
+		<link href="{call .environment data="all" /}assets/favicon.ico" rel="icon" type="image/x-icon">
+		<link rel="stylesheet" href="{call .environment data="all" /}css/theme.min.css">
+		<!--<![endif]-->
+		<link rel="stylesheet" href="{call .environment data="all" /}css/messages.min.css">
+		<!--[if lt IE 9]>
+		<link href="{call .environment data="all" /}assets/favicon.ico" rel="shortcut icon">
+		<link rel="stylesheet" href="{call .environment data="all" /}css/messages-ie.min.css">
+		<link rel="stylesheet" href="{call .environment data="all" /}css/ie8-theme.min.css">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="{call .environment data="all" /}js/ie8-wet-boew.min.js"></script>
+		<![endif]-->
+		<!--[if lte IE 9]><![endif]-->
+{/template}
+
+/**
+ * This is all of the html to be included in the body.
+ * @param? nameEng The English name of your web asset.
+ * @param? nameFra The French name of your web asset.
+ * @param indexEng The English index of the asset.
+ * @param indexFra The French index of the asset.
+ * @param termsEng The English Terms and conditions of use.
+ * @param termsFra The French Terms and conditions of use.
+ * @param? jqueryEnv Used to determine location of jQuery files (local / external).
+ * @param? cdnEnv Used to switch between qat, nonprod, and prod CDN implementations.
+*/
+{template .splash}
+		<div id="bg">
+			<img src="{call .environment data="all" /}img/splash/sp-bg-2.jpg" alt="">
+		</div>
+		<main role="main">
+			<div class="sp-hb">
+				<div class="sp-bx col-xs-12">
+					<h1 property="name" class="wb-inv">GC Intranet / Intranet du GC</h1>
+					<div class="row">
+						<div class="col-xs-11 col-md-8">
+							<img src="{call .environment data="all" /}assets/sig-spl.svg" width="283" alt="Government of Canada / Gouvernement du Canada">
+						</div>
+					</div>
+					<div class="row cdts-splash">
+						<section class="col-xs-6 text-right" lang="en">
+								{if isNonnull($nameEng)}
+									<h2>{$nameEng}</h2>
+								{else}
+									<h2 class="wb-inv">Government of Canada</h2>									
+								{/if}
+						</section>
+						<section class="col-xs-6" lang="fr">
+								{if isNonnull($nameFra)}
+									<h2>{$nameFra}</h2>
+								{else}
+									<h2 class="wb-inv">Gouvernement du Canada</h2>
+								{/if}
+						</section>
+					</div>					
+					<div class="row text-center">
+						{let $lang: navigator.language /}
+						<ul class="list-inline lst-spcd">
+							<li>
+								{if $lang == 'en-CA'}
+									<a href="{$indexEng}" class="btn btn-primary" lang="en">English</a>
+								{else}
+									<a href="{$indexEng}" class="btn btn-default" lang="en">English</a>
+								{/if}
+								</li>
+							<li>
+								{if $lang == 'fr-CA'}
+									<a href="{$indexFra}" class="btn btn-primary" lang="fr">Français</a>
+								{else}
+									<a href="{$indexFra}" class="btn btn-default" lang="fr">Français</a>
+								{/if}
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="sp-bx-bt col-xs-12">
+					<div class="row">
+						<div class="col-xs-7 col-md-8">
+							<a href="{$termsEng}" class="sp-lk">Terms &amp; conditions</a> <span class="glyphicon glyphicon-asterisk"></span> <a href="{$termsFra}" class="sp-lk" lang="fr">Avis</a>
+						</div>
+						<div class="col-xs-5 col-md-4 text-right mrgn-bttm-md">
+							<img src="{call .environment data="all" /}assets/wmms-spl.svg" width="127" alt="Symbol of the Government of Canada / Symbole du gouvernement du Canada">
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<!--[if gte IE 9 | !IE ]><!-->
+		<script src="{if $jqueryEnv=='external'}https://ajax.googleapis.com/ajax/libs/{else}{call .environment data="all" /}js/{/if}jquery/2.2.4/jquery.min.js"></script>
+		<script src="{call .environment data="all" /}js/wet-boew.min.js"></script>
+		<!--<![endif]-->
+		<!--[if lt IE 9]>
+		<script src="{call .environment data="all" /}js/ie8-wet-boew2.min.js"></script>
+		<![endif]-->
+		<link rel="stylesheet" href="{call .environment data="all" /}cdts/cdtsfixes.css">
+{/template}
