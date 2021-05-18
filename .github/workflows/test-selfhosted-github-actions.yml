@@ -2,7 +2,7 @@ name: test-selfhosted-github-actions
 on: [push]
 jobs:
   run-tests:
-    runs-on: [self-hosted,java,node]
+    runs-on: [self-hosted,javac,node]
     steps:
       - uses: actions/checkout@v2
       - run: npm install
