@@ -704,28 +704,28 @@
 					<ul class="list-inline menu" role="menubar">
 						{foreach $link in $menuLinks}
 						{if isNonnull($link.subLinks)}
-						<li>
+						<li role="none">
 							<a href="#{$link.id}" class="item"{if $link.newWindow==true} target="_blank"  rel="noopener"{/if}>{$link.text}{if $link.newWindow==true}<span class="wb-inv"> {msg desc=""}This link will open in a new window{/msg}</span>{/if}</a>
 							<ul class="sm list-unstyled" id="{$link.id}" role="menu">
 								{foreach $sublink in $link.subLinks}
 									{if isLast($sublink)}
-								<li class="slflnk"><a href="{$sublink.subhref}"{if $sublink.newWindow==true} target="_blank"  rel="noopener"{/if}>{$sublink.subtext}{if $sublink.newWindow==true}<span class="wb-inv"> {msg desc=""}This link will open in a new window{/msg}</span>{/if}</a></li>
+								<li class="slflnk" role="none"><a href="{$sublink.subhref}"{if $sublink.newWindow==true} target="_blank"  rel="noopener"{/if}>{$sublink.subtext}{if $sublink.newWindow==true}<span class="wb-inv"> {msg desc=""}This link will open in a new window{/msg}</span>{/if}</a></li>
 									{else}
-								<li><a href="{$sublink.subhref}"{if $sublink.newWindow==true} target="_blank"  rel="noopener"{/if}>{$sublink.subtext}{if $sublink.newWindow==true}<span class="wb-inv"> {msg desc=""}This link will open in a new window{/msg}</span>{/if}</a></li>
+								<li role="none"><a href="{$sublink.subhref}"{if $sublink.newWindow==true} target="_blank"  rel="noopener"{/if}>{$sublink.subtext}{if $sublink.newWindow==true}<span class="wb-inv"> {msg desc=""}This link will open in a new window{/msg}</span>{/if}</a></li>
 									{/if}
 								{/foreach}
 							</ul>
 						</li>
 						{else}
-						<li><a href="{$link.href}" class="item"{if $link.newWindow==true} target="_blank"  rel="noopener"{/if}>{$link.text}{if $link.newWindow==true}<span class="wb-inv"> {msg desc=""}This link will open in a new window{/msg}</span>{/if}</a></li>
+						<li role="none"><a href="{$link.href}" class="item"{if $link.newWindow==true} target="_blank"  rel="noopener"{/if}>{$link.text}{if $link.newWindow==true}<span class="wb-inv"> {msg desc=""}This link will open in a new window{/msg}</span>{/if}</a></li>
 						{/if}
 						{/foreach}
-						<li class="hidden-md hidden-lg"><a href="#mnuTools" class="item">{msg desc=""}GCTools{/msg}</a>
+						<li class="hidden-md hidden-lg" role="none"><a href="#mnuTools" class="item">{msg desc=""}GCTools{/msg}</a>
 							<ul class="sm list-unstyled" id="mnuTools" role="menu">
-								<li><a href="{msg desc=""}https://gcconnex.gc.ca/splash/{/msg}">{msg desc=""}<span class="bold-gc">GC</span>connex{/msg}</a></li>
-								<li><a href="{msg desc=""}http://www.gcpedia.gc.ca/wiki/?setlang=en{/msg}">{msg desc=""}<span class="bold-gc">GC</span>pedia{/msg}</a></li>
-								<li><a href="{msg desc=""}http://gcdirectory-gcannuaire.gc.ca/en/GCD/?pgid=002{/msg}">{msg desc=""}<span class="bold-gc">GC</span>directory{/msg}</a></li>
-								<li><a href="{msg desc=""}https://gccollab.ca/splash/{/msg}">{msg desc=""}<span class="bold-gc">GC</span>collab{/msg}</a></li>
+								<li role="none"><a href="{msg desc=""}https://gcconnex.gc.ca/splash/{/msg}">{msg desc=""}<span class="bold-gc">GC</span>connex{/msg}</a></li>
+								<li role="none"><a href="{msg desc=""}http://www.gcpedia.gc.ca/wiki/?setlang=en{/msg}">{msg desc=""}<span class="bold-gc">GC</span>pedia{/msg}</a></li>
+								<li role="none"><a href="{msg desc=""}http://gcdirectory-gcannuaire.gc.ca/en/GCD/?pgid=002{/msg}">{msg desc=""}<span class="bold-gc">GC</span>directory{/msg}</a></li>
+								<li role="none"><a href="{msg desc=""}https://gccollab.ca/splash/{/msg}">{msg desc=""}<span class="bold-gc">GC</span>collab{/msg}</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -865,6 +865,7 @@
  * This is all of the html to be included after existing page content.
  * @param? showFeatures Used to determine if the "GoC activities and initiatives" section will be displayed.
  * @param? subTheme Used to identify the custom subTheme.
+ * @param? footerPath Local path for footer 
  * @param? footerSections Loops of the sections in the footer.
  * @param? globalNav Loops of the sections in the footer.
  * @param? cdnEnv Used to switch between qat, nonprod, and prod CDN implementations.
@@ -1008,7 +1009,7 @@
 				</nav>
 
 			{elseif ($subTheme == 'esdc') or ($subTheme == 'labour')}
-				<nav role="navigation" class="container visible-sm visible-md visible-lg wb-navcurr" data-wb-ajax='{lb}"url": "{if $cdnEnv=='qat'}https://cdn-canada.services.gc.qat{elseif $cdnEnv=='nonprod'}https://s2tst-cdn-canada.sade-edap.prv{elseif $cdnEnv=='esdcprod'}https://templates.service.gc.ca{else}https://ssl-templates.services.gc.ca{/if}/app/cls/WET/global/{msg desc=""}esdcfooter-eng.html{/msg}", "type": "replace", "nocache": true {rb}'></nav>
+				<nav role="navigation" class="container visible-sm visible-md visible-lg wb-navcurr" data-wb-ajax='{lb}"url": "{if isNonnull($footerPath)}{$footerPath}{elseif $cdnEnv=='qat'}https://cdn-canada.services.gc.qat{elseif $cdnEnv=='nonprod'}https://s2tst-cdn-canada.sade-edap.prv{elseif $cdnEnv=='esdcprod'}https://templates.service.gc.ca{else}https://ssl-templates.services.gc.ca{/if}{if $footerPath == 'null'}/app/cls/WET/global/{msg desc=""}esdcfooter-eng.html{/msg}{/if}", "type": "replace", "nocache": true {rb}'></nav>
 			{else}
 			{/if}
 			<div class="brand">

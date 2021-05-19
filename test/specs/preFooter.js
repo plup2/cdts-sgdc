@@ -1,6 +1,7 @@
 const preFooterPage = require('../pageobjects/preFooter.page');
 const basicPage = require('../pageobjects/basic.page');
 const generateTestFile = require('../../TestFileGenerator.js');
+const runAccessbilityTest = require('../../TestA11y.js');
 require('../setup/basic.js');
 
 describe('Prefooter section tests for GCWeb', () => {
@@ -99,6 +100,10 @@ describe('Prefooter section tests for GCWeb', () => {
         await noPageDetails(theme, 'fr');
     });
 
+    it('Accessibility', async () => {
+        await accessibility(theme, 'en');
+        await accessibility(theme, 'fr');
+    });
 });
 
 describe('PreFooter section tests for GCIntranet', () => {
@@ -106,7 +111,7 @@ describe('PreFooter section tests for GCIntranet', () => {
     
     generateTestFile('./test/html/gcintranet/template-gcintranet-en.html', 'gcintranet', 'gcintranet-preFooter-en', {
         refTop: '{"cdnEnv": "localhost"}',
-        top: '{"cdnEnv": "localhost"}',
+        top: '{"cdnEnv": "localhost", "siteMenu": false}',
         preFooter: '{"screenIdentifier": "0123456789", "dateModified": "2020-09-11", "versionIdentifier": "0123456789", "cdnEnv": "localhost"}',
         footer: '{"cdnEnv": "localhost"}',
         refFooter: '{"cdnEnv": "localhost"}'
@@ -114,7 +119,7 @@ describe('PreFooter section tests for GCIntranet', () => {
 
     generateTestFile('./test/html/gcintranet/template-gcintranet-fr.html', 'gcintranet', 'gcintranet-preFooter-fr', {
         refTop: '{"cdnEnv": "localhost"}',
-        top: '{"cdnEnv": "localhost"}',
+        top: '{"cdnEnv": "localhost", "siteMenu": false}',
         preFooter: '{"screenIdentifier": "0123456789", "dateModified": "2020-09-11", "versionIdentifier": "0123456789", "cdnEnv": "localhost"}',
         footer: '{"cdnEnv": "localhost"}',
         refFooter: '{"cdnEnv": "localhost"}'
@@ -150,20 +155,25 @@ describe('PreFooter section tests for GCIntranet', () => {
         await noPageDetails(theme, 'en');
         await noPageDetails(theme, 'fr');
     });
+
+    it('Accessibility', async () => {
+        await accessibility(theme, 'en');
+        await accessibility(theme, 'fr');
+    });
 });
 
 async function feedbackBtnExists(theme, lang){
-    basicPage.open(theme, lang);
+    await basicPage.open(theme, lang);
     await expect(preFooterPage.feedbackBtn).toExist();
 }
 
 async function feedbackBtnDoesNotExist(theme, lang){
-    preFooterPage.open(theme, lang);
+    await preFooterPage.open(theme, lang);
     await expect(preFooterPage.feedbackBtn).not.toExist();
 }
 
 async function shareBtnExists(theme, lang){
-    basicPage.open(theme, lang);
+    await basicPage.open(theme, lang);
     const shareBtn = await preFooterPage.shareBtn;
     await shareBtn.click();
     await browser.pause(1000);
@@ -171,12 +181,12 @@ async function shareBtnExists(theme, lang){
 }
 
 async function shareBtnDoesNotExist(theme, lang){
-    preFooterPage.open(theme, lang);
+    await preFooterPage.open(theme, lang);
     await expect(preFooterPage.shareBtn).not.toExist();
 }
 
 async function pageDetailsExist(theme){
-    preFooterPage.open(theme, 'en');
+    await preFooterPage.open(theme, 'en');
     await expect(preFooterPage.screenID).toHaveTextContaining('Screen Identifier:');
     await expect(preFooterPage.screenIDText).toHaveTextContaining('012345678');
     await expect(preFooterPage.dateModified).toHaveTextContaining('Date modified:');  
@@ -186,7 +196,7 @@ async function pageDetailsExist(theme){
 }
 
 async function pageDetailsExist_FR(theme){
-    preFooterPage.open(theme, 'fr');
+    await preFooterPage.open(theme, 'fr');
     await expect(preFooterPage.screenID).toHaveTextContaining("Identificateur d'écran :");
     await expect(preFooterPage.screenIDText).toHaveTextContaining('012345678');
     await expect(preFooterPage.dateModified).toHaveTextContaining('Date de modification :');
@@ -196,21 +206,21 @@ async function pageDetailsExist_FR(theme){
 }
 
 async function pageDetailsDoNotExist(theme, lang){
-    basicPage.open(theme, lang);
+    await basicPage.open(theme, lang);
     await expect(preFooterPage.screenID).not.toExist();
     await expect(preFooterPage.dateModified).not.toExist();
     await expect(preFooterPage.version).not.toExist();
 }
 
 async function feedbackBtnCustomUrl(theme, lang){
-    preFooterPage.open(theme, lang, 'modifiedBtn');
+    await preFooterPage.open(theme, lang, 'modifiedBtn');
 
     const feedbackBtn = await preFooterPage.feedbackBtn;
     await expect(preFooterPage.feedbackBtn).toHaveHrefContaining('google');
 }
 
 async function customShareModal(theme, lang){
-    preFooterPage.open(theme, lang, 'modifiedBtn');
+    await preFooterPage.open(theme, lang, 'modifiedBtn');
 
     const shareBtn = await preFooterPage.shareBtn;
     await shareBtn.click();
@@ -224,6 +234,11 @@ async function customShareModal(theme, lang){
 }
 
 async function noPageDetails(theme, lang){
-    preFooterPage.open(theme, lang, 'pageDetails');
+    await preFooterPage.open(theme, lang, 'pageDetails');
     await expect(preFooterPage.pageDetails).not.toExist();
+}
+
+async function accessibility(theme, lang) {
+    await preFooterPage.open(theme, lang);
+    await runAccessbilityTest();
 }

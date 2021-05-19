@@ -1,5 +1,3 @@
-//TODO: theme split, ally testing, actual build pipeline.
-
 const generateStaticFile = require('./StaticFileCreator.js');
 
 /// ************************************************************
@@ -315,20 +313,20 @@ module.exports = function(grunt) {
             'gcweb-soy': {
                 files: ['./src/gcweb/*.soy', './src/common/*.js'],
                 //Note that in watch, we extract the messages and trigger translation script, but we do not run i18n-verify to cause of failure on untranslated message - we don't want to interrupt the dev server.
-                tasks: ['run_java:extractmsg-gcweb', 'exec:translate-gcweb', 'run_java:gcweb', 'closure-compiler:gcweb-en', 'concat:gcweb-en', 'closure-compiler:gcweb-fr', 'concat:gcweb-fr', 'genstatic:gcweb'],
+                tasks: ['run_java:extractmsg-gcweb', 'exec:translate-gcweb', 'run_java:gcweb', 'concat:gcweb-en', 'concat:gcweb-fr', 'genstatic:gcweb'],
             },
             'gcweb-fr-xlf': {
                 files: ['./src/gcweb/wet-messages.fr.xlf'],
-                tasks: ['run_java:gcweb', 'closure-compiler:gcweb-fr', 'concat:gcweb-fr', 'genstatic:gcweb'],
+                tasks: ['run_java:gcweb', 'concat:gcweb-fr', 'genstatic:gcweb'],
             },
             'gcintranet-soy': {
                 files: ['./src/gcintranet/*.soy', './src/common/*.js'],
                 //Note that in watch, we extract the messages and trigger translation script, but we do not run i18n-verify to cause of failure on untranslated message - we don't want to interrupt the dev server.
-                tasks: ['run_java:extractmsg-gcintranet', 'exec:translate-gcintranet', 'run_java:gcintranet', 'closure-compiler:gcintranet-en', 'concat:gcintranet-en', 'closure-compiler:gcintranet-fr', 'concat:gcintranet-fr', 'genstatic:gcintranet'],
+                tasks: ['run_java:extractmsg-gcintranet', 'exec:translate-gcintranet', 'run_java:gcintranet', 'concat:gcintranet-en', 'concat:gcintranet-fr', 'genstatic:gcintranet'],
             },
             'gcintranet-fr-xlf': {
                 files: ['./src/gcintranet/wet-messages.fr.xlf'],
-                tasks: ['run_java:gcintranet', 'closure-compiler:gcintranet-fr', 'concat:gcintranet-fr', 'genstatic:gcintranet'],
+                tasks: ['run_java:gcintranet', 'concat:gcintranet-fr', 'genstatic:gcintranet'],
             },
         },
         

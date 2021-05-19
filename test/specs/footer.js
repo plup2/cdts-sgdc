@@ -1,6 +1,7 @@
 const footerPage = require('../pageobjects/footer.page');
 const basicPage = require('../pageobjects/basic.page');
 const generateTestFile = require('../../TestFileGenerator.js');
+const runAccessbilityTest = require('../../TestA11y.js');
 require('../setup/basic.js');
 
 describe('Footer section tests for GCWeb', () => {
@@ -57,6 +58,11 @@ describe('Footer section tests for GCWeb', () => {
         await footerContactLink(theme, 'en');
         await footerContactLink(theme, 'fr');
     });
+
+    it('Accessibility', async () => {
+        await accessibility(theme, 'en');
+        await accessibility(theme, 'fr');
+    });
 });
 
 describe('Footer section tests for GCIntranet', () => {
@@ -64,7 +70,7 @@ describe('Footer section tests for GCIntranet', () => {
 
     generateTestFile('./test/html/gcintranet/template-gcintranet-en.html', 'gcintranet', 'gcintranet-footer-en', {
         refTop: '{"cdnEnv": "localhost"}',
-        top: '{"cdnEnv": "localhost"}',
+        top: '{"cdnEnv": "localhost", "siteMenu": false}',
         preFooter: '{"cdnEnv": "localhost"}',
         footer: '{"contactLinks": [{"href": "contactLinksTest", "text": "Customized Contact"}], "cdnEnv": "localhost"}',
         refFooter: '{"cdnEnv": "localhost"}'
@@ -72,7 +78,7 @@ describe('Footer section tests for GCIntranet', () => {
 
     generateTestFile('./test/html/gcintranet/template-gcintranet-fr.html', 'gcintranet', 'gcintranet-footer-fr', {
         refTop: '{"cdnEnv": "localhost"}',
-        top: '{"cdnEnv": "localhost"}',
+        top: '{"cdnEnv": "localhost", "siteMenu": false}',
         preFooter: '{"cdnEnv": "localhost"}',
         footer: '{"contactLinks": [{"href": "contactLinksTest", "text": "Customized Contact"}], "cdnEnv": "localhost"}',
         refFooter: '{"cdnEnv": "localhost"}'
@@ -87,22 +93,27 @@ describe('Footer section tests for GCIntranet', () => {
         await footerCustomizedContactLinkGC(theme, 'en');
         await footerCustomizedContactLinkGC(theme, 'fr');
     });
+
+    it('Accessibility', async () => {
+        await accessibility(theme, 'en');
+        await accessibility(theme, 'fr');
+    });
 });
 
 async function showFooterFalse(theme, lang){
-    footerPage.open(theme, lang);
+    await footerPage.open(theme, lang);
     await expect(footerPage.footer).toExist();
 }
 
 async function footerBrandLinks(theme, lang){
-    footerPage.open(theme, lang);
+    await footerPage.open(theme, lang);
     await expect(footerPage.contactLink).toHaveHrefContaining('contactLinksTest');
     await expect(footerPage.termsLink).toHaveHrefContaining('termsLinkTest');
     await expect(footerPage.privacyLink).toHaveHrefContaining('privacyLinkTest');
 }
 
 async function footerContactLink(theme, lang){
-    basicPage.open(theme, lang);
+    await basicPage.open(theme, lang);
     if (theme === 'gcweb'){
         await expect(footerPage.footerContactLink).toHaveHrefContaining('contact.html');
     }
@@ -114,12 +125,17 @@ async function footerContactLink(theme, lang){
 }
 
 async function footerCustomizedContactLink(theme, lang){
-    footerPage.open(theme, lang, 'customizedContact');
+    await footerPage.open(theme, lang, 'customizedContact');
     await expect(footerPage.footerContactLink).toHaveHrefContaining('contactLinksTest');
 }
 
 async function footerCustomizedContactLinkGC(theme, lang){
-    footerPage.open(theme, lang);
+    await footerPage.open(theme, lang);
     await expect(footerPage.footerContactLink).toHaveHrefContaining('contactLinksTest');
     await expect(footerPage.footerContactLink).toHaveTextContaining('Customized Contact');
+}
+
+async function accessibility(theme, lang) {
+    await footerPage.open(theme, lang);
+    await runAccessbilityTest();
 }

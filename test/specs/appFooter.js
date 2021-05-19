@@ -1,6 +1,7 @@
 const appFooterPage = require('../pageobjects/appFooter.page');
 const basicPage = require('../pageobjects/basic.page');
 const generateTestFile = require('../../TestFileGenerator.js');
+const runAccessbilityTest = require('../../TestA11y.js');
 require('../setup/basic.js');
 
 describe('AppFooter section tests for GCWeb', () => {
@@ -40,6 +41,11 @@ describe('AppFooter section tests for GCWeb', () => {
     it('Validate default links', async () => {
         await footerDefaultBrandLinks(theme, 'en');
         await footerDefaultBrandLinks(theme, 'fr');
+    });
+
+    it('Accessibility', async () => {
+        await accessibility(theme, 'en');
+        await accessibility(theme, 'fr');
     });
 });
 
@@ -113,35 +119,40 @@ describe('AppFooter section tests for GCIntranet', () => {
         await footerSubTheme(theme, 'en');
         await footerSubTheme(theme, 'fr');
     });
+
+    it('Accessibility', async () => {
+        await accessibility(theme, 'en');
+        await accessibility(theme, 'fr');
+    });
 });
 
 async function footerLinks(theme, lang){
-    appFooterPage.open(theme, lang);
+    await appFooterPage.open(theme, lang);
     await expect(appFooterPage.footer).toExist();
     await expect(appFooterPage.footerLink).toHaveTextContaining('Portal footer link 1');
 }
 
 async function footerLinksGlobal(theme, lang){
-    appFooterPage.open(theme, lang, 'global');
+    await appFooterPage.open(theme, lang, 'global');
     await expect(appFooterPage.footer).toExist();
     if (lang === 'en') { await expect(appFooterPage.footerLink).toHaveTextContaining('News'); }
     else { await expect(appFooterPage.footerLink).toHaveTextContaining('Nouvelles'); }
 }
 
 async function footerBrandLinks(theme, lang){
-    appFooterPage.open(theme, lang);
+    await appFooterPage.open(theme, lang);
     await expect(appFooterPage.contactLink).toHaveHrefContaining('contactLinksTest');
     await expect(appFooterPage.termsLink).toHaveHrefContaining('termsLinkTest');
     await expect(appFooterPage.privacyLink).toHaveHrefContaining('privacyLinkTest');
 }
 
 async function footerLinksNotExist(theme, lang){
-    appFooterPage.open(theme, lang, 'app');
+    await appFooterPage.open(theme, lang, 'app');
     await expect(appFooterPage.footer).not.toExist();
 }
 
 async function footerDefaultBrandLinks(theme, lang){
-    basicPage.open(theme, lang, 'app');
+    await basicPage.open(theme, lang, 'app');
     await expect(appFooterPage.contactLink).toHaveHrefContaining('contact.html');
     if (lang === 'en'){
         await expect(appFooterPage.termsLink).toHaveHrefContaining('terms.html');
@@ -153,6 +164,11 @@ async function footerDefaultBrandLinks(theme, lang){
 }
 
 async function footerSubTheme(theme, lang){
-    appFooterPage.open(theme, lang, 'subTheme');
+    await appFooterPage.open(theme, lang, 'subTheme');
     await expect(appFooterPage.footer).toHaveAttributeContaining('data-wb-ajax', 'global/esdcfooter')
+}
+
+async function accessibility(theme, lang) {
+    await appFooterPage.open(theme, lang);
+    await runAccessbilityTest();
 }

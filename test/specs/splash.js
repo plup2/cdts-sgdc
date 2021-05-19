@@ -1,5 +1,6 @@
 const splashPage = require('../pageobjects/splash.page');
 const generateTestFile = require('../../TestFileGenerator.js');
+const runAccessbilityTest = require('../../TestA11y.js');
 
 describe('Splash page tests for GCWeb', () => {
     const theme = 'gcweb';
@@ -28,6 +29,10 @@ describe('Splash page tests for GCWeb', () => {
 
     it('Validate there is no visible text', async () => {
         await noContent(theme);
+    });
+
+    it('Accessibility', async () => {
+        await accessibility(theme);
     });
 });
 
@@ -59,28 +64,37 @@ describe('Splash page tests for GCIntranet', () => {
     it('Validate there is no visible text', async () => {
         await noContent(theme);
     });
+
+    it('Accessibility', async () => {
+        await accessibility(theme);
+    });
 });
 
 async function btnLinks(theme){
-    splashPage.open(theme);
+    await splashPage.open(theme);
     await expect(splashPage.enBtnLink).toHaveHrefContaining('canada.ca/en');
     await expect(splashPage.frBtnLink).toHaveHrefContaining('canada.ca/fr');
 }
 
 async function termLinks(theme){
-    splashPage.open(theme);
+    await splashPage.open(theme);
     await expect(splashPage.enTermLink).toHaveHrefContaining('terms.html');
     await expect(splashPage.frTermLink).toHaveHrefContaining('avis.html');
 }
 
 async function bodyContent(theme){
-    splashPage.open(theme);
+    await splashPage.open(theme);
     await expect(splashPage.enContent).toHaveTextContaining('Shrink your window');
     await expect(splashPage.frContent).toHaveTextContaining('Rapetisser votre');
 }
 
 async function noContent(theme){
-    splashPage.open(theme, 'noText');
+    await splashPage.open(theme, 'noText');
     await expect(splashPage.enContent).toHaveAttributeContaining('class', 'wb-inv');
     await expect(splashPage.frContent).toHaveAttributeContaining('class', 'wb-inv');
+}
+
+async function accessibility(theme) {
+    await splashPage.open(theme);
+    await runAccessbilityTest();
 }

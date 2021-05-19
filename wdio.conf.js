@@ -72,10 +72,15 @@ exports.config = {
         browserName: targetBrowser, //'chrome',
         
         'moz:firefoxOptions': {
-        //    binary: '/c/Program Files/Mozilla Firefox/firefox.exe',
-          // flag to activate Firefox headless mode (see https://github.com/mozilla/geckodriver/blob/master/README.md#firefox-capabilities for more details about moz:firefoxOptions)
-          args: ['-headless']
+            //binary: '/c/Program Files/Mozilla Firefox/firefox.exe',
+            // flag to activate Firefox headless mode (see https://github.com/mozilla/geckodriver/blob/master/README.md#firefox-capabilities for more details about moz:firefoxOptions)
+            args: ['-headless'],
         },
+        //'goog:chromeOptions': {
+        //    // to run chrome headless the following flags are required
+        //    // (see https://developers.google.com/web/updates/2017/04/headless-chrome)
+        //    args: ['--headless', '--disable-gpu'],
+        //},
         
         acceptInsecureCerts: true
         // If outputDir is provided WebdriverIO can capture driver session logs

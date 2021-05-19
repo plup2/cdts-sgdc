@@ -1,6 +1,7 @@
 const topPage = require('../pageobjects/top.page');
 const basicPage = require('../pageobjects/basic.page');
 const generateTestFile = require('../../TestFileGenerator.js');
+const runAccessbilityTest = require('../../TestA11y.js');
 require('../setup/basic.js');
 
 describe('Top section tests for GCWeb', () => {
@@ -42,6 +43,10 @@ describe('Top section tests for GCWeb', () => {
         await langLinksDoNotExist(theme, 'fr');
     });
 
+    it('Accessibility', async () => {
+        await accessibility(theme, 'en');
+        await accessibility(theme, 'fr');
+    });
 });
 
 describe('Top section tests for GCIntranet', () => {
@@ -58,6 +63,22 @@ describe('Top section tests for GCIntranet', () => {
     generateTestFile('./test/html/gcintranet/template-gcintranet-fr.html', 'gcintranet', 'gcintranet-top-fr', {
         refTop: '{"cdnEnv": "localhost"}',
         top: '{"cdnEnv": "localhost", "lngLinks": [{"lang": "en", "href": "gcintranet-top-en.html", "text": "English"}], "breadcrumbs": [{"title": "Canada.ca", "acronym": "Canada.ca", "href": "http://www.canada.ca/fr.html"}, {"title": "SGDC", "acronym": "Centrally Deployed Templates Solution", "href": "https://www.canada.ca/en/index.html"}], "intranetTitle": [{"href": "http://esdc.prv/en/index.shtml","text": "CustomTitle", 	"boldText" : "Bold", 	"acronym": "Employment and Social Development Canada / Service Canada" }], "GCToolsModal": true, "search": false, "subTheme": "esdc"}',
+        preFooter: '{"cdnEnv": "localhost"}',
+        footer: '{"cdnEnv": "localhost"}',
+        refFooter: '{"cdnEnv": "localhost"}'
+	});
+
+    generateTestFile('./test/html/gcintranet/template-gcintranet-en.html', 'gcintranet', 'gcintranet-top-nomenu-en', {
+        refTop: '{"cdnEnv": "localhost"}',
+        top: '{"cdnEnv" : "localhost", "siteMenu": false, "lngLinks": [{"lang": "fr", "href": "gcintranet-top-fr.html", "text": "Français" }], "breadcrumbs": [{ "title": "Home", "href": "https://www.canada.ca/en/index.html"},{ "title": "CDTS","acronym": "Centrally Deployed Templates Solution", "href": "https://www.canada.ca/en/index.html"}], "intranetTitle": [{"href": "http://esdc.prv/en/index.shtml","text": "CustomTitle", 	"boldText" : "Bold", 	"acronym": "Employment and Social Development Canada / Service Canada" }], "GCToolsModal": true, "search": false, "subTheme": "esdc"}',
+        preFooter: '{"cdnEnv": "localhost"}',
+        footer: '{"cdnEnv": "localhost"}',
+        refFooter: '{"cdnEnv": "localhost"}'
+	});
+
+    generateTestFile('./test/html/gcintranet/template-gcintranet-fr.html', 'gcintranet', 'gcintranet-top-nomenu-fr', {
+        refTop: '{"cdnEnv": "localhost"}',
+        top: '{"cdnEnv": "localhost", "siteMenu": false, "lngLinks": [{"lang": "en", "href": "gcintranet-top-en.html", "text": "English"}], "breadcrumbs": [{"title": "Canada.ca", "acronym": "Canada.ca", "href": "http://www.canada.ca/fr.html"}, {"title": "SGDC", "acronym": "Centrally Deployed Templates Solution", "href": "https://www.canada.ca/en/index.html"}], "intranetTitle": [{"href": "http://esdc.prv/en/index.shtml","text": "CustomTitle", 	"boldText" : "Bold", 	"acronym": "Employment and Social Development Canada / Service Canada" }], "GCToolsModal": true, "search": false, "subTheme": "esdc"}',
         preFooter: '{"cdnEnv": "localhost"}',
         footer: '{"cdnEnv": "localhost"}',
         refFooter: '{"cdnEnv": "localhost"}'
@@ -122,25 +143,35 @@ describe('Top section tests for GCIntranet', () => {
         await subThemeStandard(theme, 'en');
         await subThemeStandard(theme, 'fr');
     });
+
+    it('No menu present when turned off', async () => {
+        await noMenuWhenTurnedOff(theme, 'nomenu-en');
+        await noMenuWhenTurnedOff(theme, 'nomenu-fr');
+    });
+
+    it('Accessibility', async () => {
+        await accessibility(theme, 'nomenu-en');
+        await accessibility(theme, 'nomenu-fr');
+    });
 });
 
 async function breadcrumbsExist(theme){
-    topPage.open(theme, 'en');
+    await topPage.open(theme, 'en');
     await expect(topPage.cdtsBreadCrumb).toHaveTextContaining('CDTS');
 }
 
 async function breadcrumbsExist_FR(theme){
-    topPage.open(theme, 'fr');
+    await topPage.open(theme, 'fr');
     await expect(topPage.cdtsBreadCrumb).toHaveTextContaining('SGDC');
 }
 
 async function breadcrumbsDoNotExist(theme, lang){
-    basicPage.open(theme, lang);
+    await basicPage.open(theme, lang);
     await expect(basicPage.cdtsBreadCrumb).toHaveChildren(1);
 }
 
 async function langLinksExist(theme){
-    topPage.open(theme, 'en');
+    await topPage.open(theme, 'en');
     if (theme === "gcweb") {
         await expect(topPage.langLinkText).toHaveTextContaining('Français');
         const langLink = await topPage.langLink;
@@ -156,7 +187,7 @@ async function langLinksExist(theme){
 }
 
 async function langLinksExist_FR(theme){
-    topPage.open(theme, 'fr');
+    await topPage.open(theme, 'fr');
     if (theme === "gcweb") {
         expect(topPage.langLinkText).toHaveTextContaining('English');
         const langLink = await topPage.langLink;
@@ -172,7 +203,7 @@ async function langLinksExist_FR(theme){
 }
 
 async function langLinksDoNotExist(theme, lang){
-    basicPage.open(theme, lang);
+    await basicPage.open(theme, lang);
     await expect(basicPage.langLink).not.toExist();
 }
 
@@ -211,34 +242,44 @@ async function gcToolsLinks_FR(theme){
 }
 
 async function searchDoesNotExist(theme, lang){
-    topPage.open(theme, lang);
+    await topPage.open(theme, lang);
     await expect(topPage.search).not.toExist();
 }
 
 async function subThemeESDC(theme, lang){
-    topPage.open(theme, lang);
+    await topPage.open(theme, lang);
     await expect(topPage.intranetMenu).toHaveChildren(6);
 }
 
 async function titleNotCustomized(theme, lang){
-    basicPage.open(theme, lang);
+    await basicPage.open(theme, lang);
     await expect(basicPage.intranetText).toHaveTextContaining('GC');
     await expect(basicPage.intranetTitle).toHaveTextContaining('GC intranet');
 }
 
 async function gcToolsLinksStandard(theme, lang){
-    basicPage.open(theme, lang);
+    await basicPage.open(theme, lang);
 
     await expect(basicPage.gcToolsModalLinks).toExist();
     await expect(basicPage.gcToolsModalLinks).toHaveChildren(4);
 }
 
 async function searchExists(theme, lang){
-    basicPage.open(theme, lang);
+    await basicPage.open(theme, lang);
     await expect(basicPage.search).toExist();
 }
 
 async function subThemeStandard(theme, lang){
-    basicPage.open(theme, lang);
+    await basicPage.open(theme, lang);
     await expect(basicPage.intranetMenu).toHaveChildren(4);
+}
+
+async function noMenuWhenTurnedOff(theme, lang){
+    await topPage.open(theme, lang);
+    await expect(topPage.intranetMenu).not.toExist();
+}
+
+async function accessibility(theme, lang) {
+    await topPage.open(theme, lang);
+    await runAccessbilityTest();
 }

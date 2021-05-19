@@ -1,6 +1,7 @@
 const appTopPage = require('../pageobjects/appTop.page');
 const basicPage = require('../pageobjects/basic.page');
 const generateTestFile = require('../../TestFileGenerator.js');
+const runAccessbilityTest = require('../../TestA11y.js');
 require('../setup/basic.js');
 
 describe('AppTop section tests for GCWeb', () => {
@@ -122,6 +123,11 @@ describe('AppTop section tests for GCWeb', () => {
     it('Search bar should NOT appear', async () => {
         await searchDoesNotExist(theme, 'en');
         await searchDoesNotExist(theme, 'fr');
+    });
+
+    it('Accessibility', async () => {
+        await accessibility(theme, 'en');
+        await accessibility(theme, 'fr');
     });
 });
 
@@ -266,51 +272,56 @@ describe('AppTop section tests for GCIntranet', () => {
         await titleCustomized(theme, 'en');
         await titleCustomized(theme, 'fr');
     });
+
+    it('Accessibility', async () => {
+        await accessibility(theme, 'en');
+        await accessibility(theme, 'fr');
+    });
 });
 
 async function settingsBtnExists(theme, lang){
-    appTopPage.open(theme, lang);
+    await appTopPage.open(theme, lang);
     if (lang === 'en') { await expect(appTopPage.settingsBtn).toHaveTextContaining('Account settings'); }
     else { await expect(appTopPage.settingsBtn).toHaveTextContaining('Paramètres du compte'); }
 }
 
 async function settingsBtnDoesNotExist(theme, lang){
-    basicPage.open(theme, lang, 'app');
+    await basicPage.open(theme, lang, 'app');
     await expect(appTopPage.settingsBtn).not.toExist();
 }
 
 async function signinBtnExists(lang){
-    appTopPage.open('gcweb', lang);
+    await appTopPage.open('gcweb', lang);
     if (lang === 'en') { await expect(appTopPage.signinBtn).toHaveTextContaining('Sign in'); }
     else { await expect(appTopPage.signinBtn).toHaveTextContaining('Ouvrir une session'); }
 }
 
 async function signOutBtnExists(lang){
-    appTopPage.open('gcweb', lang, 'signOut');
+    await appTopPage.open('gcweb', lang, 'signOut');
     if (lang === 'en') { await expect(appTopPage.signOutBtn).toHaveTextContaining('Sign out'); }
     else { await expect(appTopPage.signOutBtn).toHaveTextContaining('Fermer la session'); }
 }
 
 async function signinBtnExistsIntranet(lang){
-    appTopPage.open('gcintranet', lang);
+    await appTopPage.open('gcintranet', lang);
     if (lang === 'en') { await expect(appTopPage.signOffBtnIntranet).toHaveTextContaining('Sign in'); }
     else { await expect(appTopPage.signOffBtnIntranet).toHaveTextContaining('Connexion'); }
 }
 
 async function signOutBtnExistsIntranet(lang){
-    appTopPage.open('gcintranet', lang, 'signOut');
+    await appTopPage.open('gcintranet', lang, 'signOut');
     if (lang === 'en') { await expect(appTopPage.signOffBtnIntranet).toHaveTextContaining('Sign out'); }
     else { await expect(appTopPage.signOffBtnIntranet).toHaveTextContaining('Déconnexion'); }
 }
 
 async function signinBtnDoesNotExist(theme, lang){
-    basicPage.open(theme, lang, 'app');
+    await basicPage.open(theme, lang, 'app');
     if (theme === 'gcweb') { await expect(appTopPage.signinBtn).not.toExist(); }
     else { await expect(appTopPage.signOffBtnIntranet).not.toExist(); }
 }
 
 async function menuExists(theme, lang){
-    appTopPage.open(theme, lang);
+    await appTopPage.open(theme, lang);
     await expect(appTopPage.menuLinks).toExist();
     await expect(appTopPage.menuLink1).toExist();
     await expect(appTopPage.menuLink2).toExist();
@@ -318,7 +329,7 @@ async function menuExists(theme, lang){
 }
 
 async function menuExistsUsingPath(theme, lang){
-    appTopPage.open(theme, lang, 'externalLinkMenu');
+    await appTopPage.open(theme, lang, 'externalLinkMenu');
     await expect(appTopPage.menuLinks).toExist();
     await expect(appTopPage.menuLink1).toExist();
     await expect(appTopPage.menuLink2).toExist();
@@ -326,27 +337,27 @@ async function menuExistsUsingPath(theme, lang){
 }
 
 async function menuDoesNotExist(theme, lang){
-    basicPage.open(theme, lang, 'app');
+    await basicPage.open(theme, lang, 'app');
     await expect(appTopPage.menuLinks).not.toExist();
 }
 
 async function breadcrumbsExist(theme){
-    appTopPage.open(theme, 'en');
+    await appTopPage.open(theme, 'en');
     await expect(appTopPage.cdtsBreadCrumb).toHaveTextContaining('CDTS');
 }
 
 async function breadcrumbsExist_FR(theme){
-    appTopPage.open(theme, 'fr');
+    await appTopPage.open(theme, 'fr');
     await expect(appTopPage.cdtsBreadCrumb).toHaveTextContaining('SGDC');
 }
 
 async function breadcrumbsDoNotExist(theme, lang){
-    basicPage.open(theme, lang, 'app');
+    await basicPage.open(theme, lang, 'app');
     await expect(basicPage.cdtsBreadCrumb).not.toExist();
 }
 
 async function langLinksExist(theme){
-    appTopPage.open(theme, 'en');
+    await appTopPage.open(theme, 'en');
     if (theme === 'gcweb') {
         await expect(appTopPage.langLinkText).toHaveTextContaining('Français');
         const langLink = await appTopPage.langLink;
@@ -362,7 +373,7 @@ async function langLinksExist(theme){
 }
 
 async function langLinksExist_FR(theme){
-    appTopPage.open(theme, 'fr');
+    await appTopPage.open(theme, 'fr');
     if (theme === 'gcweb') {
         expect(appTopPage.langLinkText).toHaveTextContaining('English');
         const langLink = await appTopPage.langLink;
@@ -378,29 +389,29 @@ async function langLinksExist_FR(theme){
 }
 
 async function searchExists(theme, lang){
-    if (theme === 'gcweb') { appTopPage.open(theme, lang); }
-    else { basicPage.open(theme, lang, 'app'); }
+    if (theme === 'gcweb') { await appTopPage.open(theme, lang); }
+    else { await basicPage.open(theme, lang, 'app'); }
     await expect(appTopPage.search).toExist();
 }
 
 async function searchDoesNotExist(theme, lang){
-    if (theme === 'gcweb') { basicPage.open(theme, lang, 'app'); }
-    else { appTopPage.open(theme, lang); }
+    if (theme === 'gcweb') { await basicPage.open(theme, lang, 'app'); }
+    else { await appTopPage.open(theme, lang); }
     await expect(appTopPage.search).not.toExist();
 }
 
 async function langLinksDoNotExist(theme, lang){
-    basicPage.open(theme, lang, 'app');
+    await basicPage.open(theme, lang, 'app');
     await expect(basicPage.langLink).not.toExist();
 }
 
 async function secureIconExists(theme, lang){
-    appTopPage.open(theme, lang);
+    await appTopPage.open(theme, lang);
     await expect(appTopPage.secureIcon).toExist();
 }
 
 async function secureIconDoesNotExist(theme, lang){
-    basicPage.open(theme, lang, 'app');
+    await basicPage.open(theme, lang, 'app');
     await expect(appTopPage.secureIcon).not.toExist();
 }
 
@@ -408,4 +419,9 @@ async function titleCustomized(theme, lang){
     await appTopPage.open(theme, lang, 'customizedTitle');
     await expect(appTopPage.intranetText).toHaveTextContaining('Bold');
     await expect(appTopPage.intranetTitle).toHaveTextContaining('CustomTitle');
+}
+
+async function accessibility(theme, lang) {
+    await appTopPage.open(theme, lang);
+    await runAccessbilityTest();
 }

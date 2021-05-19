@@ -1,5 +1,6 @@
 const exitScriptPage = require('../pageobjects/exitscript.page');
 const generateTestFile = require('../../TestFileGenerator.js');
+const runAccessbilityTest = require('../../TestA11y.js');
 require('../setup/basic.js');
 
 describe('ExitScript Tests - GCWeb', () => {
@@ -159,6 +160,11 @@ describe('ExitScript Tests - GCWeb', () => {
         await testExitScriptForMenuLinks(theme, 'en');
         await testExitScriptForMenuLinks(theme, 'fr');
     });
+
+    it('Accessibility', async () => {
+        await accessibility(theme, 'en');
+        await accessibility(theme, 'fr');
+    });
 });
 
 describe('ExitScript Tests - GCIntranet', () => {
@@ -175,6 +181,22 @@ describe('ExitScript Tests - GCIntranet', () => {
     generateTestFile('./test/html/gcintranet/template-exitscript-fr.html', 'gcintranet', 'gcintranet-exitscript-fr', {
         refTop: '{"cdnEnv": "localhost"}',
         top: '{"cdnEnv": "localhost"}',
+        preFooter: '{"cdnEnv": "localhost"}',
+        footer: '{"cdnEnv": "localhost"}',
+        refFooter: '{"exitScript": true, "displayModal": true, "exitURL": "exiturl-fr.html", "exitMsg": "Ceci est un message personnalisé. Vous êtes sur le point de quitter un site sécurisé, désirez-vous continuer?", "cancelMsg": "Arrêter", "yesMsg" : "Continuer", "targetWarning": "Attention: cela va s\'ouvrir dans une autre fenêtre!", "exitDomains" : "google.com, www.esdc.gc.ca, www.jobbank.gc.ca", "cdnEnv": "localhost"}'
+    });
+    
+    generateTestFile('./test/html/gcintranet/template-exitscript-en.html', 'gcintranet', 'gcintranet-exitscript-nomenu-en', {
+        refTop: '{"cdnEnv": "localhost"}',
+        top: '{"cdnEnv": "localhost", "siteMenu": false}',
+        preFooter: '{"cdnEnv": "localhost"}',
+        footer: '{"cdnEnv": "localhost"}',
+        refFooter: '{"exitScript": true, "displayModal": true, "exitURL": "exiturl-en.html", "exitMsg": "This is a custom message. You are about to leave a secure site, do you wish to continue?", "cancelMsg": "Nope", "yesMsg" : "Sure", "targetWarning": "Warning: This will open in another window!", "exitDomains" : "google.com, www.esdc.gc.ca, www.jobbank.gc.ca", "cdnEnv": "localhost"}'
+    });
+
+    generateTestFile('./test/html/gcintranet/template-exitscript-fr.html', 'gcintranet', 'gcintranet-exitscript-nomenu-fr', {
+        refTop: '{"cdnEnv": "localhost"}',
+        top: '{"cdnEnv": "localhost", "siteMenu": false}',
         preFooter: '{"cdnEnv": "localhost"}',
         footer: '{"cdnEnv": "localhost"}',
         refFooter: '{"exitScript": true, "displayModal": true, "exitURL": "exiturl-fr.html", "exitMsg": "Ceci est un message personnalisé. Vous êtes sur le point de quitter un site sécurisé, désirez-vous continuer?", "cancelMsg": "Arrêter", "yesMsg" : "Continuer", "targetWarning": "Attention: cela va s\'ouvrir dans une autre fenêtre!", "exitDomains" : "google.com, www.esdc.gc.ca, www.jobbank.gc.ca", "cdnEnv": "localhost"}'
@@ -318,10 +340,15 @@ describe('ExitScript Tests - GCIntranet', () => {
         await testExitScriptForMenuLinksGCIntranet(theme, 'en');
         await testExitScriptForMenuLinksGCIntranet(theme, 'fr');
     });
+
+    it('Accessibility', async () => {
+        await accessibility(theme, 'en', 'nomenu');
+        await accessibility(theme, 'fr', 'nomenu');
+    });
 });
 
 async function straightPath(theme){
-    exitScriptPage.open(theme, 'en');
+    await exitScriptPage.open(theme, 'en');
     const extLink = await exitScriptPage.extLink;
     await extLink.waitUntil(async () => {
         const extLinkClass = await extLink.getAttribute('class');
@@ -337,7 +364,7 @@ async function straightPath(theme){
     await expect(browser).toHaveUrlContaining('targetUrl');
 }
 async function testCustomLabels(theme){
-    exitScriptPage.open(theme, 'en');
+    await exitScriptPage.open(theme, 'en');
     const extLink = await exitScriptPage.extLink;
     await extLink.waitUntil(async () => {
         const extLinkClass = await extLink.getAttribute('class');
@@ -357,7 +384,7 @@ async function testCustomLabels(theme){
     await expect(exitScriptPage.pageTitle).toHaveTextContaining('Leaving a secure site');
 }
 async function testTargetMsg(theme){
-    exitScriptPage.open(theme, 'en');
+    await exitScriptPage.open(theme, 'en');
     const extLink = await exitScriptPage.extLinkNewWin;
     await extLink.waitUntil(async () => {
         const extLinkClass = await extLink.getAttribute('class');
@@ -371,19 +398,19 @@ async function testTargetMsg(theme){
     await expect(exitScriptPage.modalText).toHaveTextContaining('Warning: This will open in another window!');
 }
 async function sameDomainLink(theme){
-    exitScriptPage.open(theme, 'en');
+    await exitScriptPage.open(theme, 'en');
     const extLink = await exitScriptPage.extLinkSameDomain;
     extLink.click();
     await expect(browser).toHaveUrlContaining('breadcrumbs-en');
 }
 async function exemptDomainLink(theme){
-    exitScriptPage.open(theme, 'en');
+    await exitScriptPage.open(theme, 'en');
     const extLink = await exitScriptPage.extLinkExemptDomain;
     extLink.click();
     await expect(browser).toHaveUrlContaining('google');
 }
 async function displayOff(theme){
-    exitScriptPage.open(theme, 'en', 'noDisplay');
+    await exitScriptPage.open(theme, 'en', 'noDisplay');
     const extLink = await exitScriptPage.extLink;
     await extLink.waitUntil(async () => {
         const extLinkHref = await extLink.getAttribute('href');
@@ -396,19 +423,19 @@ async function displayOff(theme){
     await expect(browser).toHaveUrlContaining('exiturl-en');
 }
 async function displayOffForNewWindow(theme){
-    exitScriptPage.open(theme, 'en', 'noDisplayNewWindow');
+    await exitScriptPage.open(theme, 'en', 'noDisplayNewWindow');
     const extLink = await exitScriptPage.extLinkNewWin;
     extLink.click();
     await expect(browser).toHaveUrlContaining('noDisplayNewWindow');
 }
 async function exitScriptNotEnabled(theme){
-    exitScriptPage.open(theme, 'en', 'disabled');
+    await exitScriptPage.open(theme, 'en', 'disabled');
     const extLink = await exitScriptPage.extLink;
     extLink.click();
     await expect(browser).toHaveUrlContaining('google');
 }
 async function testDefaultLabels(theme){
-    exitScriptPage.open(theme, 'en', 'noCustomMsg');
+    await exitScriptPage.open(theme, 'en', 'noCustomMsg');
     const extLink = await exitScriptPage.extLink;
     await extLink.waitUntil(async () => {
         const extLinkClass = await extLink.getAttribute('class');
@@ -424,7 +451,7 @@ async function testDefaultLabels(theme){
     btnPrimary.click()
 }
 async function noExitUrl(theme){
-    exitScriptPage.open(theme, 'en', 'noExitUrl');
+    await exitScriptPage.open(theme, 'en', 'noExitUrl');
     const extLink = await exitScriptPage.extLink;
     await extLink.waitUntil(async () => {
         const extLinkClass = await extLink.getAttribute('class');
@@ -438,7 +465,7 @@ async function noExitUrl(theme){
 }
 
 async function testExitScriptForMenuLinks(theme, lang){
-    exitScriptPage.open(theme, lang);
+    await exitScriptPage.open(theme, lang);
     const menuBtn = await exitScriptPage.menuBtn;
     const menuTrainingLink = await exitScriptPage.menuTrainingLink;
     await menuTrainingLink.waitUntil(async () => {
@@ -457,7 +484,7 @@ async function testExitScriptForMenuLinks(theme, lang){
 }
 
 async function testExitScriptForMenuLinksGCIntranet(theme, lang){
-    exitScriptPage.open(theme, lang);
+    await exitScriptPage.open(theme, lang);
     const menuNewsLink = await exitScriptPage.menuNewsLink;
     await menuNewsLink.waitUntil(async () => {
         const extLinkClass = await menuNewsLink.getAttribute('class');
@@ -473,7 +500,7 @@ async function testExitScriptForMenuLinksGCIntranet(theme, lang){
 
 //French
 async function straightPath_FR(theme){
-    exitScriptPage.open(theme, 'fr');
+    await exitScriptPage.open(theme, 'fr');
     const extLink = await exitScriptPage.extLink;
     await extLink.waitUntil(async () => {
         const extLinkClass = await extLink.getAttribute('class');
@@ -489,7 +516,7 @@ async function straightPath_FR(theme){
     await expect(browser).toHaveUrlContaining('targetUrl');
 }
 async function testCustomLabels_FR(theme){
-    exitScriptPage.open(theme, 'fr');
+    await exitScriptPage.open(theme, 'fr');
     const extLink = await exitScriptPage.extLink;
     await extLink.waitUntil(async () => {
         const extLinkClass = await extLink.getAttribute('class');
@@ -509,7 +536,7 @@ async function testCustomLabels_FR(theme){
     await expect(exitScriptPage.pageTitle).toHaveTextContaining('Quitter un site sécurisé');
 }
 async function testTargetMsg_FR(theme){
-    exitScriptPage.open(theme, 'fr');
+    await exitScriptPage.open(theme, 'fr');
     const extLink = await exitScriptPage.extLinkNewWin;
     await extLink.waitUntil(async () => {
         const extLinkClass = await extLink.getAttribute('class');
@@ -523,19 +550,19 @@ async function testTargetMsg_FR(theme){
     await expect(exitScriptPage.modalText).toHaveTextContaining(`Attention: cela va s'ouvrir dans une autre fenêtre`);
 }
 async function sameDomainLink_FR(theme){
-    exitScriptPage.open(theme, 'fr');
+    await exitScriptPage.open(theme, 'fr');
     const extLink = await exitScriptPage.extLinkSameDomain;
     extLink.click();
     await expect(browser).toHaveUrlContaining('breadcrumbs-fr');
 }
 async function exemptDomainLink_FR(theme){
-    exitScriptPage.open(theme, 'fr');
+    await exitScriptPage.open(theme, 'fr');
     const extLink = await exitScriptPage.extLinkExemptDomain;
     extLink.click();
     await expect(browser).toHaveUrlContaining('google');
 }
 async function displayOff_FR(theme){
-    exitScriptPage.open(theme, 'fr', 'noDisplay');
+    await exitScriptPage.open(theme, 'fr', 'noDisplay');
     const extLink = await exitScriptPage.extLink;
     await extLink.waitUntil(async () => {
         const extLinkHref = await extLink.getAttribute('href');
@@ -549,19 +576,19 @@ async function displayOff_FR(theme){
     await expect(browser).toHaveUrlContaining('exiturl-fr');
 }
 async function displayOffForNewWindow_FR(theme){
-    exitScriptPage.open(theme, 'fr', 'noDisplayNewWindow');
+    await exitScriptPage.open(theme, 'fr', 'noDisplayNewWindow');
     const extLink = await exitScriptPage.extLinkNewWin;
     extLink.click();
     await expect(browser).toHaveUrlContaining('noDisplayNewWindow');
 }
 async function exitScriptNotEnabled_FR(theme){
-    exitScriptPage.open(theme, 'fr', 'disabled');
+    await exitScriptPage.open(theme, 'fr', 'disabled');
     const extLink = await exitScriptPage.extLink;
     extLink.click();
     await expect(browser).toHaveUrlContaining('google');
 }
 async function testDefaultLabels_FR(theme){
-    exitScriptPage.open(theme, 'fr', 'noCustomMsg');
+    await exitScriptPage.open(theme, 'fr', 'noCustomMsg');
     const extLink = await exitScriptPage.extLink;
     await extLink.waitUntil(async () => {
         const extLinkClass = await extLink.getAttribute('class');
@@ -580,7 +607,7 @@ async function testDefaultLabels_FR(theme){
     cancelBtn.click();
 }
 async function noExitUrl_FR(theme){
-    exitScriptPage.open(theme, 'fr', 'noExitUrl');
+    await exitScriptPage.open(theme, 'fr', 'noExitUrl');
     const extLink = await exitScriptPage.extLink;
     await extLink.waitUntil(async () => {
         const extLinkClass = await extLink.getAttribute('class');
@@ -594,4 +621,9 @@ async function noExitUrl_FR(theme){
     const yesBtn = await exitScriptPage.yesBtn;
     yesBtn.click();
     await expect(browser).toHaveUrlContaining('google');
+}
+
+async function accessibility(theme, lang, variant) {
+    await exitScriptPage.open(theme, lang, variant);
+    await runAccessbilityTest();
 }

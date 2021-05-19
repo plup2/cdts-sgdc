@@ -1,4 +1,5 @@
 const sectionMenuPage = require('../pageobjects/sectionMenu.page');
+const runAccessbilityTest = require('../../TestA11y.js');
 
 describe('Section menu tests for GCWeb', () => {
     const theme = 'gcweb';
@@ -28,6 +29,10 @@ describe('Section menu tests for GCWeb', () => {
         await validateSections(theme, 'fr');
     });
 
+    it('Accessibility', async () => {
+        await accessibility(theme, 'en');
+        await accessibility(theme, 'fr');
+    });
 });
 
 describe('Section menu tests for GCIntranet', () => {
@@ -57,30 +62,40 @@ describe('Section menu tests for GCIntranet', () => {
         await validateSections(theme, 'en');
         await validateSections(theme, 'fr');
     });
+
+    it('Accessibility', async () => {
+        await accessibility(theme, 'en');
+        await accessibility(theme, 'fr');
+    });
 });
 
 async function sectionMenuExists(theme, lang){
-    sectionMenuPage.open(theme, lang);
+    await sectionMenuPage.open(theme, lang);
     await expect(sectionMenuPage.sectionMenu).toExist();
 }
 
 async function menuLinks(theme, lang){
-    sectionMenuPage.open(theme, lang);
+    await sectionMenuPage.open(theme, lang);
     await expect(sectionMenuPage.menuLink).toHaveTextContaining('Link 1');
 }
 
 async function subLinks(theme, lang){
-    sectionMenuPage.open(theme, lang);
+    await sectionMenuPage.open(theme, lang);
     await expect(sectionMenuPage.subLink).toHaveTextContaining('Link 1.1 a)');
 }
 
 async function linkOpensInNewWindow(theme, lang){
-    sectionMenuPage.open(theme, lang);
+    await sectionMenuPage.open(theme, lang);
     await expect(sectionMenuPage.subLinkNewWindow).toHaveAttribute('target', '_blank')
 }
 
 async function validateSections(theme, lang){
-    sectionMenuPage.open(theme, lang);
+    await sectionMenuPage.open(theme, lang);
     await expect(sectionMenuPage.secondSectionLink).toHaveTextContaining('Opens in a new window');
     await expect(sectionMenuPage.thirdSectionText).toHaveTextContaining('Section name 3');
+}
+
+async function accessibility(theme, lang) {
+    await sectionMenuPage.open(theme, lang);
+    await runAccessbilityTest();
 }
