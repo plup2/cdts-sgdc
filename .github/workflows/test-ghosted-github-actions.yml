@@ -1,4 +1,4 @@
-name: test-selfhosted-github-actions
+name: test-ghosted-github-actions
 on: [push]
 jobs:
   run-tests:
