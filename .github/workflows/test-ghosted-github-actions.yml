@@ -6,4 +6,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: npm install
-      - run: DISABLE_PROXY=1 npm run translate
+      - run: DISABLE_PROXY=1 npm run test
