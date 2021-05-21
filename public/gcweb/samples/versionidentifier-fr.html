@@ -26,7 +26,7 @@
 	<body vocab="http://schema.org/" typeof="WebPage">
 		<div id="def-top">
 			<!-- Write closure fall-back static file -->
-			<!-- transactTop-fr.html -->
+			<!-- top-fr.html -->
 		</div>
 		<!-- Write closure template -->
 		<script>
@@ -35,12 +35,9 @@
 				"cdnEnv": "esdcprod",
 				"lngLinks": [{
 					"lang": "en",
-					"href": "transactional-en.html",
+					"href": "versionidentifier-en.html",
 					"text": "English"
-				}],
-				"search": false,
-				"siteMenu": false,
-				"showPreContent": false
+				}]
 			});
 		</script>
 		<main property="mainContentOfPage" typeof="WebPageElement" class="container">
@@ -164,35 +161,19 @@
 				var defPreFooter = document.getElementById("def-preFooter");
 				defPreFooter.outerHTML = wet.builder.preFooter({
 					"cdnEnv": "esdcprod",
-					"dateModified": "2019-07-31",
-					"showPostContent": false,
-					"showFeedback": false,
-					"showShare": false
+					"versionIdentifier": "0123456789"
 				});
 			</script>
 		</main>
 		<div id="def-footer">
 			<!-- Write closure fall-back static file -->
-			<!-- transactFooter-fr.html -->
+			<!-- footer-fr.html -->
 		</div>
 		<!-- Write closure template -->
 		<script>
 			var defFooter = document.getElementById("def-footer");
 			defFooter.outerHTML = wet.builder.footer({
-				"cdnEnv": "esdcprod",
-				"showFooter": false,
-				"showFeatures": false,
-				
-				"contactLinks": [{
-					"href": "#",
-					"newWindow": true
-				}],
-				"termsLink": [{
-					"href": "#"
-				}],
-				"privacyLink": [{
-					"newWindow": true
-				}]
+				"cdnEnv": "esdcprod"
 			});
 		</script>
 		<!-- Write closure template -->

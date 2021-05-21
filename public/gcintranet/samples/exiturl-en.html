@@ -76,7 +76,7 @@
 		</script>
 		<script>
 			function retrieveTargetUrl() {
-			  var dec = decodeURIComponent(location.search.substr(11));
+			  var dec = decodeURIComponent(location.search.substr(8));
 			  var res = 'Your original destination was: <a href="' + dec + '">' + dec + '</a>';
 			  document.getElementById("originalDestination").innerHTML = res;
 			}
