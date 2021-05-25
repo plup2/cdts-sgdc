@@ -1009,7 +1009,7 @@
 				</nav>
 
 			{elseif ($subTheme == 'esdc') or ($subTheme == 'labour')}
-				<nav role="navigation" class="container visible-sm visible-md visible-lg wb-navcurr" data-wb-ajax='{lb}"url": "{if isNonnull($footerPath)}{$footerPath}{elseif $cdnEnv=='qat'}https://cdn-canada.services.gc.qat{elseif $cdnEnv=='nonprod'}https://s2tst-cdn-canada.sade-edap.prv{elseif $cdnEnv=='esdcprod'}https://templates.service.gc.ca{else}https://ssl-templates.services.gc.ca{/if}{if isNonnull($footerPath)}/app/cls/WET/global/{msg desc=""}esdcfooter-eng.html{/msg}{/if}", "type": "replace", "nocache": true {rb}'></nav>
+				<nav role="navigation" class="container visible-sm visible-md visible-lg wb-navcurr" data-wb-ajax='{lb}"url": "{if isNonnull($footerPath)}{$footerPath}{elseif $cdnEnv=='qat'}https://cdn-canada.services.gc.qat{elseif $cdnEnv=='nonprod'}https://s2tst-cdn-canada.sade-edap.prv{elseif $cdnEnv=='esdcprod'}https://templates.service.gc.ca{else}https://ssl-templates.services.gc.ca{/if}{if not isNonnull($footerPath)}/app/cls/WET/global/{msg desc=""}esdcfooter-eng.html{/msg}{/if}", "type": "replace", "nocache": true {rb}'></nav>
 			{else}
 			{/if}
 			<div class="brand">
