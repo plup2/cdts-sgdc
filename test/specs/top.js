@@ -54,7 +54,7 @@ describe('Top section tests for GCIntranet', () => {
     
     generateTestFile('./test/html/gcintranet/template-gcintranet-en.html', 'gcintranet', 'gcintranet-top-en', {
         refTop: '{"cdnEnv": "localhost"}',
-        top: '{"cdnEnv" : "localhost", "lngLinks": [{"lang": "fr", "href": "gcintranet-top-fr.html", "text": "Français" }], "breadcrumbs": [{ "title": "Home", "href": "https://www.canada.ca/en/index.html"},{ "title": "CDTS","acronym": "Centrally Deployed Templates Solution", "href": "https://www.canada.ca/en/index.html"}], "intranetTitle": [{"href": "http://esdc.prv/en/index.shtml","text": "CustomTitle", 	"boldText" : "Bold", 	"acronym": "Employment and Social Development Canada / Service Canada" }], "GCToolsModal": true, "search": false, "subTheme": "esdc"}',
+        top: '{"cdnEnv" : "localhost", "menuPath": "menu-esdc.html", "lngLinks": [{"lang": "fr", "href": "gcintranet-top-fr.html", "text": "Français" }], "breadcrumbs": [{ "title": "Home", "href": "https://www.canada.ca/en/index.html"},{ "title": "CDTS","acronym": "Centrally Deployed Templates Solution", "href": "https://www.canada.ca/en/index.html"}], "intranetTitle": [{"href": "http://esdc.prv/en/index.shtml","text": "CustomTitle", 	"boldText" : "Bold", 	"acronym": "Employment and Social Development Canada / Service Canada" }], "GCToolsModal": true, "search": false, "subTheme": "esdc"}',
         preFooter: '{"cdnEnv": "localhost"}',
         footer: '{"cdnEnv": "localhost"}',
         refFooter: '{"cdnEnv": "localhost"}'
@@ -62,7 +62,7 @@ describe('Top section tests for GCIntranet', () => {
 
     generateTestFile('./test/html/gcintranet/template-gcintranet-fr.html', 'gcintranet', 'gcintranet-top-fr', {
         refTop: '{"cdnEnv": "localhost"}',
-        top: '{"cdnEnv": "localhost", "lngLinks": [{"lang": "en", "href": "gcintranet-top-en.html", "text": "English"}], "breadcrumbs": [{"title": "Canada.ca", "acronym": "Canada.ca", "href": "http://www.canada.ca/fr.html"}, {"title": "SGDC", "acronym": "Centrally Deployed Templates Solution", "href": "https://www.canada.ca/en/index.html"}], "intranetTitle": [{"href": "http://esdc.prv/en/index.shtml","text": "CustomTitle", 	"boldText" : "Bold", 	"acronym": "Employment and Social Development Canada / Service Canada" }], "GCToolsModal": true, "search": false, "subTheme": "esdc"}',
+        top: '{"cdnEnv": "localhost", "menuPath": "menu-esdc.html", "lngLinks": [{"lang": "en", "href": "gcintranet-top-en.html", "text": "English"}], "breadcrumbs": [{"title": "Canada.ca", "acronym": "Canada.ca", "href": "http://www.canada.ca/fr.html"}, {"title": "SGDC", "acronym": "Centrally Deployed Templates Solution", "href": "https://www.canada.ca/en/index.html"}], "intranetTitle": [{"href": "http://esdc.prv/en/index.shtml","text": "CustomTitle", 	"boldText" : "Bold", 	"acronym": "Employment and Social Development Canada / Service Canada" }], "GCToolsModal": true, "search": false, "subTheme": "esdc"}',
         preFooter: '{"cdnEnv": "localhost"}',
         footer: '{"cdnEnv": "localhost"}',
         refFooter: '{"cdnEnv": "localhost"}'
@@ -120,8 +120,8 @@ describe('Top section tests for GCIntranet', () => {
     });
 
     it('Subtheme should be esdc', async () => {
-        await subThemeESDC(theme, 'en');
-        await subThemeESDC(theme, 'fr');
+        await subThemeESDCMenu(theme, 'en');
+        await subThemeESDCMenu(theme, 'fr');
     });
 
     it('Test title not customized', async () => {
@@ -246,9 +246,10 @@ async function searchDoesNotExist(theme, lang){
     await expect(topPage.search).not.toExist();
 }
 
-async function subThemeESDC(theme, lang){
+async function subThemeESDCMenu(theme, lang){
     await topPage.open(theme, lang);
-    await expect(topPage.intranetMenu).toHaveChildren(6);
+    await expect(topPage.intranetMenu).toHaveChildren(7);
+    await expect(topPage.intranetMenu).toHaveTextContaining('This is a test menu!');
 }
 
 async function titleNotCustomized(theme, lang){
