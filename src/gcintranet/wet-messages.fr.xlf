@@ -10,6 +10,10 @@
         <source>ESDC/SC IntraWeb</source>
         <target state="final">EDSC/SC IntraWeb</target>
       </trans-unit>
+      <trans-unit id="539669620403067649" datatype="html">
+        <source>activities-footer-eng.html</source>
+        <target state="final">activities-footer-fra.html</target>
+      </trans-unit>
       <trans-unit id="759687838251957893" datatype="html">
         <source>Contact Us</source>
         <target state="final">Communiquez avec nous</target>
@@ -34,6 +38,10 @@
       <trans-unit id="959849159427754029" datatype="html">
         <source>https://gccollab.ca/splash/</source>
         <target state="final">https://gccollab.ca/splash/</target>
+      </trans-unit>
+      <trans-unit id="976620775349438678" datatype="html">
+        <source>appmenu-eng.html</source>
+        <target state="final">appmenu-fra.html</target>
       </trans-unit>
       <trans-unit id="1140327701924892323" datatype="html">
         <source>Quick Links</source>
@@ -216,10 +224,6 @@
         <source>Search and menu</source>
         <target state="final">Recherche et menu</target>
       </trans-unit>
-      <trans-unit id="5250520160604033994" datatype="html">
-        <source>https://ssl-templates.services.gc.ca/app/cls/WET/gcintranet/v4_0_40/cdts/ajax/activities-footer-eng.html</source>
-        <target state="final">https://ssl-templates.services.gc.ca/app/cls/WET/gcintranet/v4_0_40/cdts/ajax/activities-footer-fra.html</target>
-      </trans-unit>
       <trans-unit id="5361295173130333929" datatype="html">
         <source>About government</source>
         <target state="final">Au sujet du gouvernement</target>
@@ -295,10 +299,6 @@
         <source>Branches and Regions</source>
         <target state="final">Directions générales et régions</target>
       </trans-unit>
-      <trans-unit id="7082754662930243497" datatype="html">
-        <source>https://ssl-templates.services.gc.ca/app/cls/WET/gcintranet/v4_0_40/cdts/ajax/sitemenu-eng.html</source>
-        <target state="final">https://ssl-templates.services.gc.ca/app/cls/WET/gcintranet/v4_0_40/cdts/ajax/sitemenu-fra.html</target>
-      </trans-unit>
       <trans-unit id="7095219917448392767" datatype="html">
         <source>http://esdc.prv/en/department/index.shtml</source>
         <target state="final">http://esdc.prv/fr/ministere/index.shtml</target>
@@ -332,10 +332,6 @@
         <source>Services Catalogue</source>
         <target state="final">Services Catalogue</target>
         <note from="description" priority="1">This menu item should be reviewed</note>
-      </trans-unit>
-      <trans-unit id="7674431486033880803" datatype="html">
-        <source>https://ssl-templates.services.gc.ca/app/cls/WET/gcintranet/v4_0_40/cdts/ajax/appmenu-eng.html</source>
-        <target state="final">https://ssl-templates.services.gc.ca/app/cls/WET/gcintranet/v4_0_40/cdts/ajax/appmenu-fra.html</target>
       </trans-unit>
       <trans-unit id="7683885037445541085" datatype="html">
         <source><x id="START_SPAN"/>GC<x id="END_SPAN"/>intranet</source>

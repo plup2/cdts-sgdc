@@ -7,11 +7,11 @@
 		<title>languagelinks-en</title>
 		<meta content="width=device-width,initial-scale=1" name="viewport">
 		<!-- Meta data -->
-		<meta name="description" content="Web Experience Toolkit (WET) includes reusable components for building and maintaining innovative Web sites that are accessible, usable, and interoperable. These reusable components are open source software and free for use by departments and external Web communities">
+		<meta name="description" content="La Boîte à outils de l’expérience Web (BOEW) rassemble différents composants réutilisables et prêts-à-utiliser pour la conception et la mise à jour de sites Web innovateurs qui sont à la fois accessibles, conviviaux et interopérables. Tous ces composants réutilisables sont des logiciels libres mis à la disposition des ministères et des collectivités Web externes.">
 		<!-- Meta data-->
 		<!-- Load closure template scripts -->
 		<script src="../compiled/soyutils.js"></script>
-		<script src="../compiled/wet-en.js"></script>
+		<script src="../compiled/wet-fr.js"></script>
 		<noscript>
 			<!-- Write closure fall-back static file -->
 			<!-- refTop.html -->
@@ -33,9 +33,9 @@
 			var defTop = document.getElementById("def-top");
 			defTop.outerHTML = wet.builder.top({
 				"lngLinks": [{
-					"lang": "fr",
-					"href": "languagelinks-fr.html",
-					"text": "Français"
+					"lang": "en",
+					"href": "languagelinks-en.html",
+					"text": "English"
 				}],
 				"breadcrumbs": [{
 					"title": "Canada.ca",
@@ -49,22 +49,24 @@
 			});
 		</script>
 		<main property="mainContentOfPage" typeof="WebPageElement" class="container">
-			<h1 property="name" id="wb-cont">Language links</h1>
-			<p>Add a language link switch between languages on your page. Although this is optional, it is usually mandatory to provide the language toggle link.</p>
-			<h2>Implementation</h2>
-			<p>Language links are added in the top section of the page. There are three configuration options:
+			<h1 property="name" id="wb-cont">Liens linguistiques</h1>
+			<p>Ajoutez un lien de langue pour basculer entre les langues sur votre page. Bien que cela soit facultatif, il est généralement obligatoire de fournir le lien de bascule de langue.</p>
+			<h2>Mise en oeuvre</h2>
+			<p>Les liens linguistiques sont ajoutés dans la section <b>top</b> de la page. Il existe trois options de configuration:</p>
             <ul>
-                <li><code class="wb-prettify">"href"</code>: the url of the page in the other language.</li>
-                <li><code class="wb-prettify">"text"</code>: the text of the link that is displayed</li>
-                <li><code class="wb-prettify">"lang"</code>: the language (code) of the web page</li>
+                <li><code class="wb-prettify">href</code>: l'url de la page dans l'autre langue</li>
+                <li><code class="wb-prettify">text</code>: le texte du lien qui s'affiche</li>
+                <li><code class="wb-prettify">lang</code>: la langue (code) de la page Web</li>
             </ul>
             <pre>
 defTop.outerHTML = wet.builder.top({
+...
     "lngLinks": [{
-        "lang": "fr",
-        "href": "languagelinks-fr.html",
-        "text": "Français"
+        "lang": "en",
+        "href": "languagelinks-en.html",
+        "text": "English"
     }]
+...
 });
             </pre>
 			<div id="def-preFooter">
@@ -75,7 +77,7 @@ defTop.outerHTML = wet.builder.top({
 			<script>
 				var defPreFooter = document.getElementById("def-preFooter");
 				defPreFooter.outerHTML = wet.builder.preFooter({
-					"dateModified": "2020-09-11",
+					"dateModified": "2021-05-19",
 					"cdnEnv": "esdcprod"
 				});
 			</script>

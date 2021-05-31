@@ -29,11 +29,19 @@
 {/template}
 
 /**
- * @param cdnEnv Used to switch between qat, nonprod, and prod CDN implementations.
+ * @param cdnEnv Used to switch URL host name depending on cdnEnv value.
+ */
+{template .environmentHost}
+/**{@param cdnEnv}*/
+{if $cdnEnv=='qat'}https://cdn-canada.services.gc.qat/{elseif $cdnEnv=='nonprod'}https://s2tst-cdn-canada.sade-edap.prv/{elseif $cdnEnv=='esdcprod'}https://templates.service.gc.ca/{elseif $cdnEnv=='localhost'}/{else}https://ssl-templates.services.gc.ca/{/if}
+{/template}
+
+/**
+ * @param cdnEnv Used to switch base URL between qat, nonprod, and prod CDN implementations.
  */
 {template .environment}
 /**{@param cdnEnv}*/
-{if $cdnEnv=='qat'}https://cdn-canada.services.gc.qat/app/cls/WET{elseif $cdnEnv=='nonprod'}https://s2tst-cdn-canada.sade-edap.prv/app/cls/WET{elseif $cdnEnv=='esdcprod'}https://templates.service.gc.ca/app/cls/WET{elseif $cdnEnv=='localhost'}../../../..{else}https://ssl-templates.services.gc.ca/app/cls/WET{/if}/gcintranet/v4_0_39/
+{call .environmentHost data="all" /}app/cls/WET/gcintranet/v4_0_40/
 {/template}
 
 /**
@@ -343,7 +351,7 @@
 		</nav>
 		{elseif $subTheme == 'eccc'}
 		//Todo: Change with eccc Menu
-		<nav role="navigation" id="wb-sm" data-wb-ajax='{lb}"url": "{if isNonnull($menuPath)}{$menuPath}{else}{if $cdnEnv=='qat'}https://cdn-canada.services.gc.qat{elseif $cdnEnv=='nonprod'}https://s2tst-cdn-canada.sade-edap.prv{elseif $cdnEnv=='esdcprod'}https://templates.service.gc.ca{else}https://ssl-templates.services.gc.ca{/if}/app/cls/WET/gcintranet/v4_0_40/cdts/ajax/{msg desc=""}sitemenu-eng.html{/msg}{/if}", "type": "replace", "nocache": true {rb}' data-trgt="mb-pnl" class="wb-menu visible-md visible-lg" typeof="SiteNavigationElement">
+		<nav role="navigation" id="wb-sm" data-wb-ajax='{lb}"url": "{if isNonnull($menuPath)}{$menuPath}{else}{call .environment data="all" /}cdts/ajax/{msg desc=""}sitemenu-eng.html{/msg}{/if}", "type": "replace", "nocache": true {rb}' data-trgt="mb-pnl" class="wb-menu visible-md visible-lg" typeof="SiteNavigationElement">
 			<div class="container nvbar">
 				<h2>{msg desc=""}Topics menu{/msg}</h2>
 				<div class="row">
@@ -360,7 +368,7 @@
 			</div>
 		</nav>
 		{else}
-		<nav role="navigation" id="wb-sm" data-ajax-replace="{msg desc=""}https://ssl-templates.services.gc.ca/app/cls/WET/gcintranet/v4_0_40/cdts/ajax/sitemenu-eng.html{/msg}" data-trgt="mb-pnl" class="wb-menu visible-md visible-lg" typeof="SiteNavigationElement">
+		<nav role="navigation" id="wb-sm" data-ajax-replace="{call .environment data="all" /}cdts/ajax/{msg desc=""}sitemenu-eng.html{/msg}" data-trgt="mb-pnl" class="wb-menu visible-md visible-lg" typeof="SiteNavigationElement">
 			<div class="container nvbar">
 				<h2>{msg desc=""}Topics menu{/msg}</h2>
 				<div class="row">
@@ -735,7 +743,7 @@
 		{elseif isNonnull($menuPath)}
 		<nav role="navigation" id="wb-smapp" data-ajax-replace="{$menuPath}" data-trgt="mb-pnl" class="wb-menu visible-md visible-lg" typeof="SiteNavigationElement"></nav>
 		{else}
-		<div id="wb-sm" data-ajax-replace="{msg desc=""}https://ssl-templates.services.gc.ca/app/cls/WET/gcintranet/v4_0_40/cdts/ajax/appmenu-eng.html{/msg}" data-trgt="mb-pnl" class="wb-menu hidden-sm hidden-xs"></div>
+		<div id="wb-sm" data-ajax-replace="{call .environment data="all" /}cdts/ajax/{msg desc=""}appmenu-eng.html{/msg}" data-trgt="mb-pnl" class="wb-menu hidden-sm hidden-xs"></div>
 		{/if}
 		{if isNonnull($breadcrumbs)}
 		<nav role="navigation" id="wb-bc" property="breadcrumb">
@@ -825,7 +833,7 @@
  */
 {template .footer}
 		{if $showFeatures == true}
-			<section class="ajaxed-in" data-ajax-replace="{msg desc=""}https://ssl-templates.services.gc.ca/app/cls/WET/gcintranet/v4_0_40/cdts/ajax/activities-footer-eng.html{/msg}"></section>
+			<section class="ajaxed-in" data-ajax-replace="{call .environment data="all" /}cdts/ajax/{msg desc=""}activities-footer-eng.html{/msg}"></section>
 		{/if}
 		<footer role="contentinfo" id="wb-info">
 			<nav role="navigation" class="container wb-navcurr">
@@ -872,7 +880,7 @@
 */
 {template .appFooter}
 		{if $showFeatures == true}
-			<section class="ajaxed-in" data-ajax-replace="{msg desc=""}https://ssl-templates.services.gc.ca/app/cls/WET/gcintranet/v4_0_40/cdts/ajax/activities-footer-eng.html{/msg}"></section>
+			<section class="ajaxed-in" data-ajax-replace="{call .environment data="all" /}cdts/ajax/{msg desc=""}activities-footer-eng.html{/msg}"></section>
 		{/if}
 		<footer role="contentinfo" id="wb-info">
 			{if isNonnull($footerSections)}
@@ -1009,7 +1017,7 @@
 				</nav>
 
 			{elseif ($subTheme == 'esdc') or ($subTheme == 'labour')}
-				<nav role="navigation" class="container visible-sm visible-md visible-lg wb-navcurr" data-wb-ajax='{lb}"url": "{if isNonnull($footerPath)}{$footerPath}{elseif $cdnEnv=='qat'}https://cdn-canada.services.gc.qat{elseif $cdnEnv=='nonprod'}https://s2tst-cdn-canada.sade-edap.prv{elseif $cdnEnv=='esdcprod'}https://templates.service.gc.ca{else}https://ssl-templates.services.gc.ca{/if}{if not isNonnull($footerPath)}/app/cls/WET/global/{msg desc=""}esdcfooter-eng.html{/msg}{/if}", "type": "replace", "nocache": true {rb}'></nav>
+				<nav role="navigation" class="container visible-sm visible-md visible-lg wb-navcurr" data-wb-ajax='{lb}"url": "{if isNonnull($footerPath)}{$footerPath}{else}{call .environmentHost data="all" /}app/cls/WET/global/{msg desc=""}esdcfooter-eng.html{/msg}{/if}", "type": "replace", "nocache": true {rb}'></nav>
 			{else}
 			{/if}
 			<div class="brand">

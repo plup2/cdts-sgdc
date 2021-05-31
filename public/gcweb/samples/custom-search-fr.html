@@ -4,14 +4,14 @@
 	<head>
 		<meta charset="utf-8">
 		<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-		<title>custom-search-en</title>
+		<title>custom-search-fr</title>
 		<meta content="width=device-width,initial-scale=1" name="viewport">
 		<!-- Meta data -->
-		<meta name="description" content="Web Experience Toolkit (WET) includes reusable components for building and maintaining innovative Web sites that are accessible, usable, and interoperable. These reusable components are open source software and free for use by departments and external Web communities">
+		<meta name="description" content="La Boîte à outils de l’expérience Web (BOEW) rassemble différents composants réutilisables et prêts-à-utiliser pour la conception et la mise à jour de sites Web innovateurs qui sont à la fois accessibles, conviviaux et interopérables. Tous ces composants réutilisables sont des logiciels libres mis à la disposition des ministères et des collectivités Web externes.">
 		<!-- Meta data-->
 		<!-- Load closure template scripts -->
 		<script src="../compiled/soyutils.js"></script>
-		<script src="../compiled/wet-en.js"></script>
+		<script src="../compiled/wet-fr.js"></script>
 		<noscript>
 			<!-- Write closure fall-back static file -->
 			<!-- refTop.html -->
@@ -34,13 +34,13 @@
 			var defTop = document.getElementById("def-top");
 			defTop.outerHTML = wet.builder.appTop({
                 "appName": [{
-                    "text": "Application name",
+                    "text": "Nom de l'application",
                     "href": "#"
                 }],
 				"lngLinks": [{
-					"lang": "fr",
-					"href": "custom-menu-en.html",
-					"text": "Français"
+					"lang": "en",
+					"href": "custom-search-en.html",
+					"text": "English"
 				}],
                 "customSearch": [{
                     "action" : "https://www.canada.ca/en/sr.html", 
@@ -56,29 +56,33 @@
 			});
 		</script>
 		<main property="mainContentOfPage" typeof="WebPageElement" class="container">
-			<h1 property="name" id="wb-cont">Custom Search</h1>
-			<p>When using the application template, you have the ability to use a custom search engine for your site.</p>
-            <h2>Implementation</h2>
-			<p>Customization of the search is done through the <code>customSearch</code> parameter in the <b>appTop</b> section of your page.</p>
-            <p>There are a few configuration options:</p>
+			<h1 property="name" id="wb-cont">Recherche personnalisée</h1>
+			<p>Lorsque vous utilisez le modèle d'application, vous avez la possibilité d'utiliser un moteur de recherche personnalisé pour votre site.</p>
+            <h2>Mise en oeuvre</h2>
+			<p>La personnalisation de la recherche se fait via le paramètre <code>customSearch</code> dans la section <b>appTop</b> de votre page.</p>
+            <p>Il existe quelques options de configuration:</p>
             <ul>
-                <li><code class="wb-prettify">"action"</code>: the URL of the search you would like to point to</li>
-                <li><code class="wb-prettify">"method"</code>: "get" or "post"</li>
-                <li><code class="wb-prettify">"placeholder"</code>: Optional - placeholder text that is displayed inside the search bar</li>
-                <li><code class="wb-prettify">"id"</code>: Optional - you can provide an optional id for your search</li>
-                <li><code class="wb-prettify">"hiddenInput:</code>: Optional - you can provide data inputs through the "name" and "value" parameters</li>
+                <li><code class="wb-prettify">action</code>: l'URL de la recherche vers laquelle vous souhaitez pointer</li>
+                <li><code class="wb-prettify">method</code>: « get » ou « post »</li>
+                <li><code class="wb-prettify">placeholder</code>: Facultatif - texte d'espace réservé affiché dans la barre de recherche</li>
+                <li><code class="wb-prettify">id</code>: Facultatif - vous pouvez fournir un identifiant facultatif pour votre recherche</li>
+                <li><code class="wb-prettify">hiddenInput</code>: Facultatif - vous pouvez fournir des entrées de données via les paramètres « name » et « value »</li>
             </ul>    
             <pre>
-"customSearch": [{
-    "action" : "https://www.canada.ca/en/sr.html", 
-    "placeholder" : "Canada.ca",
-    "id" : "wb-srch-q",
-    "method" : "get",
-    "hiddenInput" : [{
-        "name" : "cdn",
-        "value" : "canada"
-    }] 
-}]
+defTop.outerHTML = wet.builder.appTop({
+...
+    "customSearch": [{
+        "action" : "https://www.canada.ca/en/sr.html", 
+        "placeholder" : "Canada.ca",
+        "id" : "wb-srch-q",
+        "method" : "get",
+        "hiddenInput" : [{
+            "name" : "cdn",
+            "value" : "canada"
+        }] 
+    }]
+...
+});
             </pre>
 			<div id="def-preFooter">
 				<!-- Write closure fall-back static file -->
@@ -88,7 +92,7 @@
 			<script>
 				var defPreFooter = document.getElementById("def-preFooter");
 				defPreFooter.outerHTML = wet.builder.preFooter({
-					"dateModified": "2020-09-11",
+					"dateModified": "2021-05-18",
 					"cdnEnv": "esdcprod"
 				});
 			</script>

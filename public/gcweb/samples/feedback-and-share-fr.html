@@ -4,14 +4,14 @@
 	<head>
 		<meta charset="utf-8">
 		<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-		<title>feedback-and-share-en</title>
+		<title>feedback-and-share-fr</title>
 		<meta content="width=device-width,initial-scale=1" name="viewport">
 		<!-- Meta data -->
-		<meta name="description" content="Web Experience Toolkit (WET) includes reusable components for building and maintaining innovative Web sites that are accessible, usable, and interoperable. These reusable components are open source software and free for use by departments and external Web communities">
+		<meta name="description" content="La Boîte à outils de l’expérience Web (BOEW) rassemble différents composants réutilisables et prêts-à-utiliser pour la conception et la mise à jour de sites Web innovateurs qui sont à la fois accessibles, conviviaux et interopérables. Tous ces composants réutilisables sont des logiciels libres mis à la disposition des ministères et des collectivités Web externes.">
 		<!-- Meta data-->
 		<!-- Load closure template scripts -->
 		<script src="../compiled/soyutils.js"></script>
-		<script src="../compiled/wet-en.js"></script>
+		<script src="../compiled/wet-fr.js"></script>
 		<noscript>
 			<!-- Write closure fall-back static file -->
 			<!-- refTop.html -->
@@ -34,38 +34,55 @@
 			defTop.outerHTML = wet.builder.top({
 				"cdnEnv": "esdcprod",
 				"lngLinks": [{
-					"lang": "fr",
-					"href": "feedback-and-share-fr.html",
-					"text": "Français"
+					"lang": "en",
+					"href": "feedback-and-share-en.html",
+					"text": "English"
 				}]
 			});
 		</script>
 		<main property="mainContentOfPage" typeof="WebPageElement" class="container">
-			<h1 property="name" id="wb-cont">Feedback and Share</h1>
-			<p>This page will demonstrate how to enable/disable the Feedback Link, as well as how to use the feature to share the current page with some pre-defined Social Media applications.</p>
-			<h2>Feedback</h2>
-            <p>Specify the "Report a problem or mistake on this page" button of your page. By default this button is shown with the default Canada.ca URL. You can customize the URL or simply hide the button.</p>
-            <h3>Implementation</h3>
-            <p>This link can be customized in the preFooter section of your page.</p>
-            <p>Hide the button</p>
+			<h1 property="name" id="wb-cont">Commentaires et partage</h1>
+			<p>Cette page montrera comment activer / désactiver le lien de rétroaction, ainsi que comment utiliser la fonction pour partager la page actuelle avec certaines applications de médias sociaux prédéfinies.</p>
+			<h2>Rétroaction</h2>
+            <p>Spécifiez le bouton « Signaler un problème ou une erreur sur cette page » de votre page. Par défaut, ce bouton est affiché avec l'URL par défaut de Canada.ca. Vous pouvez personnaliser l'URL ou simplement masquer le bouton.</p>
+            <h3>Mise en oeuvre</h3>
+            <p>Ce lien peut être personnalisé dans la section <b>preFooter</b> de votre page.</p>
+            <p>Cacher le bouton</p>
             <pre>
-"showFeedback": false
+defPreFooter.outerHTML = wet.builder.preFooter({
+...
+    "showFeedback": false
+...
+});
             </pre>
-            <p>Customize the URL</p>
+            <p>Personnalisez l'URL</p>
             <pre>
-"showFeedback": "Custom URL here"
+defPreFooter.outerHTML = wet.builder.preFooter({
+...
+    "showFeedback": "Custom URL here"
+...
+});
+            
             </pre>
-            <h2>Share</h2>
-            <p>The "Share This Page" button is a way for the users to share the URL of the site via Social Media. By default this button is shown with the default selection of social media sites. You can customize this selection or simply hide the button.</p>
-            <h3>Implementation</h3>
-            <p>This button can be customized in the <b>preFooter</b> section of your page.</p>
-            <p>Hide the button</p>
+            <h2>Partager</h2>
+            <p>Le bouton « Partager cette page » est un moyen pour les utilisateurs de partager l'URL du site via les médias sociaux. Par défaut, ce bouton s'affiche avec la sélection par défaut des sites de réseaux sociaux. Vous pouvez personnaliser cette sélection ou simplement masquer le bouton.</p>
+            <h3>Mise en oeuvre</h3>
+            <p>Ce bouton peut être personnalisé dans la section <b>preFooter</b> de votre page.</p>
+            <p>Cacher le bouton</p>
             <pre>
-"showShare": false
+defPreFooter.outerHTML = wet.builder.preFooter({
+...
+    "showShare": false
+...
+});
             </pre>
-            <p>Choose which social media sites you would like to show as options to the user.</p>
+            <p>Choisissez les sites de médias sociaux que vous souhaitez afficher comme options pour l'utilisateur.</p>
             <pre>
-"showShare": ["email", "facebook", "linkedin", "twitter"]
+defPreFooter.outerHTML = wet.builder.preFooter({
+...
+    "showShare": ["email", "facebook", "linkedin", "twitter"]
+...
+});            
             </pre>
             <div id="def-preFooter">
 				<!-- Write closure fall-back static file -->
