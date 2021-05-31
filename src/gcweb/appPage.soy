@@ -62,7 +62,7 @@
 						<form action="{$item.action}" method="{$item.method}" name="cse-search-box" role="search">
 							<div class="form-group wb-srch-qry">
 								<label for="{if isNonnull($item.id)}{$item.id}{else}wb-srch-q{/if}" class="wb-inv">{msg desc=""}Search{/msg}{if isNonnull($item.placeholder)} {$item.placeholder}{/if}</label>
-								<input id="{if isNonnull($item.id)}{$item.id}{else}wb-srch-q{/if}" class="wb-srch-q form-control" name="q" type="search" value="" size="34" maxlength="170" placeholder="{msg desc=""}Search{/msg}{if isNonnull($item.placeholder)} {$item.placeholder}{/if}">
+								<input id="{if isNonnull($item.id)}{$item.id}{else}wb-srch-q{/if}" class="wb-srch-q form-control" name="{if isNonnull($item.name)}{$item.name}{else}q{/if}" type="search" value="" size="34" maxlength="170" placeholder="{msg desc=""}Search{/msg}{if isNonnull($item.placeholder)} {$item.placeholder}{/if}">
 								{if isNonnull($item.hiddenInput)}
 								{foreach $input in $item.hiddenInput}
 									<input type="hidden" name="{$input.name}" value="{$input.value}">

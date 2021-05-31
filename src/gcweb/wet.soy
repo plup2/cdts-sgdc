@@ -103,6 +103,7 @@
  * @param? search Used to display search.
  * @param? siteMenu Used to display site menu.
  * @param? lngLinks Links to pages in other languages.
+ * @param? customSearch Used for implementing a custom search
  * @param? showPreContent Used to determine if the precontent space will be displayed.
  * @param? breadcrumbs Used to set custom breadcrumbs.
  * @param? topSecMenu Set to true if you want to use the secondary navigation.
@@ -145,27 +146,51 @@
 						<link id="StdIssueWasHere1" property="logo" href="{call .environment data="all" /}assets/wmms-blk.svg">
 					</div>
 					{if $search != false}
-					<section id="wb-srch" class="col-lg-offset-4 col-md-offset-4 col-sm-offset-2 col-xs-12 col-sm-5 col-md-4">
-						<h2>Search</h2>
-						<form action="{msg desc=""}https://www.canada.ca/en/sr.html{/msg}" method="get" name="cse-search-box" role="search">
-							<div class="form-group wb-srch-qry">
-								<label for="wb-srch-q" class="wb-inv">{msg desc=""}Search Canada.ca{/msg}</label>
-								<input name="cdn" value="canada" type="hidden">
-								<input name="st" value="s" type="hidden">
-								<input name="num" value="10" type="hidden">
-								<input name="langs" value="{msg desc=""}en{/msg}" type="hidden">
-								<input name="st1rt" value="1" type="hidden">
-								<input name="s5bm3ts21rch" value="x" type="hidden">
-								<input id="wb-srch-q" list="wb-srch-q-ac" class="wb-srch-q form-control" name="q" type="search" value="" size="34" maxlength="170" placeholder="{msg desc=""}Search Canada.ca{/msg}">
-								<input type="hidden" name="_charset_" value="UTF-8">
-								<datalist id="wb-srch-q-ac">
-								</datalist>
-							</div>
-							<div class="form-group submit">
-								<button type="submit" id="wb-srch-sub" class="btn btn-primary btn-small" name="wb-srch-sub"><span class="glyphicon-search glyphicon"></span><span class="wb-inv">{msg desc=""}Search{/msg}</span></button>
-							</div>
-						</form>
-					</section>
+						{if isNonnull($customSearch)}
+							{foreach $item in $customSearch}
+								{if isFirst($item)}
+									<section id="wb-srch" class="col-lg-offset-4 col-md-offset-4 col-sm-offset-2 col-xs-12 col-sm-5 col-md-4 visible-md visible-lg">
+										<h2>{msg desc=""}Search{/msg}{if isNonnull($item.placeholder)} {$item.placeholder}{/if}</h2>
+										<form action="{$item.action}" method="{$item.method}" name="cse-search-box" role="search">
+											<div class="form-group wb-srch-qry">
+												<label for="{if isNonnull($item.id)}{$item.id}{else}wb-srch-q{/if}" class="wb-inv">{msg desc=""}Search{/msg}{if isNonnull($item.placeholder)} {$item.placeholder}{/if}</label>
+												<input id="{if isNonnull($item.id)}{$item.id}{else}wb-srch-q{/if}" class="wb-srch-q form-control" name="{if isNonnull($item.name)}{$item.name}{else}q{/if}" type="search" value="" size="34" maxlength="170" placeholder="{msg desc=""}Search{/msg}{if isNonnull($item.placeholder)} {$item.placeholder}{/if}">
+												{if isNonnull($item.hiddenInput)}
+												{foreach $input in $item.hiddenInput}
+													<input type="hidden" name="{$input.name}" value="{$input.value}">
+												{/foreach}
+												{/if}
+											</div>
+											<div class="form-group submit">
+												<button type="submit" id="wb-srch-sub" class="btn btn-primary btn-small" name="wb-srch-sub"><span class="glyphicon-search glyphicon"></span><span class="wb-inv">{msg desc=""}Search{/msg}{if isNonnull($item.placeholder)} {$item.placeholder}{/if}</span></button>
+											</div>
+										</form>
+								    </section>
+								{/if}
+							{/foreach}
+						{else}
+							<section id="wb-srch" class="col-lg-offset-4 col-md-offset-4 col-sm-offset-2 col-xs-12 col-sm-5 col-md-4">
+								<h2>{msg desc=""}Search{/msg}</h2>
+								<form action="{msg desc=""}https://www.canada.ca/en/sr.html{/msg}" method="get" name="cse-search-box" role="search">
+									<div class="form-group wb-srch-qry">
+										<label for="wb-srch-q" class="wb-inv">{msg desc=""}Search Canada.ca{/msg}</label>
+										<input name="cdn" value="canada" type="hidden">
+										<input name="st" value="s" type="hidden">
+										<input name="num" value="10" type="hidden">
+										<input name="langs" value="{msg desc=""}en{/msg}" type="hidden">
+										<input name="st1rt" value="1" type="hidden">
+										<input name="s5bm3ts21rch" value="x" type="hidden">
+										<input id="wb-srch-q" list="wb-srch-q-ac" class="wb-srch-q form-control" name="q" type="search" value="" size="34" maxlength="170" placeholder="{msg desc=""}Search Canada.ca{/msg}">
+										<input type="hidden" name="_charset_" value="UTF-8">
+										<datalist id="wb-srch-q-ac">
+										</datalist>
+									</div>
+									<div class="form-group submit">
+										<button type="submit" id="wb-srch-sub" class="btn btn-primary btn-small" name="wb-srch-sub"><span class="glyphicon-search glyphicon"></span><span class="wb-inv">{msg desc=""}Search{/msg}</span></button>
+									</div>
+								</form>
+							</section>
+						{/if}
 					{/if}
 				</div>
 			</div>

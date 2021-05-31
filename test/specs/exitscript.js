@@ -485,7 +485,8 @@ async function testExitScriptForMenuLinks(theme, lang){
 
 async function testExitScriptForMenuLinksGCIntranet(theme, lang){
     await exitScriptPage.open(theme, lang);
-    const menuNewsLink = await exitScriptPage.menuNewsLink;
+    const menuNewsLink = (lang === 'en') ? await exitScriptPage.menuNewsLink : await exitScriptPage.menuNewsLinkFR;
+    const menuBtn = await exitScriptPage.menuBtnGCIntranet;
     await menuNewsLink.waitUntil(async () => {
         const extLinkClass = await menuNewsLink.getAttribute('class');
         return extLinkClass === 'wb-exitscript';
@@ -494,7 +495,8 @@ async function testExitScriptForMenuLinksGCIntranet(theme, lang){
         timeoutMsg: 'Expected class to be wb-exitscript after 5s'
     });
 
-    menuNewsLink.click();
+    await menuBtn.click();
+    await menuNewsLink.click();
     await expect(exitScriptPage.exitScriptModal).toExist();    
 }
 

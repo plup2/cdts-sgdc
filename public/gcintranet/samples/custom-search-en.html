@@ -46,6 +46,7 @@
                     "action" : "https://www.canada.ca/en/sr.html", 
                     "placeholder" : "Canada.ca",
                     "id" : "wb-srch-q",
+                    "name" : "q",
                     "method" : "get",
                     "hiddenInput" : [{
                         "name" : "cdn",
@@ -66,6 +67,7 @@
                 <li><code class="wb-prettify">"method"</code>: "get" or "post"</li>
                 <li><code class="wb-prettify">"placeholder"</code>: Optional - placeholder text that is displayed inside the search bar</li>
                 <li><code class="wb-prettify">"id"</code>: Optional - you can provide an optional id for your search</li>
+                <li><code class="wb-prettify">"name"</code>: Optional - you can customize the "name" attribute for your search</li>
                 <li><code class="wb-prettify">"hiddenInput:</code>: Optional - you can provide data inputs through the "name" and "value" parameters</li>
             </ul>    
             <pre>
@@ -75,6 +77,7 @@ defTop.outerHTML = wet.builder.appTop({
         "action" : "https://www.canada.ca/en/sr.html", 
         "placeholder" : "Canada.ca",
         "id" : "wb-srch-q",
+        "name" : "q",
         "method" : "get",
         "hiddenInput" : [{
             "name" : "cdn",

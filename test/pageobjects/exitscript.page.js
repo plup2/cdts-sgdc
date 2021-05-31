@@ -16,8 +16,10 @@ class ExitScriptPage extends Page {
     get extLinkSameDomain() { return $('ul.lst-spcd li:nth-child(3) a'); }
     get extLinkExemptDomain() { return $('ul.lst-spcd li:nth-child(4) a'); }
     get menuBtn() { return $('button span.glyphicon-chevron-down'); }
+    get menuBtnGCIntranet() { return $('ul.menu li:nth-child(1) a'); }
     get menuTrainingLink() { return $('#gc-mnu-jobs li:nth-child(4) a'); }
-    get menuNewsLink() { return $('div.nvbar ul li:nth-child(1) a'); }
+    get menuNewsLink() { return $('div.nvbar ul#mnuNews li:nth-child(1) a'); }
+    get menuNewsLinkFR() { return $('div.nvbar ul#mnuNouvelles li:nth-child(1) a'); }
     get exitScriptModal() { return $('#wb-exitscript-modal'); }
 
     /**

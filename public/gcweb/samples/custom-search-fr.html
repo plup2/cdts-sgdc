@@ -46,6 +46,7 @@
                     "action" : "https://www.canada.ca/en/sr.html", 
                     "placeholder" : "Canada.ca",
                     "id" : "wb-srch-q",
+                    "name" : "q",
                     "method" : "get",
                     "hiddenInput" : [{
                         "name" : "cdn",
@@ -66,6 +67,7 @@
                 <li><code class="wb-prettify">method</code>: « get » ou « post »</li>
                 <li><code class="wb-prettify">placeholder</code>: Facultatif - texte d'espace réservé affiché dans la barre de recherche</li>
                 <li><code class="wb-prettify">id</code>: Facultatif - vous pouvez fournir un identifiant facultatif pour votre recherche</li>
+                <li><code class="wb-prettify">name</code>: Facultatif - vous pouvez personnaliser l'attribut « name » pour votre recherche</li>
                 <li><code class="wb-prettify">hiddenInput</code>: Facultatif - vous pouvez fournir des entrées de données via les paramètres « name » et « value »</li>
             </ul>    
             <pre>
@@ -75,6 +77,7 @@ defTop.outerHTML = wet.builder.appTop({
         "action" : "https://www.canada.ca/en/sr.html", 
         "placeholder" : "Canada.ca",
         "id" : "wb-srch-q",
+        "name" : "q",
         "method" : "get",
         "hiddenInput" : [{
             "name" : "cdn",
