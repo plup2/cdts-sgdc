@@ -338,7 +338,7 @@ async function menuExistsUsingPath(theme, lang){
 
 async function menuDoesNotExist(theme, lang){
     await basicPage.open(theme, lang, 'app');
-    await expect(appTopPage.menuLinks).not.toExist();
+    await expect(appTopPage.menuLinks1).not.toExist();
 }
 
 async function breadcrumbsExist(theme){
@@ -367,8 +367,7 @@ async function langLinksExist(theme){
         await expect(appTopPage.langLinkTextIntranet).toHaveTextContaining('Français');
         const langLink = await appTopPage.langLinkTextIntranet;
         await langLink.click();
-    }    
-    await browser.pause(3000);
+    }
     await expect(browser).toHaveUrlContaining('-fr');
 }
 
@@ -384,7 +383,6 @@ async function langLinksExist_FR(theme){
         const langLink = await appTopPage.langLinkTextIntranet;
         await langLink.click();
     }
-    await browser.pause(3000);
     await expect(browser).toHaveUrlContaining('-en');
 }
 

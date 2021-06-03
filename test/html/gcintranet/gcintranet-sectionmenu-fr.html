@@ -22,6 +22,13 @@
 				"cdnEnv": "localhost"	  
 			}));				
 		</script>
+		<script>
+			window.addEventListener('load', (event) => {
+				$( document ).on( "wb-ready.wb", function( event ) {
+					$("#wb-cont").after('<a name="wetInitializedMarker" id="wetInitializedMarker"></a>');
+				});
+			});
+		</script>
 	</head>
 	<body vocab="http://schema.org/" typeof="WebPage">
 		<div id="def-top">

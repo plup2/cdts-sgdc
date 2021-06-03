@@ -22,7 +22,7 @@ class SectionMenuPage extends Page {
 
     //Return the various test pages
     open(theme, lang) {
-        return super.open(theme, `${theme}-sectionmenu-${lang}.html`);
+        return super.open(theme, `${theme}-sectionMenu-${lang}.html`);
     }
 }
 

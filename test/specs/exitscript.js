@@ -1,4 +1,4 @@
-const exitScriptPage = require('../pageobjects/exitscript.page');
+const exitScriptPage = require('../pageobjects/exitScript.page');
 const generateTestFile = require('../../TestFileGenerator.js');
 const runAccessbilityTest = require('../../TestA11y.js');
 require('../setup/basic.js');
@@ -440,7 +440,10 @@ async function testDefaultLabels(theme){
     await extLink.waitUntil(async () => {
         const extLinkClass = await extLink.getAttribute('class');
         return extLinkClass === 'wb-exitscript';
-    }, 5000, 'Expected class to be wb-exitscript after 5s');
+    }, {
+        timeout: 5000, 
+        timeoutMsg: 'Expected class to be wb-exitscript after 5s'
+    });
 
     extLink.click();
     await expect(exitScriptPage.modalText).toHaveTextContaining('You are about to leave a secure site');
@@ -456,7 +459,10 @@ async function noExitUrl(theme){
     await extLink.waitUntil(async () => {
         const extLinkClass = await extLink.getAttribute('class');
         return extLinkClass === 'wb-exitscript';
-    }, 5000, 'Expected class to be wb-exitscript after 5s');
+    }, {
+        timeout: 5000, 
+        timeoutMsg: 'Expected class to be wb-exitscript after 5s'
+    });
 
     extLink.click();
     const yesBtn = await exitScriptPage.yesBtn;
@@ -475,11 +481,9 @@ async function testExitScriptForMenuLinks(theme, lang){
         timeout: 5000, 
         timeoutMsg: 'Expected class to be wb-exitscript after 5s'
     });
-    await browser.pause(1000);
 
-    menuBtn.click();
-    await browser.pause(1000);
-    menuTrainingLink.click();
+    await menuBtn.click();
+    await menuTrainingLink.click();
     await expect(exitScriptPage.exitScriptModal).toExist();    
 }
 

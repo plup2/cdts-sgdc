@@ -182,7 +182,6 @@ async function langLinksExist(theme){
         const langLink = await topPage.langLinkIntranet;
         await langLink.click();
     }    
-    await browser.pause(3000);
     await expect(browser).toHaveUrlContaining('-fr');
 }
 
@@ -198,7 +197,6 @@ async function langLinksExist_FR(theme){
         const langLink = await topPage.langLinkIntranet;
         await langLink.click();
     }
-    await browser.pause(3000);
     await expect(browser).toHaveUrlContaining('-en');
 }
 
@@ -215,7 +213,6 @@ async function titleCustomized(theme, lang){
 
 async function gcToolsLinks(theme){
     await topPage.open(theme, 'en');
-    await browser.pause(500);
 
     const gcToolsLink = await topPage.gcToolsLink;
     await gcToolsLink.click();
@@ -229,7 +226,6 @@ async function gcToolsLinks(theme){
 
 async function gcToolsLinks_FR(theme){
     await topPage.open(theme, 'fr');
-    await browser.pause(500);
 
     const gcToolsLink = await topPage.gcToolsLink;
     await gcToolsLink.click();
@@ -272,7 +268,7 @@ async function searchExists(theme, lang){
 
 async function subThemeStandard(theme, lang){
     await basicPage.open(theme, lang);
-    await expect(basicPage.intranetMenu).toHaveChildren(4);
+    await expect(basicPage.intranetMenu).toHaveChildren(5);
 }
 
 async function noMenuWhenTurnedOff(theme, lang){

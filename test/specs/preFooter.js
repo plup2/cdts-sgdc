@@ -176,7 +176,6 @@ async function shareBtnExists(theme, lang){
     await basicPage.open(theme, lang);
     const shareBtn = await preFooterPage.shareBtn;
     await shareBtn.click();
-    await browser.pause(1000);
     await expect(preFooterPage.shareModal).toExist();
 }
 
@@ -224,7 +223,6 @@ async function customShareModal(theme, lang){
 
     const shareBtn = await preFooterPage.shareBtn;
     await shareBtn.click();
-    await browser.pause(1000);
 
     await expect(preFooterPage.emailBtn).toHaveTextContaining('Email');
     await expect(preFooterPage.facebookBtn).toHaveTextContaining('Facebook');
