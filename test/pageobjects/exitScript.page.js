@@ -30,7 +30,7 @@ class ExitScriptPage extends Page {
 
     //Return the various test pages
     open(theme, lang, classifier = '') {
-        return super.open(theme, `${theme}-exitScript${classifier ? '-' : ''}${classifier}-${lang}.html`);
+        return super.open(theme, `${theme}-exitscript${classifier ? '-' : ''}${classifier}-${lang}.html`);
     }
 }
 
