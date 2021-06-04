@@ -147,7 +147,7 @@ async function footerBrandLinks(theme, lang){
 }
 
 async function footerLinksNotExist(theme, lang){
-    await appFooterPage.open(theme, lang, 'app');
+    await basicPage.open(theme, lang, 'app');
     await expect(appFooterPage.footer).not.toExist();
 }
 

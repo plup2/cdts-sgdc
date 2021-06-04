@@ -20,13 +20,6 @@
 		<script>
 			document.write(wet.builder.refTop("~refTop~"));
 		</script>
-		<script>
-			window.addEventListener('load', (event) => {
-				$( document ).on( "wb-ready.wb", function( event ) {
-					$("#wb-cont").after('<a name="wetInitializedMarker" id="wetInitializedMarker"></a>');
-				});
-			});
-		</script>
 	</head>
 	<body vocab="http://schema.org/" typeof="WebPage">
 		<div id="def-top">
@@ -82,6 +75,11 @@
 		<!-- Write closure template -->
 		<script>
 			document.write(wet.builder.refFooter("~refFooter~"));
+		</script>
+		<script>
+            $( document ).on( "wb-ready.wb", function( event ) {
+                $("#wb-cont").after('<a name="wetInitializedMarker" id="wetInitializedMarker"></a>');
+            });
 		</script>
 	</body>
 </html>

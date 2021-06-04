@@ -23,7 +23,9 @@ module.exports = class Page {
                     }
                     catch (e) {
                         //If we fail, just issue a warning and proceed
-                        console.warn(`WARNING!!!!! : Did not find the marker indicating that WET has finished initialzing, test could fail. (${e})`);                        
+                        console.warn(`WARNING!!!!! : Did not find the marker indicating that WET has finished initialzing, test could fail. (${e})`);
+                        //fs.writeFileSync(`./wetwarn-${theme}-${path}`, await (await $('//html')).getHTML());
+                        //browser.saveScreenshot(`./wetwarn-${theme}-${path}.png`);
                     }
                     
                     resolve(value);
