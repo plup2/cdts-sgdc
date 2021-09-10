@@ -3,7 +3,6 @@ name: DEPLOY
 on:
   release:
     types: [published]
-  push:
 
 jobs:
   build:
@@ -42,7 +41,7 @@ jobs:
     environment: testenv
 
     env:
-      TMP_PROMPT: Hello There
+      AZURE_STORAGE_CONNECTION_STRING: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
 
     steps:
     - name: Use build cache cache-release-${{ github.event.release.tag_name }}
