@@ -50,15 +50,13 @@ jobs:
         path: ./dist
         key: cache-release-${{ github.event.release.tag_name }}
 
-    - run: echo 1 ${TMP_PROMPT} 2 ${AZURE_STORAGE_CONNECTION_STRING}
-
     # az connection string in environment variable AZURE_STORAGE_CONNECTION_STRING
     - name: Upload to blob storage
       uses: azure/CLI@v1
       with:
         azcliversion: 2.0.81
         inlineScript: |
-            az storage blob upload-batch --destination testweb --source ./dist/app/cls/WET/gcweb/v4_0_44/cdts/compiled
+            az storage blob upload-batch --destination testweb --source ./dist/app/cls/WET/gcweb/v4_0_44/cdts
 
 # https://github.community/t/how-to-get-just-the-tag-name/16241/10
 # https://docs.github.com/en/actions/reference/events-that-trigger-workflows
