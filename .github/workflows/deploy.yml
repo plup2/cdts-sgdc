@@ -1,0 +1,69 @@
+name: DEPLOY
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version:
+        -  14.x
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: npm
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build
+      run: npm build-prod
+      env:
+        DISABLE_PROXY: true
+
+    - name: Save build files to cache cache-release-${{ github.event.release.tag_name }}
+      id: cache-release-dist
+      uses: actions/cache@v2
+      with:
+        path: ./dist
+        key: cache-release-${{ github.event.release.tag_name }}
+
+  deploy-intranet:
+    runs-on: ubuntu-latest
+    needs: build
+    environment: testenv
+
+    steps:
+    - name: Use build cache cache-release-${{ github.event.release.tag_name }}
+      uses: actions/cache@v2
+      with:
+        path: ./dist
+        key: cache-release-${{ github.event.release.tag_name }}
+
+    # az connection string in environment variable AZURE_STORAGE_CONNECTION_STRING
+    - name: Upload to blob storage
+      uses: azure/CLI@v1
+      with:
+        azcliversion: 2.0.81
+        inlineScript: |
+            az storage blob upload-batch --destination testweb --source ./dist/app/cls/WET/gcweb/v4_0_44/cdts/compiled
+
+# https://github.community/t/how-to-get-just-the-tag-name/16241/10
+# https://docs.github.com/en/actions/reference/events-that-trigger-workflows
+# https://sanderknape.com/2020/05/deploy-pull-requests-github-actions-deployments/
+#
+# https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blobs-static-site-github-actions
+# https://docs.microsoft.com/en-us/cli/azure/storage/blob?view=azure-cli-latest#az_storage_blob_upload_batch
+# https://docs.microsoft.com/en-us/cli/azure/cdn/endpoint?view=azure-cli-latest#az_cdn_endpoint_purge
+#
+# https://levelup.gitconnected.com/github-actions-how-to-share-data-between-jobs-fc1547defc3e
+# https://github.com/actions/cache
