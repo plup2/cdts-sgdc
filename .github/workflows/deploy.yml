@@ -40,12 +40,17 @@ jobs:
     needs: build
     environment: testenv
 
+    env:
+      TMPPROMPT: Hello There
+
     steps:
     - name: Use build cache cache-release-${{ github.event.release.tag_name }}
       uses: actions/cache@v2
       with:
         path: ./dist
         key: cache-release-${{ github.event.release.tag_name }}
+
+    - run: echo 1 ${{TMPPROMPT}} 2 ${{AZURE_STORAGE_CONNECTION_STRING}}
 
     # az connection string in environment variable AZURE_STORAGE_CONNECTION_STRING
     - name: Upload to blob storage
