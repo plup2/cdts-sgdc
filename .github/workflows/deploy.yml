@@ -3,6 +3,7 @@ name: DEPLOY
 on:
   release:
     types: [published]
+  push:
 
 jobs:
   build:
@@ -41,7 +42,7 @@ jobs:
     environment: testenv
 
     env:
-      TMPPROMPT: Hello There
+      TMP_PROMPT: Hello There
 
     steps:
     - name: Use build cache cache-release-${{ github.event.release.tag_name }}
@@ -50,7 +51,7 @@ jobs:
         path: ./dist
         key: cache-release-${{ github.event.release.tag_name }}
 
-    - run: echo 1 ${{TMPPROMPT}} 2 ${{AZURE_STORAGE_CONNECTION_STRING}}
+    - run: echo 1 ${TMP_PROMPT} 2 ${AZURE_STORAGE_CONNECTION_STRING}
 
     # az connection string in environment variable AZURE_STORAGE_CONNECTION_STRING
     - name: Upload to blob storage
