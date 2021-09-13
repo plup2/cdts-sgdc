@@ -35,7 +35,7 @@ jobs:
         path: ./dist
         key: cache-release-${{ github.event.release.tag_name }}
 
-  deploy-intranet:
+  deploy-ssltemplates:
     runs-on: ubuntu-latest
     needs: build
     environment: testenv
@@ -51,12 +51,30 @@ jobs:
         key: cache-release-${{ github.event.release.tag_name }}
 
     # az connection string in environment variable AZURE_STORAGE_CONNECTION_STRING
-    - name: Upload to blob storage
+    - name: Upload to Azure storage account
       uses: azure/CLI@v1
       with:
         azcliversion: 2.0.81
         inlineScript: |
             az storage blob upload-batch --destination testweb --source ./dist/app/cls/WET/gcweb/v4_0_44/cdts
+
+  deploy-ssltemplates:
+    runs-on: ubuntu-latest
+    needs: build
+    environment: testcanada
+
+    steps:
+    - name: Use build cache cache-release-${{ github.event.release.tag_name }}
+      uses: actions/cache@v2
+      with:
+        path: ./dist
+        key: cache-release-${{ github.event.release.tag_name }}
+
+    - name: Clone deployment repository
+      uses: actions/checkout@v2
+      with:
+        repository: plup2/cdts-release-test
+        path: ./tmp/canada-deploy-repo
 
 # https://github.community/t/how-to-get-just-the-tag-name/16241/10
 # https://docs.github.com/en/actions/reference/events-that-trigger-workflows
@@ -68,3 +86,10 @@ jobs:
 #
 # https://levelup.gitconnected.com/github-actions-how-to-share-data-between-jobs-fc1547defc3e
 # https://github.com/actions/cache
+#
+# https://stackoverflow.com/questions/64374179/how-to-push-to-another-repository-in-github-actions
+# https://github.com/marketplace/actions/create-pull-request
+# https://github.com/paygoc6/action-pull-request-another-repo (checkout source)
+# https://github.com/actions/github-script <<<<<<
+# TODO: Cloud storage container name as variable?
+# TODO: Both deploys need the samples targetting a different environment (so each will have to do its own build instead of use the cache :( )
