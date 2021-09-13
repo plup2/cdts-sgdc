@@ -58,7 +58,7 @@ jobs:
         inlineScript: |
             az storage blob upload-batch --destination testweb --source ./dist/app/cls/WET/gcweb/v4_0_44/cdts
 
-  deploy-ssltemplates:
+  deploy-canada:
     runs-on: ubuntu-latest
     needs: build
     environment: testcanada
