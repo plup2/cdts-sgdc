@@ -76,7 +76,7 @@ jobs:
         repository: plup2/cdts-release-test
         path: ./tmp/canada-deploy-repo
         ref: main
-        token: ${{ secrets.GitHub_PAT }}
+        token: ${{ secrets.REPO_ACCESS_PAT }}
 
 # https://github.community/t/how-to-get-just-the-tag-name/16241/10
 # https://docs.github.com/en/actions/reference/events-that-trigger-workflows
