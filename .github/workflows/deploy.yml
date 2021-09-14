@@ -73,10 +73,24 @@ jobs:
     - name: Clone deployment repository
       uses: actions/checkout@v2
       with:
-        repository: plup2/cdts-release-test
+        repository: ahmad-shahid/cdts-release-test
         path: ./tmp/canada-deploy-repo
         ref: main
         token: ${{ secrets.REPO_ACCESS_PAT }}
+
+    - name: Copy release files
+      run: |
+        mkdir -p ./tmp/canada-deploy-repo/jcr_root/etc/design/canada/cdts/gcweb
+        cp -rv ./dist/app/cls/WET/gcweb/* ./tmp/canada-deploy-repo/jcr_root/etc/design/canada/cdts/gcweb
+
+    - name: Create and push deployment branch
+      run: |
+        cd ./tmp/canada-deploy-repo
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git checkout -b cdts-${{ github.event.release.tag_name }}
+        git add .
+        git commit -m "Deployment files for CDTS release ${{ github.event.release.tag_name }}"
 
 # https://github.community/t/how-to-get-just-the-tag-name/16241/10
 # https://docs.github.com/en/actions/reference/events-that-trigger-workflows
