@@ -4,12 +4,12 @@ on:
   release:
     types: [published]
 
+env:
+  nodeversion: 14.x
+
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    env:
-      nodeversion: 14.x
 
     steps:
     - uses: actions/checkout@v2
@@ -91,6 +91,7 @@ jobs:
         git checkout -b cdts-${{ github.event.release.tag_name }}
         git add .
         git commit -m "Deployment files for CDTS release ${{ github.event.release.tag_name }}"
+        git push origin cdts-${{ github.event.release.tag_name }}
 
 # https://github.community/t/how-to-get-just-the-tag-name/16241/10
 # https://docs.github.com/en/actions/reference/events-that-trigger-workflows
