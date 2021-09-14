@@ -76,6 +76,7 @@ jobs:
         repository: plup2/cdts-release-test
         path: ./tmp/canada-deploy-repo
         ref: main
+        token: ${{ secrets.GitHub_PAT }}
 
 # https://github.community/t/how-to-get-just-the-tag-name/16241/10
 # https://docs.github.com/en/actions/reference/events-that-trigger-workflows
@@ -94,3 +95,4 @@ jobs:
 # https://github.com/actions/github-script <<<<<<
 # TODO: Cloud storage container name as variable?
 # TODO: Both deploys need the samples targetting a different environment (so each will have to do its own build instead of use the cache :( )
+# TYest PAT for plup2: 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
