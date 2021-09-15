@@ -11,6 +11,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        cdnEnv: [esdcprod, canada]
+
     steps:
     - uses: actions/checkout@v2
 
@@ -23,19 +27,19 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
-    - name: Build
-      run: npm run build-prod
+    - name: Build with samples cdnEnv=${{ matrix.cdnEnv }}
+      run: npm run build-prod -- --cdts_samples_cdnenv=${{ matrix.cdnEnv }}
       env:
         DISABLE_PROXY: true
 
-    - name: Save build files to cache cache-release-${{ github.event.release.tag_name }}
+    - name: Save build files to cache cache-release-${{ github.event.release.tag_name }}-${{ matrix.cdnEnv }}
       id: cache-release-dist
       uses: actions/cache@v2
       with:
         path: ./dist
-        key: cache-release-${{ github.event.release.tag_name }}
+        key: cache-release-${{ github.event.release.tag_name }}-${{ matrix.cdnEnv }}
 
-  deploy-ssltemplates:
+  deploy-esdcprod:
     runs-on: ubuntu-latest
     needs: build
     environment: testenv
@@ -44,11 +48,11 @@ jobs:
       AZURE_STORAGE_CONNECTION_STRING: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
 
     steps:
-    - name: Use build cache cache-release-${{ github.event.release.tag_name }}
+    - name: Use build cache cache-release-${{ github.event.release.tag_name }}-esdcprod
       uses: actions/cache@v2
       with:
         path: ./dist
-        key: cache-release-${{ github.event.release.tag_name }}
+        key: cache-release-${{ github.event.release.tag_name }}-esdcprod
 
     # az connection string in environment variable AZURE_STORAGE_CONNECTION_STRING
     - name: Upload to Azure storage account
@@ -64,16 +68,16 @@ jobs:
     environment: testcanada
 
     steps:
-    - name: Use build cache cache-release-${{ github.event.release.tag_name }}
+    - name: Use build cache cache-release-${{ github.event.release.tag_name }}-canada
       uses: actions/cache@v2
       with:
         path: ./dist
-        key: cache-release-${{ github.event.release.tag_name }}
+        key: cache-release-${{ github.event.release.tag_name }}-canada
 
     - name: Clone deployment repository
       uses: actions/checkout@v2
       with:
-        repository: ahmad-shahid/cdts-release-test
+        repository: plup2/cdts-release-test
         path: ./tmp/canada-deploy-repo
         ref: main
         token: ${{ secrets.REPO_ACCESS_PAT }}
@@ -93,6 +97,19 @@ jobs:
         git commit -m "Deployment files for CDTS release ${{ github.event.release.tag_name }}"
         git push origin cdts-${{ github.event.release.tag_name }}
 
+    - name: Creating Pull Request
+      uses: actions/github-script@v4
+      with:
+        github-token: ${{ secrets.REPO_ACCESS_PAT }}
+        script: |
+          github.pulls.create({
+            owner: 'ahmad-shahid',
+            repo: 'cdts-release-test',
+            head: 'plup2:cdts-${{ github.event.release.tag_name }}',
+            base: 'main',
+            title: 'Deployment files for CDTS release ${{ github.event.release.tag_name }}',
+          });
+
 # https://github.community/t/how-to-get-just-the-tag-name/16241/10
 # https://docs.github.com/en/actions/reference/events-that-trigger-workflows
 # https://sanderknape.com/2020/05/deploy-pull-requests-github-actions-deployments/
@@ -109,5 +126,5 @@ jobs:
 # https://github.com/paygoc6/action-pull-request-another-repo (checkout source)
 # https://github.com/actions/github-script <<<<<<
 # TODO: Cloud storage container name as variable?
-# TODO: Both deploys need the samples targetting a different environment (so each will have to do its own build instead of use the cache :( )
+# TODO: Both deploys need the samples targetting a different environment (so each will have to do its own build instead of use the cache :( ) (uses strategy.matrix for build, and two cache keys)
 
