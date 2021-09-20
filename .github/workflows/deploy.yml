@@ -55,6 +55,8 @@ jobs:
         key: cache-release-${{ github.event.release.tag_name }}-esdcprod
 
     # az connection string in environment variable AZURE_STORAGE_CONNECTION_STRING
+    # https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blobs-static-site-github-actions
+    # https://docs.microsoft.com/en-us/cli/azure/storage/blob?view=azure-cli-latest#az_storage_blob_upload_batch
     - name: Upload to Azure storage account
       uses: azure/CLI@v1
       with:
@@ -97,6 +99,8 @@ jobs:
         git commit -m "Deployment files for CDTS release ${{ github.event.release.tag_name }}"
         git push origin cdts-${{ github.event.release.tag_name }}
 
+    # https://github.com/actions/github-script
+    # https://octokit.github.io/rest.js/v18#pulls
     - name: Creating Pull Request
       uses: actions/github-script@v4
       with:
@@ -112,19 +116,4 @@ jobs:
 
 # https://github.community/t/how-to-get-just-the-tag-name/16241/10
 # https://docs.github.com/en/actions/reference/events-that-trigger-workflows
-# https://sanderknape.com/2020/05/deploy-pull-requests-github-actions-deployments/
-#
-# https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blobs-static-site-github-actions
-# https://docs.microsoft.com/en-us/cli/azure/storage/blob?view=azure-cli-latest#az_storage_blob_upload_batch
-# https://docs.microsoft.com/en-us/cli/azure/cdn/endpoint?view=azure-cli-latest#az_cdn_endpoint_purge
-#
-# https://levelup.gitconnected.com/github-actions-how-to-share-data-between-jobs-fc1547defc3e
-# https://github.com/actions/cache
-#
-# https://stackoverflow.com/questions/64374179/how-to-push-to-another-repository-in-github-actions
-# https://github.com/marketplace/actions/create-pull-request
-# https://github.com/paygoc6/action-pull-request-another-repo (checkout source)
-# https://github.com/actions/github-script <<<<<<
-# TODO: Cloud storage container name as variable?
-# TODO: Both deploys need the samples targetting a different environment (so each will have to do its own build instead of use the cache :( ) (uses strategy.matrix for build, and two cache keys)
 
