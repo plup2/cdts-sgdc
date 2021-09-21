@@ -10,7 +10,6 @@ env:
 jobs:
   build-prod:
     runs-on: ubuntu-latest
-    needs: test
 
     strategy:
       matrix:
