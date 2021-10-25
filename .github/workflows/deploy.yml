@@ -60,7 +60,9 @@ jobs:
         path: ./dist
         key: cache-release-${{ github.event.release.tag_name }}-esdcprod
 
-    # az connection string in environment variable AZURE_STORAGE_CONNECTION_STRING
+    # NOTE: az connection string in environment variable AZURE_STORAGE_CONNECTION_STRING
+    # NOTE: Javascript files need to be served with Content-Type 'application/javascript;charset=utf-8' to accomodate non UTF-8 application.
+    #       The simplest way we found to do that is to batch re-upload .js files with explicit the content-type
     # https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blobs-static-site-github-actions
     # https://docs.microsoft.com/en-us/cli/azure/storage/blob?view=azure-cli-latest#az_storage_blob_upload_batch
     - name: Upload to Azure storage account
@@ -69,6 +71,7 @@ jobs:
         azcliversion: 2.0.81
         inlineScript: |
             az storage blob upload-batch --destination testweb --source ./dist/app/cls/WET/gcweb/v4_0_44/cdts
+            az storage blob upload-batch --destination testweb --source ./dist/app/cls/WET/gcweb/v4_0_44/cdts --pattern "*.js" --content-type "application/javascript;charset=utf-8"
 
   deploy-canada:
     runs-on: ubuntu-latest
