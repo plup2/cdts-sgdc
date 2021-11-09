@@ -50,6 +50,7 @@ jobs:
         # Prefix the list here with "+" to use these queries and those in the config file.
         # queries: ./path/to/local/query, your-org/your-repo/queries@main
 
+    # Since Javascript is not compiled, probably no need to do a buld, but it doesn't hurt to make sure app actually builds first
     - name: Use Node.js
       uses: actions/setup-node@v2
       with:
@@ -81,3 +82,6 @@ jobs:
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
+      with:
+        config-file: ./.github/codeql/codeql-config.yml
+
